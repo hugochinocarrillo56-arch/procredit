@@ -1,0 +1,5 @@
+{
+  "name": "ProCredit - Préstamos Garantía Prendaria",
+  "description": "Simulador de crédito bancario con garantía prendaria. Gestión de avalúos y préstamos seguros.",
+  "requestFramePermissions": []
+}
