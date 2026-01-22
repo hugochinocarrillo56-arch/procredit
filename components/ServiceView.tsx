@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, ShieldCheck, Phone, ChevronLeft } from 'lucide-react';
+import { ArrowRight, CheckCircle, ShieldCheck, Phone, ChevronLeft, FileText } from 'lucide-react';
 import { Calculator } from './Calculator';
 
 interface ServiceViewProps {
@@ -8,6 +8,7 @@ interface ServiceViewProps {
   description: string;
   image: string;
   features: string[];
+  requirements?: string[];
   onBack: () => void;
   colorClass?: string;
   enableLocation?: boolean;
@@ -19,6 +20,7 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
   description, 
   image, 
   features, 
+  requirements,
   onBack,
   colorClass = "text-primary",
   enableLocation = false
@@ -26,6 +28,15 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
   const openWhatsApp = () => {
       window.open('https://wa.me/59162327873', '_blank');
   };
+
+  // Lista por defecto si no se pasan requisitos específicos
+  const defaultRequirements = [
+    "Identificación Oficial Vigente (C.I.)",
+    "Factura original o documento de propiedad",
+    "Comprobante de domicilio (menor a 3 meses)"
+  ];
+
+  const displayRequirements = requirements && requirements.length > 0 ? requirements : defaultRequirements;
 
   return (
     <div className="animate-fade-in-up">
@@ -89,17 +100,16 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
 
             {/* Requirements */}
             <div>
-               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">Requisitos Simples</h3>
-               <ul className="space-y-3">
-                 <li className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
-                   <span className="w-2 h-2 rounded-full bg-gray-300"></span> Identificación Oficial Vigente
-                 </li>
-                 <li className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
-                   <span className="w-2 h-2 rounded-full bg-gray-300"></span> Factura original o documento de propiedad
-                 </li>
-                 <li className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
-                   <span className="w-2 h-2 rounded-full bg-gray-300"></span> Comprobante de domicilio (menor a 3 meses)
-                 </li>
+               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                 <FileText className="w-6 h-6 text-primary" /> Requisitos para el Trámite
+               </h3>
+               <ul className="space-y-3 bg-gray-50 dark:bg-gray-800/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-700">
+                 {displayRequirements.map((req, idx) => (
+                   <li key={idx} className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                     <span className="w-2 h-2 rounded-full bg-secondary mt-2 flex-shrink-0"></span> 
+                     <span className="font-medium">{req}</span>
+                   </li>
+                 ))}
                </ul>
             </div>
           </div>

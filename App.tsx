@@ -8,7 +8,7 @@ import { ServiceView } from './components/ServiceView';
 import { 
   Menu, Moon, Sun, PlayCircle, ArrowRight, CheckCircle, MapPin, Phone, ArrowUp, Landmark, 
   Gem, Car, Smartphone, Watch, Palette, Shield, Repeat, Banknote, Percent, CalendarClock, X,
-  Calculator as CalculatorIcon, DollarSign
+  Calculator as CalculatorIcon, DollarSign, Users
 } from 'lucide-react';
 
 // Data for dynamic pages - Updated to Bolivianos (Bs.)
@@ -19,13 +19,23 @@ const SERVICE_DATA: Record<string, any> = {
     description: "Obtén el avalúo más alto del mercado por tus piezas de oro, diamantes y piedras preciosas. Tasadores certificados GIA.",
     image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=1920&q=80",
     features: ["Avalúo gemológico certificado gratuito", "Resguardo en bóveda bancaria asegurada", "Hasta el 95% del valor comercial", "Sin límite de monto en préstamo"],
+    requirements: ["Documento de Identidad (C.I.) vigente", "La pieza de joyería para avalúo físico", "Certificados de autenticidad (opcional, mejora el valor)"]
   },
   autos: {
     title: "Empeño de Autos",
     subtitle: "Liquidez sobre ruedas",
     description: "Convierte tu vehículo en efectivo inmediato. Ofrecemos modalidades de resguardo o 'síguelo manejando' con GPS.",
-    image: "https://images.unsplash.com/photo-1503376763036-066120622c74?auto=format&fit=crop&w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80",
     features: ["Opción: Déjalo o Manéjalo", "Hasta el 80% del valor de la guía", "Trámite en menos de 2 horas", "Tasa preferencial desde 1.5%"],
+    requirements: [
+      "Ruat + carnet de propiedad",
+      "Póliza de importación",
+      "Resolución de inscripción vehícular en tránsito",
+      "Poder para dar en garantía prendaria (si fuera el caso)",
+      "Certificado alodial (Tránsito)",
+      "Impuestos al día (sin gravamen)",
+      "Factura de luz"
+    ]
   },
   inmuebles: {
     title: "Garantía Inmobiliaria",
@@ -34,6 +44,7 @@ const SERVICE_DATA: Record<string, any> = {
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80",
     features: ["Montos desde Bs. 350,000", "Plazos de hasta 10 años", "Sin buró de crédito estricto", "Notarización ágil y segura"],
     enableLocation: true,
+    requirements: ["Título de propiedad registrado en Derechos Reales", "Folio Real actualizado (Alodial)", "Plano Catastral aprobado", "Impuestos pagados de la última gestión", "C.I. del propietario y cónyuge (si aplica)"]
   },
   relojes: {
     title: "Relojes de Alta Gama",
@@ -41,6 +52,7 @@ const SERVICE_DATA: Record<string, any> = {
     description: "Aceptamos marcas como Rolex, Patek Philippe, Audemars Piguet, Cartier y más. Expertos en horología a tu servicio.",
     image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1920&q=80",
     features: ["Tasación experta internacional", "Seguro al 100% del valor", "Mantenimiento básico incluido", "Privacidad absoluta"],
+    requirements: ["Reloj físico para inspección", "Documento de Identidad (C.I.)", "Caja y papeles originales (incrementan el valor de tasación)"]
   },
   electronicos: {
     title: "Empeño de Electrónicos",
@@ -48,6 +60,7 @@ const SERVICE_DATA: Record<string, any> = {
     description: "Aceptamos laptops (MacBook, Alienware), cámaras profesionales, consolas de última generación y celulares de gama alta.",
     image: "https://images.unsplash.com/photo-1468495244187-d43f4683c4bb?auto=format&fit=crop&w=1920&q=80",
     features: ["Borrado de datos seguro (opcional)", "Almacenamiento anti-estático", "Préstamos rápidos desde Bs. 1,400", "Renovación mensual ilimitada"],
+    requirements: ["Equipo completo con cargador original", "Batería con carga para pruebas", "Sin cuentas bloqueadas (iCloud/Google)", "Documento de Identidad (C.I.)"]
   },
   arte: {
     title: "Arte y Antigüedades",
@@ -55,6 +68,7 @@ const SERVICE_DATA: Record<string, any> = {
     description: "Financiamiento respaldado por obras de arte, esculturas y antigüedades certificadas. Valoramos la historia de tus piezas.",
     image: "https://images.unsplash.com/photo-1554907984-15263bfd63bd?auto=format&fit=crop&w=1920&q=80",
     features: ["Consultores de arte especializados", "Transporte blindado especializado", "Condiciones de humedad controlada", "Contratos flexibles"],
+    requirements: ["Obra física o fotografías de alta resolución (pre-evaluación)", "Certificado de autenticidad o procedencia", "Tasación previa (si la tuviera)", "Documento de Identidad (C.I.)"]
   },
   banca: {
     title: "Banca Comunal",
@@ -62,6 +76,7 @@ const SERVICE_DATA: Record<string, any> = {
     description: "Créditos grupales diseñados para emprendedores que buscan crecer juntos. Sin garantía individual, respaldados por la solidaridad.",
     image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=1920&q=80",
     features: ["Tasas de interés reducidas", "Capacitación financiera gratuita", "Premios por puntualidad", "Ciclos de renovación rápida"],
+    requirements: ["Grupo mínimo de 5 personas", "Fotocopia de C.I. de cada integrante", "Factura de luz o agua del domicilio", "Tener un negocio propio o actividad económica"]
   },
   garantia: {
     title: "Crédito con Garantía",
@@ -69,6 +84,7 @@ const SERVICE_DATA: Record<string, any> = {
     description: "Nuestro producto estrella. Un préstamo personal respaldado por tus activos físicos, combinando lo mejor de la banca y el empeño.",
     image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=1920&q=80",
     features: ["Combinación de garantías aceptada", "Aprobación en 24 horas", "Intereses sobre saldos insolutos", "Sin penalización por prepago"],
+    requirements: ["Documento de Identidad (C.I.) vigente", "Avalúo de la garantía (realizado por nosotros)", "Comprobante de ingresos (opcional, mejora tasa)"]
   },
   micro: {
     title: "Microcrédito Solidario",
@@ -76,7 +92,8 @@ const SERVICE_DATA: Record<string, any> = {
     description: "Pequeños créditos para grandes sueños. Diseñados para impulsar tu negocio desde el primer día.",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&w=1920&q=80",
     features: ["Mínimos requisitos", "Aprobación inmediata", "Sin garantía prendaria", "Plazos semanales o quincenales"],
-    colorClass: "text-green-600 bg-green-50"
+    colorClass: "text-green-600 bg-green-50",
+    requirements: ["Cédula de Identidad Vigente", "Aviso de Cobranza de Luz o Agua", "Croquis del Domicilio y Negocio", "Garante Personal (si aplica)"]
   }
 };
 
@@ -190,6 +207,49 @@ const App: React.FC = () => {
                 
                 {/* Left Column (Content & Calculator) */}
                 <div className="lg:col-span-8 space-y-12">
+                    
+                    {/* Quienes Somos Section - NEW */}
+                    <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 relative overflow-hidden group">
+                        {/* Decorative BG */}
+                        <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full -mr-10 -mt-10 blur-2xl transition-all group-hover:bg-primary/10"></div>
+                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-secondary/5 rounded-full -ml-8 -mb-8 blur-2xl"></div>
+
+                        <div className="flex flex-col md:flex-row gap-8 items-center relative z-10">
+                            <div className="w-full md:w-3/5 space-y-4">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-wider mb-2">
+                                    <Users className="w-3 h-3" />
+                                    Sobre Nosotros
+                                </div>
+                                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">
+                                    ¿Quiénes <span className="text-primary">Somos?</span>
+                                </h2>
+                                <div className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed space-y-3 text-justify">
+                                    <p>
+                                        Desde 2024, nacimos en la ciudad de La Paz, en plena <strong>Av. Cardos Santos</strong>, apoyando a las familias y emprendedores, razón por la cual se debe nuestro nombre <strong>“Pro Credit”</strong>.
+                                    </p>
+                                    <p>
+                                        Somos la mano amiga para muchos emprendedores que requieren un crédito de forma rápida y sencilla, <strong>sin complicaciones ni extenuantes requisitos</strong>.
+                                    </p>
+                                    <p>
+                                        Tenemos presencia en 2 ciudades con sucursales estratégicas en la ciudad de <strong>Potosí</strong> y en la ciudad de <strong>La Paz</strong>. Son 2 años que respaldan nuestra solidez y confianza.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="w-full md:w-2/5">
+                                <div className="relative rounded-2xl overflow-hidden shadow-lg border-4 border-white dark:border-gray-700 rotate-2 hover:rotate-0 transition-all duration-500">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                        alt="Equipo Pro Credit" 
+                                        className="w-full h-48 md:h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                                         <p className="text-white font-bold text-xs md:text-sm">Compromiso y Solidez</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Intro Section Card */}
                     <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700">
                         <div className="flex flex-col md:flex-row gap-8 items-center">
