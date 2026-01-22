@@ -46,12 +46,12 @@ Quisiera saber los requisitos para este préstamo.`;
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-inner border border-gray-100 dark:border-gray-700 h-fit">
+    <div className="bg-surface-light rounded-3xl p-6 shadow-inner border border-white/5 h-fit">
       <div className="text-center mb-8">
-        <h3 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-2">
-          SIMULADOR DE <span className="text-secondary">CRÉDITO</span>
+        <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+          SIMULADOR DE <span className="text-primary">CRÉDITO</span>
         </h3>
-        <p className="text-gray-500 dark:text-gray-400 text-xs max-w-xs mx-auto">
+        <p className="text-gray-400 text-xs max-w-xs mx-auto">
           Elige el monto exacto que necesitas y el tiempo para pagar.
         </p>
       </div>
@@ -60,7 +60,7 @@ Quisiera saber los requisitos para este préstamo.`;
         {/* Amount Input */}
         <div>
            <div className="flex justify-between mb-2">
-              <label className="text-xs font-bold text-gray-600 dark:text-gray-300 flex items-center gap-1">
+              <label className="text-xs font-bold text-gray-300 flex items-center gap-1">
                  <DollarSign className="w-3 h-3" /> Monto del Préstamo (Bs.)
               </label>
               <span className="text-xs font-bold text-primary">Bs. {amountInput}</span>
@@ -73,9 +73,9 @@ Quisiera saber los requisitos para este préstamo.`;
               step="500"
               value={amount} 
               onChange={handleAmountChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-secondary"
+              className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-primary"
            />
-           <div className="flex justify-between mt-2 text-[10px] text-gray-400">
+           <div className="flex justify-between mt-2 text-[10px] text-gray-500">
               <span>Bs. 1,000</span>
               <span>Bs. 150,000</span>
            </div>
@@ -87,7 +87,7 @@ Quisiera saber los requisitos para este préstamo.`;
                     type="number"
                     value={amountInput}
                     onChange={handleAmountChange}
-                    className="w-full pl-10 pr-4 py-2 text-center text-xl font-bold bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-secondary outline-none"
+                    className="w-full pl-10 pr-4 py-2 text-center text-xl font-bold bg-background-light border border-white/10 rounded-xl focus:ring-2 focus:ring-primary outline-none text-white"
                 />
              </div>
            </div>
@@ -95,7 +95,7 @@ Quisiera saber los requisitos para este préstamo.`;
 
         {/* Term Input */}
         <div>
-            <label className="text-xs font-bold text-gray-600 dark:text-gray-300 flex items-center gap-1 mb-3">
+            <label className="text-xs font-bold text-gray-300 flex items-center gap-1 mb-3">
                  <Calendar className="w-3 h-3" /> Plazo de Pago
             </label>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
@@ -105,8 +105,8 @@ Quisiera saber los requisitos para este préstamo.`;
                         onClick={() => setMonths(m)}
                         className={`py-2 px-1 rounded-lg text-xs font-bold transition-all ${
                             months === m 
-                            ? 'bg-secondary text-white shadow-lg shadow-secondary/30 scale-105' 
-                            : 'bg-gray-100 dark:bg-gray-700 text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-600'
+                            ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105' 
+                            : 'bg-white/5 text-gray-400 hover:bg-white/10'
                         }`}
                     >
                         {m} Meses
@@ -116,9 +116,9 @@ Quisiera saber los requisitos para este préstamo.`;
         </div>
 
         {/* Results */}
-        <div className="bg-gray-900 dark:bg-black rounded-2xl p-6 text-white relative overflow-hidden shadow-xl">
+        <div className="bg-background-light rounded-2xl p-6 text-white relative overflow-hidden shadow-xl border border-white/5">
             {/* Background pattern */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
             
             <div className="relative z-10 flex flex-col gap-4">
                 <div className="flex justify-between items-end border-b border-white/10 pb-4">
@@ -128,7 +128,7 @@ Quisiera saber los requisitos para este préstamo.`;
                 
                 <div className="flex justify-between items-center text-xs">
                      <span className="text-gray-400 flex items-center gap-1"><Percent className="w-3 h-3" /> Tasa Mensual (Base)</span>
-                     <span className="font-bold text-green-400">{(INTEREST_RATE * 100).toFixed(1)}%</span>
+                     <span className="font-bold text-primary">{(INTEREST_RATE * 100).toFixed(1)}%</span>
                 </div>
                  <div className="flex justify-between items-center text-xs">
                      <span className="text-gray-400">Seguro y Resguardo</span>
@@ -137,7 +137,7 @@ Quisiera saber los requisitos para este préstamo.`;
                 
                 <button 
                     onClick={sendToWhatsApp}
-                    className="mt-2 w-full bg-white text-gray-900 hover:bg-gray-100 font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
+                    className="mt-2 w-full bg-primary text-white hover:bg-accent font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
                 >
                     <Send className="w-4 h-4" /> Solicitar este Crédito
                 </button>
