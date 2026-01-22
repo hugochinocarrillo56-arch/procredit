@@ -8,7 +8,7 @@ import { ServiceView } from './components/ServiceView';
 import { 
   Menu, Moon, Sun, PlayCircle, ArrowRight, CheckCircle, MapPin, Phone, ArrowUp, Landmark, 
   Gem, Car, Smartphone, Shield, Repeat, Banknote, Percent, CalendarClock, X,
-  Calculator as CalculatorIcon, DollarSign, Users, Facebook
+  Calculator as CalculatorIcon, DollarSign, Users, Facebook, ShieldCheck
 } from 'lucide-react';
 
 // Data for dynamic pages - Updated to Bolivianos (Bs.)
@@ -78,6 +78,14 @@ const SERVICE_DATA: Record<string, any> = {
     features: ["Mínimos requisitos", "Aprobación inmediata", "Sin garantía prendaria", "Plazos semanales o quincenales"],
     colorClass: "text-green-600 bg-green-50",
     requirements: ["Cédula de Identidad Vigente", "Aviso de Cobranza de Luz o Agua", "Croquis del Domicilio y Negocio", "Garante Personal (si aplica)"]
+  },
+  seguros: {
+    title: "Seguros Integrales",
+    subtitle: "Protección Total",
+    description: "Asegura lo que más valoras. Ofrecemos seguros de vida, automotriz y protección de bienes empeñados con cobertura amplia.",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1920&q=80",
+    features: ["Cobertura inmediata", "Primas competitivas", "Asistencia 24/7", "Respaldo de aseguradoras líderes"],
+    requirements: ["Documento de Identidad (C.I.)", "Formulario de solicitud", "Inspección del bien (si aplica)"]
   }
 };
 
