@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { INTEREST_RATE, STORAGE_INSURANCE_RATE, WHATSAPP_PHONE, EMAIL_CONTACT } from '../constants';
-import { ChevronRight, Plus, Minus, Send, FileText, MapPin, Mail } from 'lucide-react';
+import { ChevronRight, Plus, Minus, Send, FileText, MapPin, Mail, Calendar } from 'lucide-react';
 
 interface CalculatorProps {
   enableLocation?: boolean;
@@ -8,31 +8,37 @@ interface CalculatorProps {
 
 export const Calculator: React.FC<CalculatorProps> = ({ enableLocation = false }) => {
   // Valores iniciales en Bolivianos
-  const [amountInput, setAmountInput] = useState<string>("2500");
-  const [months, setMonths] = useState<number>(6);
+  const [amountInput, setAmountInput] = useState<string>("1000");
+  const [months, setMonths] = useState<number>(1); // Default 1 mes
   const [itemDescription, setItemDescription] = useState<string>("");
   const [locationInput, setLocationInput] = useState<string>("");
-  const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
-  const [totalPayment, setTotalPayment] = useState<number>(0);
+  const [monthlyInterest, setMonthlyInterest] = useState<number>(0);
+  const [totalRedemption, setTotalRedemption] = useState<number>(0);
   
-  const monthOptions = [1, 3, 6, 12, 24];
+  // Botones de selección rápida
+  const monthOptions = [1, 2, 3, 6, 12];
 
   // Derived number value for calculations
   const amount = Number(amountInput) || 0;
 
   useEffect(() => {
-    // Cálculo de amortización
+    // Cálculo de EMPEÑO (Interés Simple)
+    // Tasa total = Interés (3%) + Resguardo (5%) = 8%
     const totalRate = INTEREST_RATE + STORAGE_INSURANCE_RATE;
-    const n = months;
     
     if (amount > 0) {
-        // Fórmula de anualidad (cuota fija)
-        const pmt = (amount * totalRate * Math.pow(1 + totalRate, n)) / (Math.pow(1 + totalRate, n) - 1);
-        setMonthlyPayment(pmt);
-        setTotalPayment(pmt * n);
+        // El costo mensual es solo el interés + seguro
+        const monthlyCost = amount * totalRate;
+        
+        // El total a pagar para recuperar la prenda (Desempeño) es:
+        // Capital Original + (Costo Mensual * Número de Meses)
+        const totalToRedeem = amount + (monthlyCost * months);
+
+        setMonthlyInterest(monthlyCost);
+        setTotalRedemption(totalToRedeem);
     } else {
-        setMonthlyPayment(0);
-        setTotalPayment(0);
+        setMonthlyInterest(0);
+        setTotalRedemption(0);
     }
   }, [amount, months]);
 
@@ -62,6 +68,16 @@ export const Calculator: React.FC<CalculatorProps> = ({ enableLocation = false }
     }
   };
 
+  const handleMonthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const val = parseInt(e.target.value, 10);
+      if (!isNaN(val) && val > 0) {
+          // Límite lógico de meses, ej: 60 meses (5 años)
+          setMonths(val > 60 ? 60 : val);
+      } else if (e.target.value === '') {
+          setMonths(0); // Temporal para permitir borrado, se valida en render o efecto
+      }
+  };
+
   const sendToWhatsApp = () => {
     const desc = itemDescription ? itemDescription : "N/A";
     const locInfo = enableLocation && locationInput ? `📍 *Ubicación:* ${locationInput}` : "";
@@ -69,13 +85,14 @@ export const Calculator: React.FC<CalculatorProps> = ({ enableLocation = false }
     // Mensaje base simplificado
     const message = `👋 Hola ProCredit. 
     
-🏦 *Solicitud de Cotización/Empeño*
+🏦 *Cotización de Empeño*
 
-📦 *Prenda/Garantía:* ${desc}
+📦 *Prenda:* ${desc}
 ${locInfo}
 
-💰 *Monto que pido:* Bs. ${amountInput}
-📅 *Plazo estimado:* ${months} meses`;
+💰 *Préstamo:* Bs. ${amountInput}
+📅 *Tiempo:* ${months} mes(es)
+💵 *Total a devolver:* Bs. ${totalRedemption.toFixed(0)}`;
     
     const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
@@ -96,10 +113,11 @@ DETALLES DE LA PRENDA
 Descripción: ${desc}
 ${locInfo}
 
-DATOS DEL PRÉSTAMO
+DATOS DEL EMPEÑO
 ------------------
 Monto Solicitado: Bs. ${amountInput}
 Plazo estimado: ${months} meses
+Total estimado a devolver: Bs. ${totalRedemption.toFixed(0)}
 
 Quedo atento a su respuesta.`;
 
@@ -114,7 +132,7 @@ Quedo atento a su respuesta.`;
             COTIZA TU <span className="text-primary opacity-90">EMPEÑO</span>
             </h3>
             <p className="text-gray-400 max-w-2xl mx-auto text-xs">
-            Calculadora referencial en Bolivianos.
+            Calculadora de interés simple.
             </p>
         </div>
 
@@ -196,54 +214,72 @@ Quedo atento a su respuesta.`;
                 />
             </div>
 
-            {/* Months Section */}
+            {/* Months Section (Manual Input + Quick Select) */}
             <div>
-                <label className="block text-xs font-bold text-gray-300 mb-2">
-                Plazo estimado (meses)
+                <label className="block text-xs font-bold text-gray-300 mb-2 flex items-center justify-between">
+                   <span className="flex items-center gap-1"><Calendar className="w-3 h-3"/> Meses de plazo</span>
+                   <span className="text-[10px] text-gray-400 font-normal">Escribe o selecciona</span>
                 </label>
-                <div className="grid grid-cols-5 gap-1.5">
-                {monthOptions.map((m) => (
-                    <button
-                    key={m}
-                    onClick={() => setMonths(m)}
-                    className={`py-1.5 rounded-md text-xs font-bold transition-all duration-200 border ${
-                        months === m
-                        ? 'bg-primary border-primary text-white shadow-md'
-                        : 'bg-white/5 border-white/10 text-gray-400 hover:border-primary/50 hover:text-white'
-                    }`}
-                    >
-                    {m}
-                    </button>
-                ))}
+                
+                <div className="flex gap-2 mb-3">
+                     <div className="w-20">
+                         <input 
+                            type="number" 
+                            min="1" 
+                            max="60"
+                            value={months === 0 ? '' : months}
+                            onChange={handleMonthChange}
+                            placeholder="#"
+                            className="w-full h-10 bg-white/5 border border-primary/50 rounded-lg px-2 text-center font-bold text-white focus:ring-2 focus:ring-primary outline-none"
+                         />
+                     </div>
+                     <div className="flex-1 grid grid-cols-5 gap-1.5">
+                        {monthOptions.map((m) => (
+                            <button
+                            key={m}
+                            onClick={() => setMonths(m)}
+                            className={`h-10 rounded-md text-xs font-bold transition-all duration-200 border ${
+                                months === m
+                                ? 'bg-primary border-primary text-white shadow-md'
+                                : 'bg-white/5 border-white/10 text-gray-400 hover:border-primary/50 hover:text-white'
+                            }`}
+                            >
+                            {m}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
             </div>
 
             {/* Results Card Compact */}
             <div className="bg-background-light rounded-xl p-4 shadow-inner border border-white/5 relative overflow-hidden mt-2">
+                
+                {/* Interest Calculation Row */}
                 <div className="flex justify-between items-center mb-2 border-b border-white/5 pb-2">
-                    <span className="text-xs font-bold text-gray-400 uppercase">Pago Mensual*</span>
-                    <span className="text-2xl font-extrabold text-white">
-                    Bs. {monthlyPayment.toFixed(0)}
+                    <div className="flex flex-col">
+                        <span className="text-xs font-bold text-gray-400 uppercase">Interés mensual</span>
+                        <span className="text-[9px] text-gray-500">{(INTEREST_RATE * 100).toFixed(0)}% Int + {(STORAGE_INSURANCE_RATE * 100).toFixed(0)}% Seg</span>
+                    </div>
+                    <span className="text-lg font-bold text-white">
+                        Bs. {monthlyInterest.toFixed(0)}
                     </span>
                 </div>
-                <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs font-bold text-gray-400 uppercase">Tasa Interés</span>
-                    <span className="text-sm font-bold text-primary">
-                        {(INTEREST_RATE * 100).toFixed(1)}% Mensual
-                    </span>
-                </div>
-                <div className="flex justify-between items-center">
-                    <span className="text-xs font-bold text-gray-400 uppercase">Total a Pagar</span>
-                    <span className="text-sm font-bold text-primary">Bs. {totalPayment.toFixed(0)}</span>
+
+                {/* Total Redemption Row */}
+                <div className="flex justify-between items-end mt-2">
+                    <div className="flex flex-col">
+                         <span className="text-xs font-bold text-primary uppercase">Total Desempeño</span>
+                         <span className="text-[9px] text-gray-400">Capital + ({months} meses de interés)</span>
+                    </div>
+                    <span className="text-2xl font-extrabold text-white">Bs. {totalRedemption.toFixed(0)}</span>
                 </div>
                 
-                {/* Fine Print / Disclaimer */}
-                <div className="mt-3 pt-2 border-t border-dashed border-white/10">
-                    <p className="text-[9px] text-gray-500 leading-tight">
-                        * La cuota mensual estimada incluye interés ({(INTEREST_RATE * 100).toFixed(0)}%) más 
-                        un cargo adicional del {(STORAGE_INSURANCE_RATE * 100).toFixed(0)}% por concepto de resguardo, depósito y seguro.
-                        Sujeto a evaluación.
+                {/* Example / Disclaimer */}
+                <div className="mt-3 pt-2 border-t border-dashed border-white/10 text-center">
+                    <p className="text-[10px] text-gray-400">
+                        Si recuperas tu prenda en <strong>{months} mes{months !== 1 ? 'es' : ''}</strong>, pagas 
+                        Bs. {amount} (Capital) + Bs. {(monthlyInterest * months).toFixed(0)} (Interés acumulado).
                     </p>
                 </div>
             </div>

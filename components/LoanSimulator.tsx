@@ -8,7 +8,8 @@ export const LoanSimulator: React.FC = () => {
   const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
   const [totalPayment, setTotalPayment] = useState<number>(0);
 
-  const amount = Number(amountInput) || 0;
+  // Convert input string to number safely
+  const amount = parseInt(amountInput.replace(/[^0-9]/g, '') || '0', 10);
 
   useEffect(() => {
     // Tasa total mensual: 3% interés + 5% seguro = 8% (0.08)
@@ -16,11 +17,6 @@ export const LoanSimulator: React.FC = () => {
     
     if (amount > 0) {
         // Lógica de Interés Simple (Tasa Plana) solicitada por el usuario
-        // Ejemplo: 1000 * 0.08 = 80 interés mensual.
-        // En 3 meses: 80 * 3 = 240 interés total.
-        // Total a pagar: 1000 + 240 = 1240.
-        // Cuota mensual: 1240 / 3 = 413.33
-        
         const monthlyInterestAmount = amount * totalMonthlyRate;
         const totalInterest = monthlyInterestAmount * months;
         const totalToPay = amount + totalInterest;
@@ -35,8 +31,18 @@ export const LoanSimulator: React.FC = () => {
   }, [amount, months]);
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmountInput(e.target.value);
+    // Permitir solo números
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    
+    // Limite superior visual para evitar números infinitos
+    if (value.length > 8) return; 
+    
+    setAmountInput(value);
   };
+
+  const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmountInput(e.target.value);
+  }
 
   const sendToWhatsApp = () => {
     const message = `👋 Hola ProCredit. 
@@ -72,7 +78,7 @@ Quisiera saber los requisitos para este préstamo.`;
               <label className="text-xs font-bold text-gray-300 flex items-center gap-1">
                  <DollarSign className="w-3 h-3" /> Monto del Préstamo (Bs.)
               </label>
-              <span className="text-xs font-bold text-primary">Bs. {amountInput}</span>
+              <span className="text-xs font-bold text-primary">Bs. {parseInt(amountInput || '0').toLocaleString()}</span>
            </div>
            
            <input 
@@ -80,8 +86,8 @@ Quisiera saber los requisitos para este préstamo.`;
               min="500" 
               max="150000" 
               step="100"
-              value={amount} 
-              onChange={handleAmountChange}
+              value={amount > 150000 ? 150000 : amount} 
+              onChange={handleRangeChange}
               className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-primary"
            />
            <div className="flex justify-between mt-2 text-[10px] text-gray-500">
@@ -89,14 +95,16 @@ Quisiera saber los requisitos para este préstamo.`;
               <span>Bs. 150,000</span>
            </div>
            
-           <div className="mt-4 flex justify-center">
-             <div className="relative w-full max-w-[200px]">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">Bs.</span>
+           <div className="mt-6 flex justify-center">
+             <div className="relative w-full max-w-[240px]">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-extrabold text-xl z-10 pointer-events-none">Bs.</span>
                 <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
                     value={amountInput}
                     onChange={handleAmountChange}
-                    className="w-full pl-10 pr-4 py-2 text-center text-xl font-bold bg-background-light border border-white/10 rounded-xl focus:ring-2 focus:ring-primary outline-none text-white"
+                    placeholder="0"
+                    className="w-full pl-14 pr-4 py-3 text-center text-3xl font-extrabold bg-black border-2 border-white/20 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none text-white shadow-xl transition-all placeholder-gray-700"
                 />
              </div>
            </div>
@@ -115,7 +123,7 @@ Quisiera saber los requisitos para este préstamo.`;
                         className={`py-2 px-1 rounded-lg text-xs font-bold transition-all ${
                             months === m 
                             ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105' 
-                            : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                            : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/5'
                         }`}
                     >
                         {m} Meses
@@ -132,7 +140,7 @@ Quisiera saber los requisitos para este préstamo.`;
             <div className="relative z-10 flex flex-col gap-4">
                 <div className="flex justify-between items-end border-b border-white/10 pb-4">
                     <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">Cuota Fija Mensual</span>
-                    <span className="text-3xl font-bold text-white">Bs. {monthlyPayment.toFixed(2)}</span>
+                    <span className="text-3xl font-bold text-white">Bs. {monthlyPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                 </div>
                 
                 <div className="flex justify-between items-center text-xs">
@@ -145,7 +153,7 @@ Quisiera saber los requisitos para este préstamo.`;
                 </div>
                 <div className="flex justify-between items-center text-xs pt-2 border-t border-white/5">
                      <span className="text-gray-400 font-bold">Total a Devolver</span>
-                     <span className="font-bold text-white">Bs. {totalPayment.toFixed(2)}</span>
+                     <span className="font-bold text-white">Bs. {totalPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                 </div>
                 
                 <button 
