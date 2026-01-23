@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send, User, Mail, Phone } from 'lucide-react';
+import { WHATSAPP_PHONE } from '../constants';
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,9 +12,8 @@ export const ContactForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const phoneNumber = "59162327873";
     const message = `Hola ProCredit, mi nombre es ${formData.nombre} ${formData.apellido}. Mi correo es ${formData.email} y mi celular es ${formData.celular}. Quisiera recibir más información sobre los préstamos.`;
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
     setFormData({ nombre: '', apellido: '', email: '', celular: '' });
   };
@@ -114,7 +114,7 @@ export const ContactForm: React.FC = () => {
       
       <div className="bg-black/20 p-4 text-center border-t border-white/5 backdrop-blur-sm">
         <p className="text-white text-xs font-semibold mb-1">¿Necesitas ayuda inmediata?</p>
-        <a href="https://wa.me/59162327873" target="_blank" className="text-primary text-xl font-bold block hover:underline tracking-widest">
+        <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" className="text-primary text-xl font-bold block hover:underline tracking-widest">
             +591 623 27873
         </a>
       </div>

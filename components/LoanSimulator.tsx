@@ -1,24 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { INTEREST_RATE, STORAGE_INSURANCE_RATE } from '../constants';
+import { INTEREST_RATE, STORAGE_INSURANCE_RATE, WHATSAPP_PHONE } from '../constants';
 import { Minus, Plus, Send, Calendar, DollarSign, Percent } from 'lucide-react';
 
 export const LoanSimulator: React.FC = () => {
-  const [amountInput, setAmountInput] = useState<string>("5000");
-  const [months, setMonths] = useState<number>(12);
+  const [amountInput, setAmountInput] = useState<string>("1000");
+  const [months, setMonths] = useState<number>(3);
   const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
   const [totalPayment, setTotalPayment] = useState<number>(0);
 
   const amount = Number(amountInput) || 0;
 
   useEffect(() => {
-    // Tasa total: 3% interés + 5% seguro = 8%
-    const totalRate = INTEREST_RATE + STORAGE_INSURANCE_RATE;
+    // Tasa total mensual: 3% interés + 5% seguro = 8% (0.08)
+    const totalMonthlyRate = INTEREST_RATE + STORAGE_INSURANCE_RATE;
     
     if (amount > 0) {
-        // Fórmula de cuota nivelada (Anualidad)
-        const pmt = (amount * totalRate * Math.pow(1 + totalRate, months)) / (Math.pow(1 + totalRate, months) - 1);
-        setMonthlyPayment(pmt);
-        setTotalPayment(pmt * months);
+        // Lógica de Interés Simple (Tasa Plana) solicitada por el usuario
+        // Ejemplo: 1000 * 0.08 = 80 interés mensual.
+        // En 3 meses: 80 * 3 = 240 interés total.
+        // Total a pagar: 1000 + 240 = 1240.
+        // Cuota mensual: 1240 / 3 = 413.33
+        
+        const monthlyInterestAmount = amount * totalMonthlyRate;
+        const totalInterest = monthlyInterestAmount * months;
+        const totalToPay = amount + totalInterest;
+        const monthlyQuota = totalToPay / months;
+
+        setMonthlyPayment(monthlyQuota);
+        setTotalPayment(totalToPay);
     } else {
         setMonthlyPayment(0);
         setTotalPayment(0);
@@ -30,18 +39,18 @@ export const LoanSimulator: React.FC = () => {
   };
 
   const sendToWhatsApp = () => {
-    const phoneNumber = "59162327873";
     const message = `👋 Hola ProCredit. 
     
 🏦 *Solicitud de Crédito Personal*
 
 💰 *Monto Solicitado:* Bs. ${amountInput}
 📅 *Plazo:* ${months} meses
-📊 *Cuota Estimada:* Bs. ${monthlyPayment.toFixed(0)}/mes
+📊 *Cuota Fija:* Bs. ${monthlyPayment.toFixed(2)}/mes
+📝 *Total a Devolver:* Bs. ${totalPayment.toFixed(2)}
 
 Quisiera saber los requisitos para este préstamo.`;
     
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
@@ -68,15 +77,15 @@ Quisiera saber los requisitos para este préstamo.`;
            
            <input 
               type="range" 
-              min="1000" 
+              min="500" 
               max="150000" 
-              step="500"
+              step="100"
               value={amount} 
               onChange={handleAmountChange}
               className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-primary"
            />
            <div className="flex justify-between mt-2 text-[10px] text-gray-500">
-              <span>Bs. 1,000</span>
+              <span>Bs. 500</span>
               <span>Bs. 150,000</span>
            </div>
            
@@ -122,17 +131,21 @@ Quisiera saber los requisitos para este préstamo.`;
             
             <div className="relative z-10 flex flex-col gap-4">
                 <div className="flex justify-between items-end border-b border-white/10 pb-4">
-                    <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">Cuota Mensual</span>
-                    <span className="text-3xl font-bold text-white">Bs. {monthlyPayment.toFixed(0)}</span>
+                    <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">Cuota Fija Mensual</span>
+                    <span className="text-3xl font-bold text-white">Bs. {monthlyPayment.toFixed(2)}</span>
                 </div>
                 
                 <div className="flex justify-between items-center text-xs">
-                     <span className="text-gray-400 flex items-center gap-1"><Percent className="w-3 h-3" /> Tasa Mensual (Base)</span>
-                     <span className="font-bold text-primary">{(INTEREST_RATE * 100).toFixed(1)}%</span>
+                     <span className="text-gray-400 flex items-center gap-1"><Percent className="w-3 h-3" /> Interés Mensual</span>
+                     <span className="font-bold text-primary">{(INTEREST_RATE * 100).toFixed(0)}%</span>
                 </div>
                  <div className="flex justify-between items-center text-xs">
-                     <span className="text-gray-400">Seguro y Resguardo</span>
-                     <span className="font-bold text-gray-300">{(STORAGE_INSURANCE_RATE * 100).toFixed(1)}%</span>
+                     <span className="text-gray-400">Gravamen y Seguro</span>
+                     <span className="font-bold text-gray-300">{(STORAGE_INSURANCE_RATE * 100).toFixed(0)}%</span>
+                </div>
+                <div className="flex justify-between items-center text-xs pt-2 border-t border-white/5">
+                     <span className="text-gray-400 font-bold">Total a Devolver</span>
+                     <span className="font-bold text-white">Bs. {totalPayment.toFixed(2)}</span>
                 </div>
                 
                 <button 
@@ -143,7 +156,7 @@ Quisiera saber los requisitos para este préstamo.`;
                 </button>
                 
                 <p className="text-[9px] text-center text-gray-500 mt-1">
-                    * Calculo referencial. Sujeto a evaluación crediticia y garantía.
+                    * Cálculo de cuota fija (Interés Simple) con tasa total del 8% mensual.
                 </p>
             </div>
         </div>

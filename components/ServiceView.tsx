@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, CheckCircle, ShieldCheck, Phone, ChevronLeft, FileText } from 'lucide-react';
 import { Calculator } from './Calculator';
+import { WHATSAPP_PHONE } from '../constants';
 
 interface ServiceViewProps {
   title: string;
@@ -26,7 +27,7 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
   enableLocation = false
 }) => {
   const openWhatsApp = () => {
-      window.open('https://wa.me/59162327873', '_blank');
+      window.open(`https://wa.me/${WHATSAPP_PHONE}`, '_blank');
   };
 
   // Lista por defecto si no se pasan requisitos específicos

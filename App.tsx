@@ -5,6 +5,7 @@ import { LoanSimulator } from './components/LoanSimulator';
 import { ContactForm } from './components/ContactForm';
 import { FAQ } from './components/FAQ';
 import { ServiceView } from './components/ServiceView';
+import { WHATSAPP_PHONE } from './constants';
 import { 
   Menu, Moon, Sun, PlayCircle, ArrowRight, CheckCircle, MapPin, Phone, ArrowUp, Landmark, 
   Gem, Car, Smartphone, Shield, Repeat, Banknote, Percent, CalendarClock, X,
@@ -121,51 +122,57 @@ const App: React.FC = () => {
       return (
         <>
         {/* Hero Section */}
-        <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden">
+        <div className="relative w-full h-[90vh] md:h-[600px] overflow-hidden">
           <img 
-            src="https://scontent.flpb2-2.fna.fbcdn.net/v/t39.30808-6/484387942_122123947844616809_485915212088624553_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=oT7lvVyqTcMQ7kNvwG1wlbL&_nc_oc=Adn1blk_MkQE3qWJyUpgDaEY1RLU8qTBofFs8Vo2xcSFKh8dKGasWcQguQxk2uaKnbmPx0F9JpaWO5CsDJrulq1h&_nc_zt=23&_nc_ht=scontent.flpb2-2.fna&_nc_gid=ajIjRx0JknkZWJLzOfck2g&oh=00_AfoaKTTI4J7N-iADchDqDd6Lm-T6pbV02CxjJQLdKzoKOg&oe=6977C398" 
+            src="https://scontent.flpb3-2.fna.fbcdn.net/v/t39.30808-6/484348315_122123947544616809_8652967539908385468_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=oBavjBtlal4Q7kNvwE3ktgv&_nc_oc=Adn2Z5ccN_rNRbpxiqeuhABxkojm_N-q6-p8vKMsl7C1mW4kidEK0JN_POh9fJO5B5Y&_nc_zt=23&_nc_ht=scontent.flpb3-2.fna&_nc_gid=jEf2w5zUfx7H64ezWoQqsQ&oh=00_AfoSHn0iX5GNNnFAsqWm0GMvg3nUU_NzylOmQmGhylfYjA&oe=697960BA" 
             alt="Transacción Bancaria Segura" 
-            className="absolute inset-0 w-full h-full object-cover opacity-60"
+            className="absolute inset-0 w-full h-full object-cover opacity-80 md:opacity-60"
           />
-          {/* Gradients for seamless blend with background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background-light via-background-light/80 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-background-light via-transparent to-transparent"></div>
           
-          <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 max-w-5xl">
-            <div className="animate-fade-in-up">
-                <div className="flex flex-wrap items-center gap-3 mb-6">
+          {/* Mobile Dark Overlay: Increases contrast specifically on mobile */}
+          <div className="absolute inset-0 bg-black/40 md:hidden"></div>
+
+          {/* Gradients: Stronger bottom gradient for mobile */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/95 via-25% to-transparent md:bg-gradient-to-r md:from-background-light md:via-background-light/80 md:to-transparent"></div>
+          
+          {/* Content Container: Aligned bottom for mobile, center for desktop */}
+          <div className="absolute inset-0 flex flex-col justify-end md:justify-center px-6 pb-28 md:pb-0 md:px-16 max-w-5xl">
+            <div className="animate-fade-in-up relative z-10">
+                <div className="flex flex-wrap items-center gap-3 mb-4 md:mb-6">
                   <span className="bg-white/5 backdrop-blur-md p-2 rounded-lg border border-white/10 flex items-center gap-2">
-                    <Landmark className="text-primary w-5 h-5" />
-                    <span className="text-white font-bold text-xs uppercase tracking-wider">Respaldo Bancario</span>
+                    <Landmark className="text-primary w-4 h-4 md:w-5 md:h-5" />
+                    <span className="text-white font-bold text-[10px] md:text-xs uppercase tracking-wider drop-shadow-md">Respaldo Bancario</span>
                   </span>
                   <span className="bg-primary p-2 rounded-lg flex items-center gap-2 shadow-lg shadow-primary/30">
-                    <CheckCircle className="text-white w-5 h-5" />
-                    <span className="text-white font-bold text-xs uppercase tracking-wider">Garantía Prendaria</span>
+                    <CheckCircle className="text-white w-4 h-4 md:w-5 md:h-5" />
+                    <span className="text-white font-bold text-[10px] md:text-xs uppercase tracking-wider drop-shadow-md">Garantía Prendaria</span>
                   </span>
                 </div>
                 
-                <h1 className="text-4xl md:text-7xl font-extrabold text-white leading-[1.1] mb-6 drop-shadow-2xl">
+                {/* Title with strong drop-shadow for readability */}
+                <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold text-white leading-tight md:leading-[1.1] mb-4 md:mb-6 drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]">
                   TU PRÉSTAMO <br />
-                  <span className="text-primary relative inline-block">
+                  <span className="text-primary relative inline-block drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                     INMEDIATO Y SEGURO
                   </span>
                 </h1>
                 
-                <p className="text-gray-300 text-lg md:text-xl max-w-xl leading-relaxed mb-10 drop-shadow-lg font-light">
+                {/* Description with enhanced contrast */}
+                <p className="text-white md:text-gray-300 text-sm md:text-xl max-w-xl leading-relaxed mb-8 md:mb-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium md:font-normal">
                   Obtén la liquidez de un banco con la facilidad de un empeño. Aceptamos vehículos, joyas y electrónicos bajo los más estrictos estándares de seguridad bancaria.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                   <button 
                     onClick={scrollToCalculator}
-                    className="bg-primary hover:bg-accent text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-primary/30 transform hover:scale-105 transition-all flex items-center group"
+                    className="bg-primary hover:bg-accent text-white font-bold py-3.5 md:py-4 px-10 rounded-full shadow-lg shadow-primary/30 transform hover:scale-105 transition-all flex items-center justify-center group"
                   >
                     SIMULAR CRÉDITO
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button 
                     onClick={() => setShowInfoModal(true)}
-                    className="bg-white/5 hover:bg-white/10 backdrop-blur-md text-white font-bold py-4 px-8 rounded-full transition-all border border-white/20 flex items-center"
+                    className="bg-white/5 hover:bg-white/10 backdrop-blur-md text-white font-bold py-3.5 md:py-4 px-8 rounded-full transition-all border border-white/20 flex items-center justify-center shadow-lg"
                   >
                     <PlayCircle className="mr-2 w-5 h-5" /> Cómo Funciona
                   </button>
@@ -175,7 +182,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Main Content Container */}
-        <div className="max-w-7xl mx-auto px-6 py-12 md:px-12 relative -mt-24 z-10">
+        <div className="max-w-7xl mx-auto px-6 py-12 md:px-12 relative -mt-12 md:-mt-24 z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 
                 {/* Left Column (Content & Calculator) */}
@@ -207,12 +214,13 @@ const App: React.FC = () => {
                             <div className="w-full md:w-2/5">
                                 <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 rotate-2 hover:rotate-0 transition-all duration-500">
                                     <img 
-                                        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                        src="https://erbol.com.bo/sites/default/files/ciudad_de_el_alto.jpg" 
                                         alt="Equipo Pro Credit" 
                                         className="w-full h-48 md:h-full object-cover"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-background-light/90 to-transparent flex items-end p-4">
-                                         <p className="text-white font-bold text-xs md:text-sm">Compromiso y Solidez</p>
+                                    {/* Overlay degradado a blanco para que el texto negro se note bien */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent flex items-end p-4">
+                                         <p className="text-black font-extrabold text-xs md:text-sm shadow-sm">Compromiso y Solidez</p>
                                     </div>
                                 </div>
                             </div>
@@ -409,12 +417,30 @@ const App: React.FC = () => {
       <main className="flex-1 md:ml-72 transition-all duration-300 relative">
         
         {/* Mobile Header */}
-        <div className="md:hidden sticky top-0 z-30 bg-surface-light border-b border-white/5 px-4 py-3 flex justify-between items-center shadow-sm">
-           <button onClick={toggleSidebar} className="p-2 -ml-2 rounded-lg hover:bg-white/5">
-             <Menu className="w-6 h-6 text-white" />
+        <div className="md:hidden sticky top-0 z-30 bg-surface-light/95 backdrop-blur-md border-b border-white/5 px-4 py-3 flex justify-between items-center shadow-lg">
+           <button 
+             onClick={toggleSidebar} 
+             className="p-2 -ml-2 rounded-xl bg-white/5 border border-white/10 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 group relative overflow-hidden"
+           >
+             {/* Ping animation element to draw attention */}
+             <span className="absolute top-2 right-2 flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+             </span>
+
+             <div className="flex items-center gap-2">
+                <Menu className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">MENÚ</span>
+             </div>
            </button>
-           <span className="font-bold text-white">PRO CREDIT</span>
-           <div className="w-10"></div> {/* Spacer */}
+           
+           <span className="font-bold text-white tracking-tight">PRO <span className="text-primary">CREDIT</span></span>
+           
+           <div className="w-10 h-10 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
+                    <Users className="w-4 h-4 text-primary" />
+                </div>
+           </div>
         </div>
 
         {renderContent()}
@@ -433,9 +459,13 @@ const App: React.FC = () => {
                          </div>
                          <span className="font-bold text-2xl tracking-tight">PRO CREDIT</span>
                      </div>
-                     <p className="text-gray-400 leading-relaxed max-w-xs">
-                         Av. Cardos Santos 2074.<br />Soluciones financieras con garantía real.
-                     </p>
+                     <div className="text-gray-400 leading-relaxed max-w-xs">
+                         <p>Av. Cardos Santos 2074.</p>
+                         <p>Soluciones financieras con garantía real.</p>
+                         <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" className="flex items-center gap-2 text-primary hover:text-white transition-colors font-bold mt-2">
+                            <Phone className="w-4 h-4" /> +591 623 27873
+                         </a>
+                     </div>
                  </div>
 
                  <div>
