@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { TopNavbar } from './components/TopNavbar';
 import { Calculator } from './components/Calculator';
@@ -96,6 +96,19 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState('home');
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [activeTab, setActiveTab] = useState<'loan' | 'pawn'>('loan');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const heroImages = [
+    "https://i.ibb.co/Hf1LrsxS/CARNAVAL-LA-PAZ-PIX2020-08.jpg",
+    "https://i.ibb.co/ZzyWz3sc/484387942-122123947844616809-485915212088624553-n-1.jpg"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
@@ -122,72 +135,85 @@ const App: React.FC = () => {
     if (currentView === 'home') {
       return (
         <>
-        {/* Hero Section */}
-        <div className="relative w-full h-[90vh] md:h-[600px] overflow-hidden">
-          <img 
-            src="https://i.ibb.co/Hf1LrsxS/CARNAVAL-LA-PAZ-PIX2020-08.jpg" 
-            alt="Carnaval La Paz" 
-            className="absolute inset-0 w-full h-full object-cover opacity-100 md:opacity-90"
-          />
-          
-          {/* Gradients: Stronger bottom gradient for mobile */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 via-40% to-transparent md:bg-gradient-to-r md:from-background-light md:via-background-light/80 md:to-transparent"></div>
-          
-          {/* Content Container: Aligned bottom for mobile, center for desktop */}
-          <div className="absolute inset-0 flex flex-col justify-end md:justify-center px-6 pb-28 md:pb-0 md:px-16 max-w-5xl">
-            <div className="animate-fade-in-up relative z-10">
-                <div className="flex flex-wrap items-center gap-3 mb-4 md:mb-6">
-                  <span className="bg-white p-2 rounded-lg border-2 border-primary flex items-center gap-2 shadow-md">
-                    <Landmark className="text-primary w-4 h-4 md:w-5 md:h-5" />
-                    <span className="text-primary font-extrabold text-[10px] md:text-xs uppercase tracking-wider">Respaldo Bancario</span>
-                  </span>
-                  <span className="bg-white p-2 rounded-lg border-2 border-primary flex items-center gap-2 shadow-md">
-                    <CheckCircle className="text-primary w-4 h-4 md:w-5 md:h-5" />
-                    <span className="text-primary font-extrabold text-[10px] md:text-xs uppercase tracking-wider">Garantía Prendaria</span>
-                  </span>
-                </div>
-                
-                {/* Title with strong drop-shadow for readability */}
-                <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold text-primary leading-tight md:leading-[1.1] mb-4 md:mb-6 drop-shadow-sm">
-                  TU PRÉSTAMO <br />
-                  <span className="text-text-main relative inline-block drop-shadow-sm">
-                    INMEDIATO Y SEGURO
-                  </span>
-                </h1>
-                
-                {/* Description with enhanced contrast */}
-                <p className="text-primary md:text-primary text-sm md:text-xl max-w-xl leading-relaxed mb-8 md:mb-10 font-bold md:font-bold">
-                  Obtén la liquidez de un banco con la facilidad de un empeño. Aceptamos vehículos, joyas y electrónicos bajo los más estrictos estándares de seguridad bancaria.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
-                  <button 
-                    onClick={scrollToCalculator}
-                    className="bg-white hover:bg-secondary text-primary font-bold py-3.5 md:py-4 px-10 rounded-full shadow-lg border-2 border-primary transform hover:scale-105 transition-all flex items-center justify-center group"
-                  >
-                    SIMULAR CRÉDITO
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                  <button 
-                    onClick={() => setShowInfoModal(true)}
-                    className="bg-white hover:bg-secondary text-primary font-bold py-3.5 md:py-4 px-8 rounded-full transition-all border border-primary/20 flex items-center justify-center shadow-lg"
-                  >
-                    <PlayCircle className="mr-2 w-5 h-5" /> Cómo Funciona
-                  </button>
-                </div>
+        {/* Hero Section - Image Slider Only */}
+        <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[500px] overflow-hidden bg-slate-100">
+          {heroImages.map((img, index) => (
+            <div 
+              key={img}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              {/* Blurred background to fill gaps */}
+              <img 
+                src={img} 
+                alt="" 
+                className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-30"
+              />
+              {/* Main complete image */}
+              <img 
+                src={img} 
+                alt={`Hero Image ${index + 1}`} 
+                className="absolute inset-0 w-full h-full object-contain md:object-cover z-10"
+              />
             </div>
+          ))}
+        </div>
+
+        {/* Hero Content - Now below the images for full visibility */}
+        <div className="bg-background-light pt-6 pb-12 md:py-10 px-6 md:px-16 max-w-7xl mx-auto">
+          <div className="animate-fade-in-up">
+              <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-4 md:mb-6">
+                <span className="bg-white p-1.5 md:p-2 rounded-lg border-2 border-primary flex items-center gap-1.5 md:gap-2 shadow-md">
+                  <Landmark className="text-primary w-3.5 h-3.5 md:w-5 md:h-5" />
+                  <span className="text-primary font-extrabold text-[8px] md:text-xs uppercase tracking-wider">Respaldo Bancario</span>
+                </span>
+                <span className="bg-white p-1.5 md:p-2 rounded-lg border-2 border-primary flex items-center gap-1.5 md:gap-2 shadow-md">
+                  <CheckCircle className="text-primary w-3.5 h-3.5 md:w-5 md:h-5" />
+                  <span className="text-primary font-extrabold text-[8px] md:text-xs uppercase tracking-wider">Garantía Prendaria</span>
+                </span>
+              </div>
+              
+              {/* Title */}
+              <h1 className="text-2xl sm:text-4xl md:text-7xl font-extrabold text-primary leading-tight md:leading-[1.1] mb-4 md:mb-6">
+                TU PRÉSTAMO <br />
+                <span className="text-text-main relative inline-block">
+                  INMEDIATO Y SEGURO
+                </span>
+              </h1>
+              
+              {/* Description */}
+              <p className="text-text-muted text-xs md:text-xl max-w-3xl leading-relaxed mb-8 md:mb-10 font-medium">
+                Obtén la liquidez de un banco con la facilidad de un empeño. Aceptamos vehículos, joyas y electrónicos bajo los más estrictos estándares de seguridad bancaria.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                <button 
+                  onClick={scrollToCalculator}
+                  className="bg-white hover:bg-secondary text-primary font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg border-2 border-primary transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base"
+                >
+                  SIMULAR CRÉDITO
+                  <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+                <button 
+                  onClick={() => setShowInfoModal(true)}
+                  className="bg-white hover:bg-secondary text-primary font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all border border-primary/20 flex items-center justify-center shadow-lg text-sm md:text-base"
+                >
+                  <PlayCircle className="mr-2 w-4 h-4 md:w-5 md:h-5" /> Cómo Funciona
+                </button>
+              </div>
           </div>
         </div>
 
         {/* Main Content Container */}
-        <div className="max-w-7xl mx-auto px-6 py-12 md:px-12 relative -mt-12 md:-mt-24 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12 md:px-12 relative -mt-6 md:-mt-24 z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 
                 {/* Left Column (Content & Calculator) */}
                 <div className="lg:col-span-8 space-y-12">
                     
                     {/* Quienes Somos Section */}
-                    <div className="bg-surface-light rounded-3xl p-8 shadow-blue-glow border border-primary/5 relative overflow-hidden group">
+                    <div className="bg-surface-light rounded-3xl p-6 md:p-8 shadow-blue-glow border border-primary/5 relative overflow-hidden group">
                         {/* Decorative BG */}
                         <div className="absolute top-0 right-0 w-60 h-60 bg-primary/5 rounded-full -mr-10 -mt-10 blur-3xl"></div>
 
