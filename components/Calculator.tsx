@@ -23,7 +23,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ enableLocation = false }
 
   useEffect(() => {
     // Cálculo de EMPEÑO (Interés Simple)
-    // Tasa total = Interés (3%) + Resguardo (5%) = 8%
+    // Tasa total = Interés (8%) + Depósito (2%) = 10%
     const totalRate = INTEREST_RATE + STORAGE_INSURANCE_RATE;
     
     if (amount > 0) {
@@ -126,12 +126,12 @@ Quedo atento a su respuesta.`;
   };
 
   return (
-    <div className="bg-surface-light rounded-3xl p-5 shadow-2xl border border-white/5 h-fit relative z-10">
+    <div className="bg-surface-light rounded-3xl p-5 shadow-blue-intense border border-primary/5 h-fit relative z-10">
         <div className="text-center mb-6">
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+            <h3 className="text-xl md:text-2xl font-bold text-text-main mb-1">
             COTIZA TU <span className="text-primary opacity-90">EMPEÑO</span>
             </h3>
-            <p className="text-gray-400 max-w-2xl mx-auto text-xs">
+            <p className="text-text-muted max-w-2xl mx-auto text-xs">
             Calculadora de interés simple.
             </p>
         </div>
@@ -141,21 +141,21 @@ Quedo atento a su respuesta.`;
             
             {/* Item Description Input */}
             <div>
-                <label className="block text-xs font-bold text-gray-300 mb-2 flex items-center gap-2">
+                <label className="block text-xs font-bold text-slate-700 mb-2 flex items-center gap-2">
                 <FileText className="w-4 h-4 text-primary" /> ¿Qué deseas empeñar?
                 </label>
                 <textarea
                     value={itemDescription}
                     onChange={(e) => setItemDescription(e.target.value)}
                     placeholder="Ej: Laptop HP Core i7, Reloj Rolex, Casa en Zona Norte..."
-                    className="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-sm text-white focus:ring-2 focus:ring-primary outline-none resize-none h-20 placeholder-gray-500"
+                    className="w-full p-3 rounded-xl bg-secondary border border-primary/20 text-sm text-text-main focus:ring-2 focus:ring-primary outline-none resize-none h-20 placeholder-slate-500 font-medium"
                 />
             </div>
 
             {/* Location Input (Conditional) */}
             {enableLocation && (
                 <div className="animate-fade-in-up">
-                    <label className="block text-xs font-bold text-gray-300 mb-2 flex items-center gap-2">
+                    <label className="block text-xs font-bold text-slate-700 mb-2 flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-primary" /> Ubicación del Inmueble
                     </label>
                     <input
@@ -163,9 +163,9 @@ Quedo atento a su respuesta.`;
                         value={locationInput}
                         onChange={(e) => setLocationInput(e.target.value)}
                         placeholder="Pegar link de Google Maps o Dirección"
-                        className="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-sm text-white focus:ring-2 focus:ring-primary outline-none placeholder-gray-500"
+                        className="w-full p-3 rounded-xl bg-secondary border border-primary/20 text-sm text-text-main focus:ring-2 focus:ring-primary outline-none placeholder-slate-500 font-medium"
                     />
-                    <p className="text-[9px] text-gray-400 mt-1 ml-1">
+                    <p className="text-[9px] text-slate-600 mt-1 ml-1 font-bold">
                         * Ayuda a agilizar el avalúo preliminar.
                     </p>
                 </div>
@@ -173,14 +173,14 @@ Quedo atento a su respuesta.`;
 
             {/* Amount Section */}
             <div>
-                <label className="block text-xs font-bold text-gray-300 mb-2">
+                <label className="block text-xs font-bold text-slate-700 mb-2">
                 ¿Cuánto necesitas? (Bs.)
                 </label>
                 
                 <div className="flex items-center gap-2 mb-2">
                 <button 
                     onClick={handleDecreaseAmount}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 transition-colors active:scale-95 shadow-sm"
+                    className="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary border border-primary/20 text-slate-700 hover:bg-primary/5 transition-colors active:scale-95 shadow-sm"
                 >
                     <Minus className="w-4 h-4" />
                 </button>
@@ -191,7 +191,7 @@ Quedo atento a su respuesta.`;
                     inputMode="numeric"
                     value={amountInput}
                     onChange={handleAmountChange}
-                    className="w-full h-10 bg-white/5 border border-white/10 rounded-lg px-4 text-center font-bold text-lg text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                    className="w-full h-10 bg-secondary border border-primary/20 rounded-lg px-4 text-center font-bold text-lg text-text-main focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                     />
                 </div>
 
@@ -210,15 +210,15 @@ Quedo atento a su respuesta.`;
                     step="100"
                     value={amount > 100000 ? 100000 : amount} 
                     onChange={(e) => setAmountInput(e.target.value)}
-                    className="w-full h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-primary"
+                    className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary"
                 />
             </div>
 
             {/* Months Section (Manual Input + Quick Select) */}
             <div>
-                <label className="block text-xs font-bold text-gray-300 mb-2 flex items-center justify-between">
+                <label className="block text-xs font-bold text-slate-700 mb-2 flex items-center justify-between">
                    <span className="flex items-center gap-1"><Calendar className="w-3 h-3"/> Meses de plazo</span>
-                   <span className="text-[10px] text-gray-400 font-normal">Escribe o selecciona</span>
+                   <span className="text-[10px] text-slate-600 font-bold">Escribe o selecciona</span>
                 </label>
                 
                 <div className="flex gap-2 mb-3">
@@ -230,7 +230,7 @@ Quedo atento a su respuesta.`;
                             value={months === 0 ? '' : months}
                             onChange={handleMonthChange}
                             placeholder="#"
-                            className="w-full h-10 bg-white/5 border border-primary/50 rounded-lg px-2 text-center font-bold text-white focus:ring-2 focus:ring-primary outline-none"
+                            className="w-full h-10 bg-secondary border border-primary/30 rounded-lg px-2 text-center font-bold text-text-main focus:ring-2 focus:ring-primary outline-none"
                          />
                      </div>
                      <div className="flex-1 grid grid-cols-5 gap-1.5">
@@ -241,7 +241,7 @@ Quedo atento a su respuesta.`;
                             className={`h-10 rounded-md text-xs font-bold transition-all duration-200 border ${
                                 months === m
                                 ? 'bg-primary border-primary text-white shadow-md'
-                                : 'bg-white/5 border-white/10 text-gray-400 hover:border-primary/50 hover:text-white'
+                                : 'bg-secondary border-primary/20 text-slate-700 hover:border-primary/50 hover:text-primary'
                             }`}
                             >
                             {m}
@@ -253,15 +253,15 @@ Quedo atento a su respuesta.`;
             </div>
 
             {/* Results Card Compact */}
-            <div className="bg-background-light rounded-xl p-4 shadow-inner border border-white/5 relative overflow-hidden mt-2">
+            <div className="bg-secondary/50 rounded-xl p-4 shadow-inner border-2 border-primary/20 relative overflow-hidden mt-2">
                 
                 {/* Interest Calculation Row */}
-                <div className="flex justify-between items-center mb-2 border-b border-white/5 pb-2">
+                <div className="flex justify-between items-center mb-2 border-b border-primary/10 pb-2">
                     <div className="flex flex-col">
-                        <span className="text-xs font-bold text-gray-400 uppercase">Interés mensual</span>
-                        <span className="text-[9px] text-gray-500">{(INTEREST_RATE * 100).toFixed(0)}% Int + {(STORAGE_INSURANCE_RATE * 100).toFixed(0)}% Seg</span>
+                        <span className="text-xs font-bold text-text-muted uppercase">Interés mensual</span>
+                        <span className="text-[9px] text-text-muted">{(INTEREST_RATE * 100).toFixed(0)}% Int + {(STORAGE_INSURANCE_RATE * 100).toFixed(0)}% Depósito</span>
                     </div>
-                    <span className="text-lg font-bold text-white">
+                    <span className="text-lg font-bold text-text-main">
                         Bs. {monthlyInterest.toFixed(0)}
                     </span>
                 </div>
@@ -270,14 +270,14 @@ Quedo atento a su respuesta.`;
                 <div className="flex justify-between items-end mt-2">
                     <div className="flex flex-col">
                          <span className="text-xs font-bold text-primary uppercase">Total Desempeño</span>
-                         <span className="text-[9px] text-gray-400">Capital + ({months} meses de interés)</span>
+                         <span className="text-[9px] text-text-muted">Capital + ({months} meses de interés)</span>
                     </div>
-                    <span className="text-2xl font-extrabold text-white">Bs. {totalRedemption.toFixed(0)}</span>
+                    <span className="text-2xl font-extrabold text-text-main">Bs. {totalRedemption.toFixed(0)}</span>
                 </div>
                 
                 {/* Example / Disclaimer */}
-                <div className="mt-3 pt-2 border-t border-dashed border-white/10 text-center">
-                    <p className="text-[10px] text-gray-400">
+                <div className="mt-3 pt-2 border-t border-dashed border-primary/20 text-center">
+                    <p className="text-[10px] text-text-muted">
                         Si recuperas tu prenda en <strong>{months} mes{months !== 1 ? 'es' : ''}</strong>, pagas 
                         Bs. {amount} (Capital) + Bs. {(monthlyInterest * months).toFixed(0)} (Interés acumulado).
                     </p>
@@ -286,7 +286,7 @@ Quedo atento a su respuesta.`;
 
             {/* Action Buttons Section */}
             <div className="space-y-3 pt-2">
-                <p className="text-center text-[10px] text-gray-400 font-medium uppercase tracking-wider">
+                <p className="text-center text-[10px] text-text-muted font-medium uppercase tracking-wider">
                     Elige cómo enviar tu solicitud
                 </p>
                 
@@ -312,18 +312,18 @@ Quedo atento a su respuesta.`;
                 {/* Email Button */}
                 <button 
                     onClick={sendToEmail}
-                    className="w-full bg-surface-light border border-white/10 hover:border-primary/50 text-white font-bold py-3 px-4 rounded-xl transition-all flex justify-between items-center group hover:bg-white/5 transform active:scale-95"
+                    className="w-full bg-white border border-primary/10 hover:border-primary/50 text-text-main font-bold py-3 px-4 rounded-xl transition-all flex justify-between items-center group hover:bg-secondary transform active:scale-95"
                 >
                     <div className="flex flex-col items-start text-left">
-                        <span className="flex items-center gap-2 text-sm uppercase tracking-wide text-gray-200 group-hover:text-primary transition-colors">
+                        <span className="flex items-center gap-2 text-sm uppercase tracking-wide text-text-muted group-hover:text-primary transition-colors">
                             <Mail className="w-5 h-5" />
                             Correo Electrónico
                         </span>
-                        <span className="text-[10px] text-gray-500 font-normal">
+                        <span className="text-[10px] text-text-muted font-normal">
                              {EMAIL_CONTACT}
                         </span>
                     </div>
-                    <span className="bg-white/5 text-gray-400 rounded-full p-1 transition-colors group-hover:text-white group-hover:bg-primary">
+                    <span className="bg-secondary text-text-muted rounded-full p-1 transition-colors group-hover:text-white group-hover:bg-primary">
                         <ChevronRight className="w-5 h-5" />
                     </span>
                 </button>

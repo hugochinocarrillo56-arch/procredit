@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es" style="background-color: #050505;">
+<html lang="es" style="background-color: #F8FAFC;">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ProCredit - Préstamos con Respaldo Bancario</title>
     <meta name="description" content="Casa de empeño con garantía prendaria y respaldo bancario. Tasas competitivas y seguridad total.">
     <!-- Meta Theme Color para móviles (Android/iOS) -->
-    <meta name="theme-color" content="#050505">
+    <meta name="theme-color" content="#F8FAFC">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -18,23 +18,27 @@
         theme: {
           extend: {
             colors: {
-              // Paleta Rojo y Negro (Red & Black Theme)
-              primary: "#D62828",   // Rojo Intenso (Botones, Acentos)
-              secondary: "#000000", // Negro Puro
-              accent: "#FF4D4D",    // Rojo Brillante (Hover)
+              // Paleta Blanca y Azul Profesional (Prendamas Style)
+              primary: "#1E40AF",   // Blue 800 (Más serio y legible)
+              secondary: "#F1F5F9", // Slate 100
+              accent: "#3B82F6",    // Blue 500
               
               // Superficies
-              "surface-light": "#141414",   // Gris muy oscuro (Tarjetas)
-              "background-light": "#050505", // Negro (Fondo Principal)
+              "surface-light": "rgba(240, 249, 255, 0.92)",   // Celeste muy claro con transparencia
+              "background-light": "transparent", // Dejar ver el fondo de index.html
               
-              "text-main": "#FFFFFF",      // Texto principal blanco
-              "text-muted": "#A3A3A3",     // Texto secundario gris
-              "text-dark": "#000000",      // Texto oscuro
+              "text-main": "#1E293B",      // Slate 800 (Texto muy legible)
+              "text-muted": "#334155",     // Slate 700 (Más oscuro para legibilidad extrema)
+              "text-dark": "#0F172A",      // Slate 900
               
-              "surface-dark": "#000000",
+              "surface-dark": "#F1F5F9",
             },
             fontFamily: {
               sans: ["Montserrat", "sans-serif"],
+            },
+            boxShadow: {
+              'blue-glow': '0 10px 40px -10px rgba(59, 130, 246, 0.15)',
+              'blue-intense': '0 20px 50px -12px rgba(30, 64, 175, 0.25)',
             },
             animation: {
               'fade-in-up': 'fadeInUp 0.8s ease-out',
@@ -57,21 +61,37 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
-      /* FORZAR FONDO NEGRO INMEDIATO */
+      /* FONDO GASPEADO AZULADO ATMOSFÉRICO (ATMOSPHERIC BLUISH MOTTLED BACKGROUND) */
       html, body {
-        background-color: #050505 !important;
-        color: #FFFFFF;
+        background-color: #F0F9FF !important; /* Un tono base más azulado claro */
+        
+        /* Capas de diseño: Gaspeado fino + Brillos atmosféricos */
+        background-image: 
+          /* Capa 1: Gaspeado fino azul */
+          radial-gradient(#bae6fd 1px, transparent 1px),
+          /* Capa 2: Gaspeado medio */
+          radial-gradient(#7dd3fc 0.8px, transparent 0.8px),
+          /* Capa 3: Brillos atmosféricos suaves (Mesh gradient effect) */
+          radial-gradient(circle at 20% 20%, rgba(186, 230, 253, 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(125, 211, 252, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, rgba(224, 242, 254, 0.5) 0%, transparent 70%);
+          
+        background-size: 24px 24px, 40px 40px, 100% 100%, 100% 100%, 100% 100%;
+        background-position: 0 0, 12px 12px, 0 0, 0 0, 0 0;
+        background-attachment: fixed;
+        
+        color: #1E293B;
         margin: 0;
         padding: 0;
         min-height: 100vh;
       }
 
-      /* Scrollbar Roja */
+      /* Scrollbar Azul Profesional */
       .sidebar-scroll::-webkit-scrollbar {
         width: 6px;
       }
       .sidebar-scroll::-webkit-scrollbar-thumb {
-        background-color: #D62828; 
+        background-color: #1E40AF; 
         border-radius: 3px;
       }
       body {
@@ -92,10 +112,12 @@
   }
 }
 </script>
+<link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-background-light text-text-main antialiased selection:bg-primary selection:text-white">
     <div id="root"></div>
     <!-- Script de entrada vital para Vercel/Vite -->
     <script type="module" src="./index.tsx"></script>
-  </body>
+  <script type="module" src="/index.tsx"></script>
+</body>
 </html>

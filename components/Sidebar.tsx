@@ -53,31 +53,31 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
 
       {/* Sidebar Container */}
       <aside 
-        className={`fixed top-0 left-0 z-50 h-full w-72 bg-surface-light border-r border-white/5 transform transition-transform duration-300 ease-in-out md:translate-x-0 ${
+        className={`fixed top-0 left-0 z-50 h-full w-72 bg-surface-light border-r border-primary/10 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } flex flex-col shadow-2xl md:shadow-none`}
+        } flex flex-col shadow-2xl md:hidden`}
       >
         {/* Logo Area */}
         <div 
-          className="h-24 flex items-center px-6 border-b border-white/5 bg-surface-light cursor-pointer"
+          className="h-24 flex items-center px-6 border-b border-primary/10 bg-surface-light cursor-pointer"
           onClick={() => handleNavClick('home')}
         >
            <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/50 shrink-0">
                   <img 
-                    src="https://scontent.flpb2-2.fna.fbcdn.net/v/t39.30808-6/619125388_122160426590616809_3945009484093083163_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=AgThusc6J1cQ7kNvwE5zl-z&_nc_oc=AdlhnXVDD5rq0vfnFQ2KeC8dQUqjP53TvbnW-TpEIeqrAY_fkvP2F1Z11tTKBsE4KVc5MhBUmCOQ0KzAAjuCPk-v&_nc_zt=23&_nc_ht=scontent.flpb2-2.fna&_nc_gid=D2HqNf3PpVFV-dbj0J-tHw&oh=00_Afreft9jDZ0uAi9LKujXKoonuKOAbjLJHsByjMovMOag2Q&oe=6977DBE6" 
+                    src="https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg" 
                     alt="Pro Credit Logo" 
                     className="w-full h-full object-cover"
                   />
               </div>
               <div>
-                  <h1 className="font-extrabold text-xl tracking-tight leading-none text-white">
-                      <span className="text-white">PRO</span> <span className="text-primary">CREDIT</span>
+                  <h1 className="font-extrabold text-xl tracking-tight leading-none text-text-main">
+                      <span className="text-text-main">PRO</span> <span className="text-primary">CREDIT</span>
                   </h1>
-                  <p className="text-[10px] uppercase tracking-widest text-gray-300 font-semibold mt-1">Crecemos Juntos</p>
+                  <p className="text-[10px] uppercase tracking-widest text-slate-600 font-bold mt-1">Crecemos Juntos</p>
               </div>
            </div>
-           <button onClick={toggleSidebar} className="md:hidden ml-auto text-gray-400 hover:text-white">
+           <button onClick={toggleSidebar} className="md:hidden ml-auto text-slate-500 hover:text-primary">
              <X className="w-6 h-6" />
            </button>
         </div>
@@ -101,11 +101,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
                 onClick={() => item.id && handleNavClick(item.id)}
                 className={`w-full flex items-center px-4 py-3.5 rounded-xl transition-all duration-200 group text-left ${
                   isActive 
-                    ? 'bg-primary/20 text-primary font-bold border-l-4 border-primary shadow-sm' 
-                    : 'text-gray-400 hover:bg-white/5 hover:text-white'
-                } ${item.divider ? 'mt-4 border-t border-white/5 pt-6' : ''}`}
+                    ? 'bg-primary/10 text-primary font-bold border-l-4 border-primary shadow-sm' 
+                    : 'text-text-muted hover:bg-primary/5 hover:text-primary'
+                } ${item.divider ? 'mt-4 border-t border-primary/10 pt-6' : ''}`}
               >
-                <span className={`mr-3 transition-colors ${isActive ? 'text-primary' : 'text-gray-500 group-hover:text-white'}`}>
+                <span className={`mr-3 transition-colors ${isActive ? 'text-primary' : 'text-text-muted group-hover:text-primary'}`}>
                   {item.icon}
                 </span>
                 <span className="text-sm">{item.label}</span>
@@ -116,18 +116,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
         </nav>
         
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-white/5 bg-background-light/30">
+        <div className="p-4 border-t border-primary/10 bg-secondary/50">
            <div className="flex items-center gap-3 px-2">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-white p-[2px]">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-accent p-[2px]">
                  <img 
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80" 
                     alt="User" 
-                    className="w-full h-full rounded-full border-2 border-surface-light object-cover"
+                    className="w-full h-full rounded-full border-2 border-white object-cover"
                  />
               </div>
               <div className="overflow-hidden">
-                 <p className="text-sm font-bold text-white truncate">Maria González</p>
-                 <p className="text-xs text-gray-400 truncate">Cliente Preferencial</p>
+                 <p className="text-sm font-bold text-text-main truncate">Maria González</p>
+                 <p className="text-xs text-slate-600 font-medium truncate">Cliente Preferencial</p>
               </div>
            </div>
         </div>

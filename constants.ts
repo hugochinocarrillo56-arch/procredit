@@ -1,7 +1,7 @@
 import { FaqItem, PawnCategory } from './types';
 
-export const INTEREST_RATE = 0.03; // 3% mensual (Interés base)
-export const STORAGE_INSURANCE_RATE = 0.05; // 5% mensual (Seguro y Almacenaje)
+export const INTEREST_RATE = 0.08; // 8% mensual (Interés base)
+export const STORAGE_INSURANCE_RATE = 0.02; // 2% mensual (Depósito de la prenda)
 export const WHATSAPP_PHONE = "59162327873"; // Número centralizado
 export const EMAIL_CONTACT = "hugochinocarrillo56@gmail.com"; // Correo de contacto
 

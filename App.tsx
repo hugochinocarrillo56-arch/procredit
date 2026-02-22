@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sidebar } from './components/Sidebar';
+import { TopNavbar } from './components/TopNavbar';
 import { Calculator } from './components/Calculator';
 import { LoanSimulator } from './components/LoanSimulator';
 import { ContactForm } from './components/ContactForm';
@@ -77,7 +78,7 @@ const SERVICE_DATA: Record<string, any> = {
     description: "Pequeños créditos para grandes sueños. Diseñados para impulsar tu negocio desde el primer día.",
     image: "https://scontent.flpb2-2.fna.fbcdn.net/v/t1.6435-9/75237511_2307915295981403_5981626641338597376_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=L1WGOSrHEcgQ7kNvwGeSmXK&_nc_oc=Adm6LZgvTnHeyP090T-798Fn4MSVbEIWpwdZcbnTOr1Nt3h8QfQWul4iLN2WBgmV__M_0rChuJdO8NdPK7ddzLML&_nc_zt=23&_nc_ht=scontent.flpb2-2.fna&_nc_gid=-jzJjz9Md0Cge3DWzGVV1Q&oh=00_Afp5wySwOVnde4FYAiLM0WDzxmIttbMqhTbNF8fcoCb4bw&oe=69995F09",
     features: ["Mínimos requisitos", "Aprobación inmediata", "Sin garantía prendaria", "Plazos semanales o quincenales"],
-    colorClass: "text-green-600 bg-green-50",
+    colorClass: "text-cyan-400 bg-cyan-400/10",
     requirements: ["Cédula de Identidad Vigente", "Aviso de Cobranza de Luz o Agua", "Croquis del Domicilio y Negocio", "Garante Personal (si aplica)"]
   },
   seguros: {
@@ -124,55 +125,52 @@ const App: React.FC = () => {
         {/* Hero Section */}
         <div className="relative w-full h-[90vh] md:h-[600px] overflow-hidden">
           <img 
-            src="https://scontent.flpb3-2.fna.fbcdn.net/v/t39.30808-6/484348315_122123947544616809_8652967539908385468_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=oBavjBtlal4Q7kNvwE3ktgv&_nc_oc=Adn2Z5ccN_rNRbpxiqeuhABxkojm_N-q6-p8vKMsl7C1mW4kidEK0JN_POh9fJO5B5Y&_nc_zt=23&_nc_ht=scontent.flpb3-2.fna&_nc_gid=jEf2w5zUfx7H64ezWoQqsQ&oh=00_AfoSHn0iX5GNNnFAsqWm0GMvg3nUU_NzylOmQmGhylfYjA&oe=697960BA" 
-            alt="Transacción Bancaria Segura" 
-            className="absolute inset-0 w-full h-full object-cover opacity-80 md:opacity-60"
+            src="https://i.ibb.co/Hf1LrsxS/CARNAVAL-LA-PAZ-PIX2020-08.jpg" 
+            alt="Carnaval La Paz" 
+            className="absolute inset-0 w-full h-full object-cover opacity-100 md:opacity-90"
           />
           
-          {/* Mobile Dark Overlay: Increases contrast specifically on mobile */}
-          <div className="absolute inset-0 bg-black/40 md:hidden"></div>
-
           {/* Gradients: Stronger bottom gradient for mobile */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/95 via-25% to-transparent md:bg-gradient-to-r md:from-background-light md:via-background-light/80 md:to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 via-40% to-transparent md:bg-gradient-to-r md:from-background-light md:via-background-light/80 md:to-transparent"></div>
           
           {/* Content Container: Aligned bottom for mobile, center for desktop */}
           <div className="absolute inset-0 flex flex-col justify-end md:justify-center px-6 pb-28 md:pb-0 md:px-16 max-w-5xl">
             <div className="animate-fade-in-up relative z-10">
                 <div className="flex flex-wrap items-center gap-3 mb-4 md:mb-6">
-                  <span className="bg-white/5 backdrop-blur-md p-2 rounded-lg border border-white/10 flex items-center gap-2">
+                  <span className="bg-white p-2 rounded-lg border-2 border-primary flex items-center gap-2 shadow-md">
                     <Landmark className="text-primary w-4 h-4 md:w-5 md:h-5" />
-                    <span className="text-white font-bold text-[10px] md:text-xs uppercase tracking-wider drop-shadow-md">Respaldo Bancario</span>
+                    <span className="text-primary font-extrabold text-[10px] md:text-xs uppercase tracking-wider">Respaldo Bancario</span>
                   </span>
-                  <span className="bg-primary p-2 rounded-lg flex items-center gap-2 shadow-lg shadow-primary/30">
-                    <CheckCircle className="text-white w-4 h-4 md:w-5 md:h-5" />
-                    <span className="text-white font-bold text-[10px] md:text-xs uppercase tracking-wider drop-shadow-md">Garantía Prendaria</span>
+                  <span className="bg-white p-2 rounded-lg border-2 border-primary flex items-center gap-2 shadow-md">
+                    <CheckCircle className="text-primary w-4 h-4 md:w-5 md:h-5" />
+                    <span className="text-primary font-extrabold text-[10px] md:text-xs uppercase tracking-wider">Garantía Prendaria</span>
                   </span>
                 </div>
                 
                 {/* Title with strong drop-shadow for readability */}
-                <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold text-white leading-tight md:leading-[1.1] mb-4 md:mb-6 drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]">
+                <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold text-primary leading-tight md:leading-[1.1] mb-4 md:mb-6 drop-shadow-sm">
                   TU PRÉSTAMO <br />
-                  <span className="text-primary relative inline-block drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                  <span className="text-text-main relative inline-block drop-shadow-sm">
                     INMEDIATO Y SEGURO
                   </span>
                 </h1>
                 
                 {/* Description with enhanced contrast */}
-                <p className="text-white md:text-gray-300 text-sm md:text-xl max-w-xl leading-relaxed mb-8 md:mb-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium md:font-normal">
+                <p className="text-primary md:text-primary text-sm md:text-xl max-w-xl leading-relaxed mb-8 md:mb-10 font-bold md:font-bold">
                   Obtén la liquidez de un banco con la facilidad de un empeño. Aceptamos vehículos, joyas y electrónicos bajo los más estrictos estándares de seguridad bancaria.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                   <button 
                     onClick={scrollToCalculator}
-                    className="bg-primary hover:bg-accent text-white font-bold py-3.5 md:py-4 px-10 rounded-full shadow-lg shadow-primary/30 transform hover:scale-105 transition-all flex items-center justify-center group"
+                    className="bg-white hover:bg-secondary text-primary font-bold py-3.5 md:py-4 px-10 rounded-full shadow-lg border-2 border-primary transform hover:scale-105 transition-all flex items-center justify-center group"
                   >
                     SIMULAR CRÉDITO
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button 
                     onClick={() => setShowInfoModal(true)}
-                    className="bg-white/5 hover:bg-white/10 backdrop-blur-md text-white font-bold py-3.5 md:py-4 px-8 rounded-full transition-all border border-white/20 flex items-center justify-center shadow-lg"
+                    className="bg-white hover:bg-secondary text-primary font-bold py-3.5 md:py-4 px-8 rounded-full transition-all border border-primary/20 flex items-center justify-center shadow-lg"
                   >
                     <PlayCircle className="mr-2 w-5 h-5" /> Cómo Funciona
                   </button>
@@ -189,20 +187,20 @@ const App: React.FC = () => {
                 <div className="lg:col-span-8 space-y-12">
                     
                     {/* Quienes Somos Section */}
-                    <div className="bg-surface-light rounded-3xl p-8 shadow-2xl border border-white/5 relative overflow-hidden group">
+                    <div className="bg-surface-light rounded-3xl p-8 shadow-blue-glow border border-primary/5 relative overflow-hidden group">
                         {/* Decorative BG */}
-                        <div className="absolute top-0 right-0 w-60 h-60 bg-primary/10 rounded-full -mr-10 -mt-10 blur-3xl"></div>
+                        <div className="absolute top-0 right-0 w-60 h-60 bg-primary/5 rounded-full -mr-10 -mt-10 blur-3xl"></div>
 
                         <div className="flex flex-col md:flex-row gap-8 items-center relative z-10">
                             <div className="w-full md:w-3/5 space-y-4">
-                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-primary text-xs font-bold uppercase tracking-wider mb-2 border border-white/10">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-xs font-bold uppercase tracking-wider mb-2 border border-primary/10">
                                     <Users className="w-3 h-3" />
                                     Sobre Nosotros
                                 </div>
-                                <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+                                <h2 className="text-2xl md:text-3xl font-extrabold text-text-main">
                                     ¿Quiénes <span className="text-primary">Somos?</span>
                                 </h2>
-                                <div className="text-gray-300 text-sm leading-relaxed space-y-3 text-justify">
+                                <div className="text-text-muted text-sm leading-relaxed space-y-3 text-justify">
                                     <p>
                                         Desde 2024, nacimos en la ciudad de La Paz, en plena <strong>Av. Cardos Santos</strong>, apoyando a las familias y emprendedores, razón por la cual se debe nuestro nombre <strong>“Pro Credit”</strong>.
                                     </p>
@@ -228,7 +226,7 @@ const App: React.FC = () => {
                     </div>
 
                     {/* Intro Section Card */}
-                    <div className="bg-surface-light rounded-3xl p-6 shadow-xl border border-white/5">
+                    <div className="bg-surface-light rounded-3xl p-6 shadow-blue-glow border border-primary/5">
                         <div className="flex flex-col md:flex-row gap-8 items-center">
                             <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden shadow-lg h-64 group">
                                 <img 
@@ -236,17 +234,17 @@ const App: React.FC = () => {
                                     alt="Joyas y Valores" 
                                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                                 />
-                                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
-                                <div className="absolute bottom-4 left-4 bg-background-light/95 backdrop-blur text-white font-bold px-4 py-2 rounded-lg text-sm shadow-md flex items-center gap-2 border border-white/10">
+                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                                <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur text-text-main font-bold px-4 py-2 rounded-lg text-sm shadow-md flex items-center gap-2 border border-primary/10">
                                     <CheckCircle className="text-primary w-4 h-4" /> Avalúo Certificado
                                 </div>
                             </div>
                             <div className="w-full md:w-1/2">
-                                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                                <h2 className="text-2xl md:text-3xl font-bold text-text-main mb-4">
                                     Solvencia financiera <br/>
                                     <span className="text-primary">al instante</span>
                                 </h2>
-                                <p className="text-gray-300 leading-relaxed mb-6 text-sm">
+                                <p className="text-text-muted leading-relaxed mb-6 text-sm">
                                     Transformamos tus activos en capital de trabajo inmediato. Operamos con la transparencia de un banco y la agilidad que tu negocio necesita.
                                 </p>
                                 <ul className="space-y-3">
@@ -255,8 +253,8 @@ const App: React.FC = () => {
                                         "Bóvedas de seguridad bancaria", 
                                         "Tasas de interés preferenciales"
                                     ].map((item, i) => (
-                                        <li key={i} className="flex items-center text-gray-300 text-sm font-medium">
-                                            <div className="bg-primary/20 p-1.5 rounded-full mr-3">
+                                        <li key={i} className="flex items-center text-text-muted text-sm font-medium">
+                                            <div className="bg-primary/10 p-1.5 rounded-full mr-3">
                                                 <Landmark className="text-primary w-4 h-4" />
                                             </div>
                                             {item}
@@ -270,13 +268,13 @@ const App: React.FC = () => {
                     {/* Dynamic Calculator Section */}
                     <div id="calculator-section" className="scroll-mt-24">
                         <div className="flex items-center justify-center mb-6">
-                            <div className="bg-surface-light p-1.5 rounded-xl inline-flex gap-1 shadow-lg border border-white/5">
+                            <div className="bg-surface-light p-1.5 rounded-xl inline-flex gap-1 shadow-blue-glow border border-primary/10">
                                 <button 
                                     onClick={() => setActiveTab('loan')}
                                     className={`px-6 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
                                         activeTab === 'loan' 
                                         ? 'bg-primary text-white shadow-md' 
-                                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                        : 'text-text-muted hover:text-primary hover:bg-primary/5'
                                     }`}
                                 >
                                     <DollarSign className="w-4 h-4" />
@@ -287,7 +285,7 @@ const App: React.FC = () => {
                                     className={`px-6 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
                                         activeTab === 'pawn' 
                                         ? 'bg-primary text-white shadow-md' 
-                                        : `text-gray-400 hover:text-white hover:bg-white/5 ${activeTab === 'loan' ? 'animate-heartbeat text-primary' : ''}`
+                                        : `text-text-muted hover:text-primary hover:bg-primary/5 ${activeTab === 'loan' ? 'animate-heartbeat text-primary' : ''}`
                                     }`}
                                 >
                                     <CalculatorIcon className="w-4 h-4" />
@@ -309,7 +307,7 @@ const App: React.FC = () => {
 
                     {/* Pawn Categories Grid */}
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                      <h3 className="text-xl font-bold text-text-main mb-6 flex items-center gap-2">
                         <Gem className="text-primary w-6 h-6" />
                         Activos que Aceptamos
                       </h3>
@@ -320,15 +318,15 @@ const App: React.FC = () => {
                             { id:'electronicos', title: "Tecnología", subtitle: "Laptops, Alta Gama", img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=400&q=80", icon: <Smartphone /> },
                             { id:'inmuebles', title: "Inmuebles", subtitle: "Propiedades Libres", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80", icon: <Landmark /> }
                           ].map((cat, i) => (
-                            <div key={i} onClick={() => handleNavigation(cat.id)} className="group relative h-40 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-white/10">
+                            <div key={i} onClick={() => handleNavigation(cat.id)} className="group relative h-40 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-primary/10">
                               <img src={cat.img} alt={cat.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-background-light/90 via-background-light/40 to-transparent"></div>
+                              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
                               <div className="absolute bottom-0 left-0 p-4 w-full">
-                                <div className="flex items-center gap-2 text-white mb-1">
+                                <div className="flex items-center gap-2 text-text-main mb-1">
                                   {React.cloneElement(cat.icon as React.ReactElement, { className: "w-4 h-4 text-primary" })}
-                                  <span className="font-bold text-sm">{cat.title}</span>
+                                  <span className="font-bold text-sm drop-shadow-sm">{cat.title}</span>
                                 </div>
-                                <p className="text-[10px] text-gray-300">{cat.subtitle}</p>
+                                <p className="text-[10px] text-slate-700 font-bold">{cat.subtitle}</p>
                               </div>
                             </div>
                           ))}
@@ -343,13 +341,13 @@ const App: React.FC = () => {
                             { title: "Abonos a Capital", desc: "Reduce tus intereses pagando directo al capital.", icon: <Banknote className="w-5 h-5" /> },
                             { title: "Seguridad Total", desc: "Tus prendas aseguradas en bóvedas bancarias.", icon: <Shield className="w-5 h-5" /> }
                          ].map((feat, i) => (
-                             <div key={i} className="bg-surface-light p-6 rounded-2xl shadow-sm border border-white/5 hover:border-primary/50 transition-all hover:shadow-md group cursor-pointer flex gap-4 items-start">
-                                 <div className="w-10 h-10 rounded-full bg-white/5 flex-shrink-0 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-white transition-colors">
+                             <div key={i} className="bg-surface-light p-6 rounded-2xl shadow-sm border border-primary/5 hover:border-primary/50 transition-all hover:shadow-md group cursor-pointer flex gap-4 items-start">
+                                 <div className="w-10 h-10 rounded-full bg-primary/5 flex-shrink-0 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                                      {feat.icon}
                                  </div>
                                  <div>
-                                    <h4 className="text-base font-bold text-white mb-1">{feat.title}</h4>
-                                    <p className="text-xs text-gray-400 leading-relaxed">{feat.desc}</p>
+                                    <h4 className="text-base font-bold text-text-main mb-1">{feat.title}</h4>
+                                    <p className="text-xs text-text-muted leading-relaxed">{feat.desc}</p>
                                  </div>
                              </div>
                          ))}
@@ -364,19 +362,19 @@ const App: React.FC = () => {
                    <div className="lg:sticky lg:top-8 space-y-8">
                        <ContactForm />
 
-                        <div className="bg-surface-light rounded-2xl p-6 shadow-lg border border-white/5 text-center">
-                            <div className="bg-white/5 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <MapPin className="text-white w-8 h-8" />
+                        <div className="bg-surface-light rounded-2xl p-6 shadow-lg border border-primary/5 text-center">
+                            <div className="bg-primary/5 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <MapPin className="text-primary w-8 h-8" />
                             </div>
-                            <h4 className="text-xl font-bold text-white mb-2">Red de Sucursales</h4>
-                            <p className="text-sm text-gray-400 mb-6">
+                            <h4 className="text-xl font-bold text-text-main mb-2">Red de Sucursales</h4>
+                            <p className="text-sm text-text-muted mb-6">
                                 Acércate a cualquiera de nuestras agencias para un avalúo formal gratuito y confidencial.
                             </p>
                             <a 
                                 href="https://maps.app.goo.gl/FV4hFBpEz578fU796" 
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-block w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 px-6 rounded-xl transition-colors text-sm border border-white/10"
+                                className="inline-block w-full bg-primary/5 hover:bg-primary text-primary hover:text-white font-bold py-3 px-6 rounded-xl transition-all text-sm border border-primary/10"
                             >
                                 Ubicar en Google Maps
                             </a>
@@ -405,7 +403,13 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-background-light text-white">
+    <div className="min-h-screen flex flex-col bg-background-light text-text-main">
+      <TopNavbar 
+        currentView={currentView}
+        onNavigate={handleNavigation}
+        toggleSidebar={toggleSidebar}
+      />
+
       <Sidebar 
         isOpen={sidebarOpen} 
         toggleSidebar={toggleSidebar} 
@@ -414,13 +418,13 @@ const App: React.FC = () => {
       />
 
       {/* Main Content */}
-      <main className="flex-1 md:ml-72 transition-all duration-300 relative">
+      <main className="flex-1 transition-all duration-300 relative md:pt-20">
         
         {/* Mobile Header */}
-        <div className="md:hidden sticky top-0 z-30 bg-surface-light/95 backdrop-blur-md border-b border-white/5 px-4 py-3 flex justify-between items-center shadow-lg">
+        <div className="md:hidden sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-primary/10 px-4 py-3 flex justify-between items-center shadow-lg">
            <button 
              onClick={toggleSidebar} 
-             className="p-2 -ml-2 rounded-xl bg-white/5 border border-white/10 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 group relative overflow-hidden"
+             className="p-2 -ml-2 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/20 transition-all duration-300 group relative overflow-hidden"
            >
              {/* Ping animation element to draw attention */}
              <span className="absolute top-2 right-2 flex h-2 w-2">
@@ -429,15 +433,15 @@ const App: React.FC = () => {
              </span>
 
              <div className="flex items-center gap-2">
-                <Menu className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-                <span className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">MENÚ</span>
+                <Menu className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-bold text-text-muted group-hover:text-primary transition-colors">MENÚ</span>
              </div>
            </button>
            
-           <span className="font-bold text-white tracking-tight">PRO <span className="text-primary">CREDIT</span></span>
+           <span className="font-bold text-text-main tracking-tight">PRO <span className="text-primary">CREDIT</span></span>
            
            <div className="w-10 h-10 flex items-center justify-center">
-                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
                     <Users className="w-4 h-4 text-primary" />
                 </div>
            </div>
@@ -446,23 +450,23 @@ const App: React.FC = () => {
         {renderContent()}
 
         {/* Footer */}
-        <footer className="bg-surface-light text-white pt-20 pb-10 px-6 text-sm border-t border-white/5 mt-12">
+        <footer className="bg-surface-light text-text-main pt-20 pb-10 px-6 text-sm border-t border-primary/10 mt-12">
              <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                  <div className="space-y-6">
                      <div className="flex items-center gap-2">
-                         <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-600 shrink-0 bg-white p-0.5">
+                         <div className="w-12 h-12 rounded-full overflow-hidden border border-primary/20 shrink-0 bg-white p-0.5">
                             <img 
-                                src="https://scontent.flpb2-2.fna.fbcdn.net/v/t39.30808-6/619125388_122160426590616809_3945009484093083163_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=AgThusc6J1cQ7kNvwE5zl-z&_nc_oc=AdlhnXVDD5rq0vfnFQ2KeC8dQUqjP53TvbnW-TpEIeqrAY_fkvP2F1Z11tTKBsE4KVc5MhBUmCOQ0KzAAjuCPk-v&_nc_zt=23&_nc_ht=scontent.flpb2-2.fna&_nc_gid=D2HqNf3PpVFV-dbj0J-tHw&oh=00_Afreft9jDZ0uAi9LKujXKoonuKOAbjLJHsByjMovMOag2Q&oe=6977DBE6" 
+                                src="https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg" 
                                 alt="Pro Credit Logo" 
                                 className="w-full h-full object-cover rounded-full"
                             />
                          </div>
-                         <span className="font-bold text-2xl tracking-tight">PRO CREDIT</span>
+                         <span className="font-bold text-2xl tracking-tight text-text-main">PRO CREDIT</span>
                      </div>
-                     <div className="text-gray-400 leading-relaxed max-w-xs">
+                     <div className="text-text-muted leading-relaxed max-w-xs">
                          <p>Av. Cardos Santos 2074.</p>
                          <p>Soluciones financieras con garantía real.</p>
-                         <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" className="flex items-center gap-2 text-primary hover:text-white transition-colors font-bold mt-2">
+                         <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" className="flex items-center gap-2 text-primary hover:text-accent transition-colors font-bold mt-2">
                             <Phone className="w-4 h-4" /> +591 623 27873
                          </a>
                      </div>
@@ -470,7 +474,7 @@ const App: React.FC = () => {
 
                  <div>
                      <h5 className="font-bold mb-6 text-lg text-primary">Nosotros</h5>
-                     <ul className="space-y-3 text-gray-400">
+                     <ul className="space-y-3 text-text-muted">
                          {['Gobierno Corporativo', 'Transparencia', 'Inversionistas', 'Trabaja con Nosotros'].map(link => (
                              <li key={link}><a href="#" className="hover:text-primary transition-colors">{link}</a></li>
                          ))}
@@ -479,7 +483,7 @@ const App: React.FC = () => {
 
                  <div>
                      <h5 className="font-bold mb-6 text-lg text-primary">Productos</h5>
-                     <ul className="space-y-3 text-gray-400">
+                     <ul className="space-y-3 text-text-muted">
                          {['Crédito Joyas', 'Crédito Vehicular', 'Crédito Maquinaria', 'Tasaciones'].map(link => (
                              <li key={link}><a href="#" className="hover:text-primary transition-colors">{link}</a></li>
                          ))}
@@ -488,12 +492,12 @@ const App: React.FC = () => {
 
                  <div>
                      <h5 className="font-bold mb-6 text-lg text-primary">Boletín Financiero</h5>
-                     <p className="text-gray-400 mb-4 text-xs">Información de mercados y tasas de interés.</p>
+                     <p className="text-text-muted mb-4 text-xs">Información de mercados y tasas de interés.</p>
                      <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
                          <input 
                             type="email" 
                             placeholder="Tu correo corporativo" 
-                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                            className="w-full px-4 py-3 bg-secondary border border-primary/10 rounded-lg text-text-main placeholder-text-muted focus:outline-none focus:border-primary transition-colors"
                          />
                          <button className="w-full bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2">
                              Suscribirse <ArrowRight className="w-4 h-4" />
@@ -502,14 +506,14 @@ const App: React.FC = () => {
                  </div>
              </div>
 
-             <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+             <div className="border-t border-primary/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-text-muted">
                  <p>© 2024 Pro Credit. Todos los derechos reservados.</p>
                  <div className="flex gap-6 mt-4 md:mt-0 items-center">
-                     <a href="https://www.facebook.com/lau.por.siempre.922203?locale=es_LA" target="_blank" className="hover:text-white flex items-center gap-1 group">
+                     <a href="https://www.facebook.com/lau.por.siempre.922203?locale=es_LA" target="_blank" className="hover:text-primary flex items-center gap-1 group">
                         <Facebook className="w-4 h-4 group-hover:text-primary transition-colors" /> Facebook
                      </a>
-                     <a href="#" className="hover:text-white">Política de Privacidad</a>
-                     <a href="#" className="hover:text-white">Términos y Condiciones</a>
+                     <a href="#" className="hover:text-primary">Política de Privacidad</a>
+                     <a href="#" className="hover:text-primary">Términos y Condiciones</a>
                  </div>
              </div>
         </footer>
@@ -517,7 +521,7 @@ const App: React.FC = () => {
         {/* Scroll to Top Button */}
         <button 
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 p-3 bg-surface-light text-primary rounded-full shadow-lg hover:-translate-y-1 transition-transform z-40 opacity-80 hover:opacity-100 border border-primary/20"
+            className="fixed bottom-6 right-6 p-3 bg-white text-primary rounded-full shadow-lg hover:-translate-y-1 transition-transform z-40 opacity-80 hover:opacity-100 border border-primary/20"
             aria-label="Volver arriba"
         >
             <ArrowUp className="w-6 h-6" />
@@ -525,22 +529,22 @@ const App: React.FC = () => {
 
         {/* Info Modal */}
         {showInfoModal && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in-up">
-            <div className="bg-surface-light rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl border border-white/10">
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in-up">
+            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl border border-primary/10">
                <button 
                 onClick={() => setShowInfoModal(false)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/5 text-gray-400 hover:text-white transition-colors z-10"
+                className="absolute top-4 right-4 p-2 rounded-full bg-primary/5 text-text-muted hover:text-primary transition-colors z-10"
                >
                  <X className="w-6 h-6" />
                </button>
                
-               <div className="prose max-w-none text-gray-300">
+               <div className="prose max-w-none text-text-muted">
                  <h2 className="text-2xl font-bold text-primary mb-4">¿Qué son las casas de empeño?</h2>
                  <p className="mb-4 leading-relaxed">
                    Empecemos por la definición. Las casas de empeño son entidades privadas cuyo modelo de negocio se basa en prestar dinero de forma inmediata a sus clientes a través de lo que se conoce como un <strong>préstamo prendario</strong>.
                  </p>
                  
-                 <div className="bg-white/5 p-4 rounded-xl border-l-4 border-primary mb-6">
+                 <div className="bg-primary/5 p-4 rounded-xl border-l-4 border-primary mb-6">
                     <p className="text-sm italic">
                       "Un préstamo prendario es un préstamo cuya garantía es un bien con valor. Por ejemplo, una joya, un reloj de oro, antigüedades, un aparato electrónico, un automóvil e incluso un local o una vivienda."
                     </p>
