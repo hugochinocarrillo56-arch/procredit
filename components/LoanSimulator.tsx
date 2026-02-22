@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { INTEREST_RATE, STORAGE_INSURANCE_RATE, WHATSAPP_PHONE } from '../constants';
+import { INTEREST_RATE, INSURANCE_RATE, STORAGE_RATE, WHATSAPP_PHONE } from '../constants';
 import { Minus, Plus, Send, Calendar, DollarSign, Percent } from 'lucide-react';
 
 export const LoanSimulator: React.FC = () => {
@@ -12,8 +12,8 @@ export const LoanSimulator: React.FC = () => {
   const amount = parseInt(amountInput.replace(/[^0-9]/g, '') || '0', 10);
 
   useEffect(() => {
-    // Tasa total mensual: 8% interés + 2% depósito = 10% (0.10)
-    const totalMonthlyRate = INTEREST_RATE + STORAGE_INSURANCE_RATE;
+    // Tasa total mensual: 3% interés + 3.5% seguro + 3.5% depósito = 10% (0.10)
+    const totalMonthlyRate = INTEREST_RATE + INSURANCE_RATE + STORAGE_RATE;
     
     if (amount > 0) {
         // Lógica de Interés Simple (Tasa Plana) solicitada por el usuario
@@ -145,11 +145,15 @@ Quisiera saber los requisitos para este préstamo.`;
                 
                 <div className="flex justify-between items-center text-xs">
                      <span className="text-slate-600 font-medium flex items-center gap-1"><Percent className="w-3 h-3" /> Interés Mensual</span>
-                     <span className="font-bold text-primary">{(INTEREST_RATE * 100).toFixed(0)}%</span>
+                     <span className="font-bold text-primary">{(INTEREST_RATE * 100).toFixed(1)}%</span>
                 </div>
                  <div className="flex justify-between items-center text-xs">
+                     <span className="text-slate-600 font-medium">Seguro del Préstamo</span>
+                     <span className="font-bold text-slate-700">{(INSURANCE_RATE * 100).toFixed(1)}%</span>
+                </div>
+                <div className="flex justify-between items-center text-xs">
                      <span className="text-slate-600 font-medium">Depósito de Prenda</span>
-                     <span className="font-bold text-slate-700">{(STORAGE_INSURANCE_RATE * 100).toFixed(0)}%</span>
+                     <span className="font-bold text-slate-700">{(STORAGE_RATE * 100).toFixed(1)}%</span>
                 </div>
                 <div className="flex justify-between items-center text-xs pt-2 border-t border-primary/20">
                      <span className="text-slate-700 font-bold">Total a Devolver</span>

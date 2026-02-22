@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { INTEREST_RATE, STORAGE_INSURANCE_RATE, WHATSAPP_PHONE, EMAIL_CONTACT } from '../constants';
+import { INTEREST_RATE, INSURANCE_RATE, STORAGE_RATE, WHATSAPP_PHONE, EMAIL_CONTACT } from '../constants';
 import { ChevronRight, Plus, Minus, Send, FileText, MapPin, Mail, Calendar } from 'lucide-react';
 
 interface CalculatorProps {
@@ -23,8 +23,8 @@ export const Calculator: React.FC<CalculatorProps> = ({ enableLocation = false }
 
   useEffect(() => {
     // Cálculo de EMPEÑO (Interés Simple)
-    // Tasa total = Interés (8%) + Depósito (2%) = 10%
-    const totalRate = INTEREST_RATE + STORAGE_INSURANCE_RATE;
+    // Tasa total = Interés (3%) + Seguro (3.5%) + Depósito (3.5%) = 10%
+    const totalRate = INTEREST_RATE + INSURANCE_RATE + STORAGE_RATE;
     
     if (amount > 0) {
         // El costo mensual es solo el interés + seguro
@@ -258,8 +258,10 @@ Quedo atento a su respuesta.`;
                 {/* Interest Calculation Row */}
                 <div className="flex justify-between items-center mb-2 border-b border-primary/10 pb-2">
                     <div className="flex flex-col">
-                        <span className="text-xs font-bold text-text-muted uppercase">Interés mensual</span>
-                        <span className="text-[9px] text-text-muted">{(INTEREST_RATE * 100).toFixed(0)}% Int + {(STORAGE_INSURANCE_RATE * 100).toFixed(0)}% Depósito</span>
+                        <span className="text-xs font-bold text-text-muted uppercase">Costo mensual</span>
+                        <span className="text-[9px] text-text-muted">
+                            {(INTEREST_RATE * 100).toFixed(1)}% Int + {(INSURANCE_RATE * 100).toFixed(1)}% Seg + {(STORAGE_RATE * 100).toFixed(1)}% Dep
+                        </span>
                     </div>
                     <span className="text-lg font-bold text-text-main">
                         Bs. {monthlyInterest.toFixed(0)}
