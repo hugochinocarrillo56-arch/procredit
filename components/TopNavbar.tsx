@@ -143,6 +143,16 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ currentView, onNavigate, t
             {item.label}
           </button>
         ))}
+
+        <a 
+          href="https://pro-credit-verificar.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 rounded-lg text-sm font-bold text-primary bg-primary/5 hover:bg-primary hover:text-white transition-all flex items-center gap-2 animate-pulse-subtle"
+        >
+          <ShieldCheck className="w-4 h-4" />
+          Verificar mi préstamo
+        </a>
       </div>
 
       <div className="ml-auto flex items-center gap-4">

@@ -99,14 +99,14 @@ const App: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const heroImages = [
-    "https://i.ibb.co/Hf1LrsxS/CARNAVAL-LA-PAZ-PIX2020-08.jpg",
-    "https://i.ibb.co/ZzyWz3sc/484387942-122123947844616809-485915212088624553-n-1.jpg"
+    "https://i.ibb.co/60TrSSQn/484348315-122123947544616809-8652967539908385468-n.jpg",
+    "https://i.ibb.co/KxCFxYZV/484387942-122123947844616809-485915212088624553-n-1.jpg"
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 5000);
+    }, 7000);
     return () => clearInterval(interval);
   }, []);
 
@@ -190,11 +190,20 @@ const App: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                 <button 
                   onClick={scrollToCalculator}
-                  className="bg-white hover:bg-secondary text-primary font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg border-2 border-primary transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base"
+                  className="bg-primary hover:bg-accent text-white font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base"
                 >
                   SIMULAR CRÉDITO
                   <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
+                <a 
+                  href="https://pro-credit-verificar.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white hover:bg-secondary text-primary font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg border-2 border-primary transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base animate-pulse-subtle"
+                >
+                  <ShieldCheck className="mr-2 w-4 h-4 md:w-5 md:h-5" />
+                  VERIFICAR MI PRÉSTAMO
+                </a>
                 <button 
                   onClick={() => setShowInfoModal(true)}
                   className="bg-white hover:bg-secondary text-primary font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all border border-primary/20 flex items-center justify-center shadow-lg text-sm md:text-base"
@@ -466,7 +475,15 @@ const App: React.FC = () => {
            
            <span className="font-bold text-text-main tracking-tight">PRO <span className="text-primary">CREDIT</span></span>
            
-           <div className="w-10 h-10 flex items-center justify-center">
+           <div className="flex items-center gap-2">
+                <a 
+                  href="https://pro-credit-verificar.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-md flex items-center gap-1 animate-pulse-subtle"
+                >
+                  <ShieldCheck className="w-3 h-3" /> VERIFICAR
+                </a>
                 <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
                     <Users className="w-4 h-4 text-primary" />
                 </div>
