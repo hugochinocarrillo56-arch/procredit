@@ -162,7 +162,7 @@ Quisiera saber los requisitos para este préstamo.`;
                 
                 <button 
                     onClick={sendToWhatsApp}
-                    className="mt-2 w-full bg-primary text-white hover:bg-accent font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
+                    className="mt-2 w-full bg-primary text-black hover:bg-accent font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
                 >
                     <Send className="w-4 h-4" /> Solicitar este Crédito
                 </button>

@@ -148,10 +148,10 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ currentView, onNavigate, t
           href="https://pro-credit-verificar.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 rounded-lg text-sm font-bold text-primary bg-primary/5 hover:bg-primary hover:text-white transition-all flex items-center gap-2 animate-pulse-subtle"
+          className="px-4 py-2 rounded-lg text-sm font-extrabold text-black bg-highlight hover:bg-orange-600 shadow-lg shadow-highlight/40 transition-all flex items-center gap-2 animate-pulse-subtle border-2 border-highlight hover:border-orange-600"
         >
           <ShieldCheck className="w-4 h-4" />
-          Verificar mi préstamo
+          VERIFICAR MI PRÉSTAMO
         </a>
       </div>
 

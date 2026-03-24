@@ -144,12 +144,6 @@ const App: React.FC = () => {
                 index === currentImageIndex ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              {/* Blurred background to fill gaps */}
-              <img 
-                src={img} 
-                alt="" 
-                className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-30"
-              />
               {/* Main complete image */}
               <img 
                 src={img} 
@@ -190,7 +184,7 @@ const App: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                 <button 
                   onClick={scrollToCalculator}
-                  className="bg-primary hover:bg-accent text-white font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base"
+                  className="bg-primary hover:bg-accent text-black font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base"
                 >
                   SIMULAR CRÉDITO
                   <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
@@ -199,7 +193,7 @@ const App: React.FC = () => {
                   href="https://pro-credit-verificar.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white hover:bg-secondary text-primary font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg border-2 border-primary transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base animate-pulse-subtle"
+                  className="bg-highlight hover:bg-orange-600 text-black font-extrabold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg shadow-highlight/40 border-2 border-highlight hover:border-orange-600 transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base animate-pulse-subtle"
                 >
                   <ShieldCheck className="mr-2 w-4 h-4 md:w-5 md:h-5" />
                   VERIFICAR MI PRÉSTAMO
@@ -235,7 +229,7 @@ const App: React.FC = () => {
                                 <h2 className="text-2xl md:text-3xl font-extrabold text-text-main">
                                     ¿Quiénes <span className="text-primary">Somos?</span>
                                 </h2>
-                                <div className="text-text-muted text-sm leading-relaxed space-y-3 text-justify">
+                                <div className="text-black text-sm leading-relaxed space-y-3 text-justify font-medium">
                                     <p>
                                         Desde 2024, nacimos en la ciudad de La Paz, en plena <strong>Av. Cardos Santos</strong>, apoyando a las familias y emprendedores, razón por la cual se debe nuestro nombre <strong>“Pro Credit”</strong>.
                                     </p>
@@ -247,13 +241,12 @@ const App: React.FC = () => {
                             <div className="w-full md:w-2/5">
                                 <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 rotate-2 hover:rotate-0 transition-all duration-500">
                                     <img 
-                                        src="https://erbol.com.bo/sites/default/files/ciudad_de_el_alto.jpg" 
+                                        src="https://thumbs.dreamstime.com/b/una-gran-cantidad-de-dinero-boliviano-en-la-mano-y-convertido-moneda-bolivia-convertida-211984285.jpg" 
                                         alt="Equipo Pro Credit" 
                                         className="w-full h-48 md:h-full object-cover"
                                     />
-                                    {/* Overlay degradado a blanco para que el texto negro se note bien */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent flex items-end p-4">
-                                         <p className="text-black font-extrabold text-xs md:text-sm shadow-sm">Compromiso y Solidez</p>
+                                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent pt-12 pb-4 px-4">
+                                         <p className="text-white font-extrabold text-xs md:text-sm text-center drop-shadow-md">Compromiso y Solidez</p>
                                     </div>
                                 </div>
                             </div>
@@ -269,9 +262,8 @@ const App: React.FC = () => {
                                     alt="Joyas y Valores" 
                                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                                 />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
-                                <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur text-text-main font-bold px-4 py-2 rounded-lg text-sm shadow-md flex items-center gap-2 border border-primary/10">
-                                    <CheckCircle className="text-primary w-4 h-4" /> Avalúo Certificado
+                                <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white font-bold px-4 py-2 rounded-lg text-sm shadow-md flex items-center gap-2 border border-white/10">
+                                    <CheckCircle className="text-white w-4 h-4" /> Avalúo Certificado
                                 </div>
                             </div>
                             <div className="w-full md:w-1/2">
@@ -308,7 +300,7 @@ const App: React.FC = () => {
                                     onClick={() => setActiveTab('loan')}
                                     className={`px-6 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
                                         activeTab === 'loan' 
-                                        ? 'bg-primary text-white shadow-md' 
+                                        ? 'bg-primary text-black shadow-md' 
                                         : 'text-text-muted hover:text-primary hover:bg-primary/5'
                                     }`}
                                 >
@@ -319,7 +311,7 @@ const App: React.FC = () => {
                                     onClick={() => setActiveTab('pawn')}
                                     className={`px-6 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
                                         activeTab === 'pawn' 
-                                        ? 'bg-primary text-white shadow-md' 
+                                        ? 'bg-primary text-black shadow-md' 
                                         : `text-text-muted hover:text-primary hover:bg-primary/5 ${activeTab === 'loan' ? 'animate-heartbeat text-primary' : ''}`
                                     }`}
                                 >
@@ -348,20 +340,19 @@ const App: React.FC = () => {
                       </h3>
                       <div className="grid grid-cols-2 gap-4">
                           {[
-                            { id:'joyeria', title: "Alta Joyería", subtitle: "Oro, Diamantes, Rolex", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80", icon: <Gem /> },
-                            { id:'autos', title: "Vehículos", subtitle: "Autos, Motos, Camiones", img: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=400&q=80", icon: <Car /> },
-                            { id:'electronicos', title: "Tecnología", subtitle: "Laptops, Alta Gama", img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=400&q=80", icon: <Smartphone /> },
-                            { id:'inmuebles', title: "Inmuebles", subtitle: "Propiedades Libres", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80", icon: <Landmark /> }
+                            { id:'joyeria', title: "Alta Joyería", subtitle: "Oro, Diamantes, Rolex", img: "https://pxcdn.eldeber.com.bo/eldeber/530159/092025/1758916811157.webp?cw=1200&ch=675&extw=jpeg", icon: <Gem /> },
+                            { id:'autos', title: "Vehículos", subtitle: "Autos, Motos, Camiones", img: "https://abyayala.tv.bo/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-06-at-17.51.19.jpeg", icon: <Car /> },
+                            { id:'electronicos', title: "Tecnología", subtitle: "Laptops, Alta Gama", img: "https://www.pub.eldiario.net/noticias/2015/2015_11/nt151109/f_2015-11-09_15.jpg", icon: <Smartphone /> },
+                            { id:'inmuebles', title: "Inmuebles", subtitle: "Propiedades Libres", img: "https://www.bienesonline.com/bolivia/photos/de-ocasion-venta-de-terreno-11510535847.jpg", icon: <Landmark /> }
                           ].map((cat, i) => (
                             <div key={i} onClick={() => handleNavigation(cat.id)} className="group relative h-40 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-primary/10">
                               <img src={cat.img} alt={cat.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
-                              <div className="absolute bottom-0 left-0 p-4 w-full">
-                                <div className="flex items-center gap-2 text-text-main mb-1">
-                                  {React.cloneElement(cat.icon as React.ReactElement, { className: "w-4 h-4 text-primary" })}
-                                  <span className="font-bold text-sm drop-shadow-sm">{cat.title}</span>
+                              <div className="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-black/90 via-black/50 to-transparent pt-12">
+                                <div className="flex items-center gap-2 text-white mb-1">
+                                  {React.cloneElement(cat.icon as React.ReactElement, { className: "w-4 h-4 text-white drop-shadow-md" })}
+                                  <span className="font-extrabold text-sm drop-shadow-md">{cat.title}</span>
                                 </div>
-                                <p className="text-[10px] text-slate-700 font-bold">{cat.subtitle}</p>
+                                <p className="text-[10px] text-white/90 font-bold drop-shadow-md">{cat.subtitle}</p>
                               </div>
                             </div>
                           ))}
@@ -480,7 +471,7 @@ const App: React.FC = () => {
                   href="https://pro-credit-verificar.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-md flex items-center gap-1 animate-pulse-subtle"
+                  className="bg-highlight hover:bg-orange-600 text-black text-[10px] font-extrabold px-3 py-1.5 rounded-lg shadow-md shadow-highlight/40 flex items-center gap-1 animate-pulse-subtle border border-highlight"
                 >
                   <ShieldCheck className="w-3 h-3" /> VERIFICAR
                 </a>

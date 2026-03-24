@@ -44,21 +44,21 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
       {/* Hero Section of the Service */}
       <div className="relative h-[400px] w-full overflow-hidden rounded-b-[3rem] shadow-2xl">
         <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background-light via-background-light/80 via-30% to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
         
         <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 max-w-4xl mx-auto">
           <button 
             onClick={onBack}
-            className="absolute top-8 left-6 md:left-12 bg-white/90 hover:bg-white backdrop-blur-md text-primary px-4 py-2 rounded-full flex items-center gap-2 transition-all text-sm font-bold border border-primary/20 shadow-lg"
+            className="absolute top-8 left-6 md:left-12 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center gap-2 transition-all text-sm font-bold border border-white/20 shadow-lg"
           >
             <ChevronLeft className="w-4 h-4" /> Volver al Inicio
           </button>
 
-          <span className="text-primary font-bold tracking-widest uppercase text-sm mb-2 drop-shadow-sm">{subtitle}</span>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-text-main mb-4 leading-tight drop-shadow-sm">
+          <span className="text-white/90 font-bold tracking-widest uppercase text-sm mb-2 drop-shadow-md">{subtitle}</span>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight drop-shadow-md">
             {title}
           </h1>
-          <p className="text-slate-700 text-lg max-w-2xl leading-relaxed font-bold drop-shadow-sm">
+          <p className="text-white/90 text-lg max-w-2xl leading-relaxed font-medium drop-shadow-md">
             {description}
           </p>
         </div>
