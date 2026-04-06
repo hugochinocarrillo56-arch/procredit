@@ -447,7 +447,7 @@ const App: React.FC = () => {
       <main className="flex-1 transition-all duration-300 relative md:pt-20">
         
         {/* Mobile Header */}
-        <div className="md:hidden sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-primary/10 px-4 py-3 flex justify-between items-center shadow-lg">
+        <div className="md:hidden sticky top-0 z-30 bg-white border-b border-primary/10 px-4 py-3 flex justify-between items-center shadow-lg">
            <button 
              onClick={toggleSidebar} 
              className="p-2 -ml-2 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/20 transition-all duration-300 group relative overflow-hidden"

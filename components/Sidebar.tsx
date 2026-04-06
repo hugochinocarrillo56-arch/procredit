@@ -53,13 +53,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
 
       {/* Sidebar Container */}
       <aside 
-        className={`fixed top-0 left-0 z-50 h-full w-72 bg-surface-light border-r border-primary/10 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 z-50 h-full w-72 bg-white border-r border-primary/10 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } flex flex-col shadow-2xl md:hidden`}
       >
         {/* Logo Area */}
         <div 
-          className="h-24 flex items-center px-6 border-b border-primary/10 bg-surface-light cursor-pointer"
+          className="h-24 flex items-center px-6 border-b border-primary/10 bg-white cursor-pointer"
           onClick={() => handleNavClick('home')}
         >
            <div className="flex items-center gap-3">
@@ -71,10 +71,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
                   />
               </div>
               <div>
-                  <h1 className="font-extrabold text-xl tracking-tight leading-none text-text-main">
-                      <span className="text-text-main">PRO</span> <span className="text-primary">CREDIT</span>
+                  <h1 className="font-extrabold text-xl tracking-tight leading-none text-slate-900">
+                      <span className="text-slate-900">PRO</span> <span className="text-primary">CREDIT</span>
                   </h1>
-                  <p className="text-[10px] uppercase tracking-widest text-slate-600 font-bold mt-1">Crecemos Juntos</p>
+                  <p className="text-[10px] uppercase tracking-widest text-slate-700 font-bold mt-1">Crecemos Juntos</p>
               </div>
            </div>
            <button onClick={toggleSidebar} className="md:hidden ml-auto text-slate-500 hover:text-primary">
@@ -83,7 +83,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex-1 overflow-y-auto py-6 px-4 space-y-1 sidebar-scroll bg-surface-light">
+        <nav className="flex-1 overflow-y-auto py-6 px-4 space-y-1 sidebar-scroll bg-white">
           {navItems.map((item, index) => {
             if (item.isHeader) {
               return (
@@ -102,13 +102,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
                 className={`w-full flex items-center px-4 py-3.5 rounded-xl transition-all duration-200 group text-left ${
                   isActive 
                     ? 'bg-primary/10 text-primary font-bold border-l-4 border-primary shadow-sm' 
-                    : 'text-text-muted hover:bg-primary/5 hover:text-primary'
+                    : 'text-slate-700 hover:bg-primary/5 hover:text-primary'
                 } ${item.divider ? 'mt-4 border-t border-primary/10 pt-6' : ''}`}
               >
-                <span className={`mr-3 transition-colors ${isActive ? 'text-primary' : 'text-text-muted group-hover:text-primary'}`}>
+                <span className={`mr-3 transition-colors ${isActive ? 'text-primary' : 'text-slate-500 group-hover:text-primary'}`}>
                   {item.icon}
                 </span>
-                <span className="text-sm">{item.label}</span>
+                <span className="text-sm font-bold">{item.label}</span>
                 {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />}
               </button>
             );
@@ -116,7 +116,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
         </nav>
         
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-primary/10 bg-secondary/50">
+        <div className="p-4 border-t border-primary/10 bg-slate-50">
            <div className="flex items-center gap-3 px-2">
               <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-accent p-[2px]">
                  <img 
@@ -126,8 +126,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
                  />
               </div>
               <div className="overflow-hidden">
-                 <p className="text-sm font-bold text-text-main truncate">Maria González</p>
-                 <p className="text-xs text-slate-600 font-medium truncate">Cliente Preferencial</p>
+                 <p className="text-sm font-bold text-slate-900 truncate">Maria González</p>
+                 <p className="text-xs text-slate-700 font-medium truncate">Cliente Preferencial</p>
               </div>
            </div>
         </div>
