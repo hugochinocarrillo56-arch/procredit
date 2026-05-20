@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { INTEREST_RATE, INSURANCE_RATE, STORAGE_RATE, WHATSAPP_PHONE, EMAIL_CONTACT } from '../constants';
+import { INTEREST_RATE, INSURANCE_RATE, STORAGE_RATE, WHATSAPP_PHONE, WHATSAPP_PHONE_SECONDARY, EMAIL_CONTACT } from '../constants';
 import { ChevronRight, Plus, Minus, Send, FileText, MapPin, Mail, Calendar } from 'lucide-react';
 
 interface CalculatorProps {
@@ -78,7 +78,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ enableLocation = false }
       }
   };
 
-  const sendToWhatsApp = () => {
+  const sendToWhatsApp = (phone: string = WHATSAPP_PHONE) => {
     const desc = itemDescription ? itemDescription : "N/A";
     const locInfo = enableLocation && locationInput ? `📍 *Ubicación:* ${locationInput}` : "";
 
@@ -94,7 +94,7 @@ ${locInfo}
 📅 *Tiempo:* ${months} mes(es)
 💵 *Total a devolver:* Bs. ${totalRedemption.toFixed(0)}`;
     
-    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
@@ -292,18 +292,37 @@ Quedo atento a su respuesta.`;
                     Elige cómo enviar tu solicitud
                 </p>
                 
-                {/* WhatsApp Button */}
+                {/* WhatsApp Principal Button */}
                 <button 
-                    onClick={sendToWhatsApp}
+                    onClick={() => sendToWhatsApp(WHATSAPP_PHONE)}
                     className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white border-none font-bold py-3 px-4 rounded-xl transition-all flex justify-between items-center group shadow-lg hover:shadow-xl transform active:scale-95"
                 >
                     <div className="flex flex-col items-start text-left">
                         <span className="flex items-center gap-2 text-sm uppercase tracking-wide">
                             <Send className="w-5 h-5" />
-                            WhatsApp
+                            WhatsApp Principal
                         </span>
                         <span className="text-[10px] opacity-90 font-normal">
-                             Envío rápido al {WHATSAPP_PHONE}
+                             Envío rápido al +591 62327873
+                        </span>
+                    </div>
+                     <span className="bg-white/20 text-white rounded-full p-1 transition-colors group-hover:bg-white/30">
+                        <ChevronRight className="w-5 h-5" />
+                    </span>
+                </button>
+
+                {/* WhatsApp Secundario Button */}
+                <button 
+                    onClick={() => sendToWhatsApp(WHATSAPP_PHONE_SECONDARY)}
+                    className="w-full bg-[#128C7E] hover:bg-[#0f7569] text-white border-none font-bold py-3 px-4 rounded-xl transition-all flex justify-between items-center group shadow-lg hover:shadow-xl transform active:scale-95"
+                >
+                    <div className="flex flex-col items-start text-left">
+                        <span className="flex items-center gap-2 text-sm uppercase tracking-wide">
+                            <Send className="w-5 h-5" />
+                            WhatsApp Auxiliar
+                        </span>
+                        <span className="text-[10px] opacity-90 font-normal">
+                             En caso de falla al +591 77274528
                         </span>
                     </div>
                      <span className="bg-white/20 text-white rounded-full p-1 transition-colors group-hover:bg-white/30">

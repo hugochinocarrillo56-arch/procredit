@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, CheckCircle, ShieldCheck, Phone, ChevronLeft, FileText } from 'lucide-react';
 import { Calculator } from './Calculator';
-import { WHATSAPP_PHONE } from '../constants';
+import { WHATSAPP_PHONE, WHATSAPP_PHONE_SECONDARY } from '../constants';
 
 interface ServiceViewProps {
   title: string;
@@ -26,8 +26,8 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
   colorClass = "text-primary",
   enableLocation = false
 }) => {
-  const openWhatsApp = () => {
-      window.open(`https://wa.me/${WHATSAPP_PHONE}`, '_blank');
+  const openWhatsApp = (phone: string = WHATSAPP_PHONE) => {
+      window.open(`https://wa.me/${phone}`, '_blank');
   };
 
   // Lista por defecto si no se pasan requisitos específicos
@@ -122,12 +122,20 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
                 <Calculator enableLocation={enableLocation} />
                 <div className="mt-6 pt-6 border-t border-primary/10 text-center">
                   <p className="text-sm text-text-muted mb-4">¿Prefieres hablar con un experto?</p>
-                  <button 
-                    onClick={openWhatsApp}
-                    className="w-full flex items-center justify-center gap-2 bg-primary text-white font-bold py-4 rounded-xl hover:bg-accent transition-colors shadow-lg shadow-primary/20"
-                  >
-                    <Phone className="w-5 h-5" /> Hablar con un Asesor
-                  </button>
+                  <div className="flex flex-col gap-2">
+                    <button 
+                      onClick={() => openWhatsApp(WHATSAPP_PHONE)}
+                      className="w-full flex items-center justify-center gap-2 bg-primary text-white font-bold py-3.5 rounded-xl hover:bg-accent transition-colors shadow-lg shadow-primary/20 text-sm"
+                    >
+                      <Phone className="w-4 h-4" /> Asesor Principal (62327873)
+                    </button>
+                    <button 
+                      onClick={() => openWhatsApp(WHATSAPP_PHONE_SECONDARY)}
+                      className="w-full flex items-center justify-center gap-2 bg-[#128C7E] text-white font-bold py-3.5 rounded-xl hover:bg-[#0f7569] transition-colors shadow-lg shadow-emerald-700/20 text-sm"
+                    >
+                      <Phone className="w-4 h-4" /> Asesor Auxiliar (77274528)
+                    </button>
+                  </div>
                 </div>
              </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { INTEREST_RATE, INSURANCE_RATE, STORAGE_RATE, WHATSAPP_PHONE } from '../constants';
+import { INTEREST_RATE, INSURANCE_RATE, STORAGE_RATE, WHATSAPP_PHONE, WHATSAPP_PHONE_SECONDARY } from '../constants';
 import { Minus, Plus, Send, Calendar, DollarSign, Percent } from 'lucide-react';
 
 export const LoanSimulator: React.FC = () => {
@@ -44,7 +44,7 @@ export const LoanSimulator: React.FC = () => {
     setAmountInput(e.target.value);
   }
 
-  const sendToWhatsApp = () => {
+  const sendToWhatsApp = (phone: string = WHATSAPP_PHONE) => {
     const message = `👋 Hola ProCredit. 
     
 🏦 *Solicitud de Crédito Personal*
@@ -56,7 +56,7 @@ export const LoanSimulator: React.FC = () => {
 
 Quisiera saber los requisitos para este préstamo.`;
     
-    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
@@ -160,12 +160,20 @@ Quisiera saber los requisitos para este préstamo.`;
                      <span className="font-bold text-text-main">Bs. {totalPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                 </div>
                 
-                <button 
-                    onClick={sendToWhatsApp}
-                    className="mt-2 w-full bg-primary text-black hover:bg-accent font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
-                >
-                    <Send className="w-4 h-4" /> Solicitar este Crédito
-                </button>
+                <div className="flex flex-col sm:flex-row gap-2 mt-2">
+                    <button 
+                        onClick={() => sendToWhatsApp(WHATSAPP_PHONE)}
+                        className="flex-1 bg-primary text-black hover:bg-accent font-bold py-3 px-2 rounded-xl flex items-center justify-center gap-1.5 transition-colors text-xs"
+                    >
+                        <Send className="w-3.5 h-3.5" /> Solicitar Principal
+                    </button>
+                    <button 
+                        onClick={() => sendToWhatsApp(WHATSAPP_PHONE_SECONDARY)}
+                        className="flex-1 bg-[#128C7E] text-white hover:bg-[#0f7569] font-bold py-3 px-2 rounded-xl flex items-center justify-center gap-1.5 transition-colors text-xs"
+                    >
+                        <Send className="w-3.5 h-3.5" /> Solicitar Auxiliar
+                    </button>
+                </div>
                 
                 <p className="text-[9px] text-center text-text-muted mt-1">
                     * Cálculo de cuota fija (Interés Simple) con tasa total del 10% mensual.

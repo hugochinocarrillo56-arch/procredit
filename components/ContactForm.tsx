@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Send, User, Mail, Phone } from 'lucide-react';
-import { WHATSAPP_PHONE } from '../constants';
+import { WHATSAPP_PHONE, WHATSAPP_PHONE_SECONDARY } from '../constants';
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,11 +9,12 @@ export const ContactForm: React.FC = () => {
     email: '',
     celular: '',
   });
+  const [recipient, setRecipient] = useState(WHATSAPP_PHONE);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const message = `Hola ProCredit, mi nombre es ${formData.nombre} ${formData.apellido}. Mi correo es ${formData.email} y mi celular es ${formData.celular}. Quisiera recibir más información sobre los préstamos.`;
-    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${recipient}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
     setFormData({ nombre: '', apellido: '', email: '', celular: '' });
   };
@@ -96,6 +97,20 @@ export const ContactForm: React.FC = () => {
             </div>
           </div>
 
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">
+              Enviar consulta a:
+            </label>
+            <select
+              value={recipient}
+              onChange={(e) => setRecipient(e.target.value)}
+              className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-primary/20 text-text-main focus:ring-2 focus:ring-primary focus:bg-white transition-all outline-none text-xs font-bold"
+            >
+              <option value={WHATSAPP_PHONE}>Asesor Principal (+591 62327873)</option>
+              <option value={WHATSAPP_PHONE_SECONDARY}>Asesor Auxiliar (+591 77274528)</option>
+            </select>
+          </div>
+
           <div className="pt-4">
             <button
               type="submit"
@@ -112,11 +127,17 @@ export const ContactForm: React.FC = () => {
         </form>
       </div>
       
-      <div className="bg-secondary p-4 text-center border-t border-primary/10 backdrop-blur-sm">
-        <p className="text-text-main text-xs font-semibold mb-1">¿Necesitas ayuda inmediata?</p>
-        <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" className="text-primary text-xl font-bold block hover:underline tracking-widest">
-            +591 623 27873
-        </a>
+      <div className="bg-secondary p-4 text-center border-t border-primary/10 backdrop-blur-sm flex flex-col items-center">
+        <p className="text-text-main text-xs font-bold mb-2">¿Necesitas ayuda inmediata? Chatea con nosotros:</p>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center">
+            <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" className="text-primary text-sm font-extrabold hover:underline">
+                Principal: +591 623 27873
+            </a>
+            <span className="hidden sm:inline text-slate-300">|</span>
+            <a href={`https://wa.me/${WHATSAPP_PHONE_SECONDARY}`} target="_blank" className="text-primary text-sm font-extrabold hover:underline">
+                Auxiliar: +591 7727 4528
+            </a>
+        </div>
       </div>
     </div>
   );

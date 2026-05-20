@@ -6,7 +6,7 @@ import { LoanSimulator } from './components/LoanSimulator';
 import { ContactForm } from './components/ContactForm';
 import { FAQ } from './components/FAQ';
 import { ServiceView } from './components/ServiceView';
-import { WHATSAPP_PHONE } from './constants';
+import { WHATSAPP_PHONE, WHATSAPP_PHONE_SECONDARY } from './constants';
 import { 
   Menu, Moon, Sun, PlayCircle, ArrowRight, CheckCircle, MapPin, Phone, ArrowUp, Landmark, 
   Gem, Car, Smartphone, Shield, Repeat, Banknote, Percent, CalendarClock, X,
@@ -471,13 +471,11 @@ const App: React.FC = () => {
                   href="https://pro-credit-verificar.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-highlight hover:bg-orange-600 text-black text-[10px] font-extrabold px-3 py-1.5 rounded-lg shadow-md shadow-highlight/40 flex items-center gap-1 animate-pulse-subtle border border-highlight"
+                  className="bg-gradient-to-r from-amber-400 to-highlight hover:from-amber-500 hover:to-orange-600 text-black text-[10px] font-black px-3.5 py-2 rounded-xl shadow-lg shadow-highlight/50 flex items-center gap-1 animate-heartbeat border border-amber-300 tracking-wider text-center"
                 >
-                  <ShieldCheck className="w-3 h-3" /> VERIFICAR
+                  <ShieldCheck className="w-3.5 h-3.5 text-black" fill="currentColor" /> VERIFICAR MI PRÉSTAMO
                 </a>
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
-                    <Users className="w-4 h-4 text-primary" />
-                </div>
+
            </div>
         </div>
 
@@ -501,7 +499,7 @@ const App: React.FC = () => {
                          <p>Av. Cardos Santos 2074.</p>
                          <p>Soluciones financieras con garantía real.</p>
                          <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" className="flex items-center gap-2 text-primary hover:text-accent transition-colors font-bold mt-2">
-                            <Phone className="w-4 h-4" /> +591 623 27873
+                            <Phone className="w-4 h-4" /> Principal: +591 623 27873</a> <a href={`https://wa.me/${WHATSAPP_PHONE_SECONDARY}`} target="_blank" className="flex items-center gap-2 text-primary hover:text-accent transition-colors font-bold mt-1.5"><Phone className="w-4 h-4" /> Auxiliar: +591 77274528
                          </a>
                      </div>
                  </div>

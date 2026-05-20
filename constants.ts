@@ -3,7 +3,8 @@ import { FaqItem, PawnCategory } from './types';
 export const INTEREST_RATE = 0.03; // 3% mensual (Interés del préstamo)
 export const INSURANCE_RATE = 0.035; // 3.5% mensual (Seguro del préstamo)
 export const STORAGE_RATE = 0.035; // 3.5% mensual (Depósito/Almacenaje)
-export const WHATSAPP_PHONE = "59162327873"; // Número centralizado
+export const WHATSAPP_PHONE = "59162327873"; // Número centralizado principal
+export const WHATSAPP_PHONE_SECONDARY = "59177274528"; // Número centralizado secundario
 export const EMAIL_CONTACT = "hugochinocarrillo56@gmail.com"; // Correo de contacto
 
 export const FAQ_ITEMS: FaqItem[] = [
