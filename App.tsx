@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { TopNavbar } from './components/TopNavbar';
 import { Calculator } from './components/Calculator';
-import { LoanSimulator } from './components/LoanSimulator';
 import { ContactForm } from './components/ContactForm';
 import { FAQ } from './components/FAQ';
 import { ServiceView } from './components/ServiceView';
@@ -27,7 +26,7 @@ const SERVICE_DATA: Record<string, any> = {
     title: "Empeño de Autos",
     subtitle: "Liquidez sobre ruedas",
     description: "Convierte tu vehículo en efectivo inmediato. Ofrecemos modalidades de resguardo o 'síguelo manejando' con GPS.",
-    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1920&auto=format&fit=crop",
+    image: "https://i.ibb.co/Xrwt0M9y/feria-autos-elalto.jpg",
     features: ["Opción: Déjalo o Manéjalo", "Hasta el 80% del valor de la guía", "Trámite en menos de 2 horas", "Tasa preferencial desde 1.5%"],
     requirements: [
       "Ruat + carnet de propiedad",
@@ -43,7 +42,7 @@ const SERVICE_DATA: Record<string, any> = {
     title: "Garantía Inmobiliaria",
     subtitle: "Tu propiedad te respalda",
     description: "Préstamos de alto valor con garantía hipotecaria. Ideal para inyección de capital de negocios o consolidación de deudas.",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80",
+    image: "https://i.ibb.co/gFRdJbRb/600293691-122147092430710584-3646622031107360372-n.jpg",
     features: ["Montos desde Bs. 350,000", "Plazos de hasta 10 años", "Sin buró de crédito estricto", "Notarización ágil y segura"],
     enableLocation: true,
     requirements: ["Título de propiedad registrado en Derechos Reales", "Folio Real actualizado (Alodial)", "Plano Catastral aprobado", "Impuestos pagados de la última gestión", "C.I. del propietario y cónyuge (si aplica)"]
@@ -52,17 +51,9 @@ const SERVICE_DATA: Record<string, any> = {
     title: "Empeño de Electrónicos",
     subtitle: "Tecnología por efectivo",
     description: "Aceptamos laptops (MacBook, Alienware), cámaras profesionales, consolas de última generación y celulares de gama alta.",
-    image: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=1920&auto=format&fit=crop",
+    image: "https://i.ibb.co/Y48GkP6q/noticias-unitel-101-14200601-20260115002247.webp",
     features: ["Borrado de datos seguro (opcional)", "Almacenamiento anti-estático", "Préstamos rápidos desde Bs. 1,400", "Renovación mensual ilimitada"],
     requirements: ["Equipo completo con cargador original", "Batería con carga para pruebas", "Sin cuentas bloqueadas (iCloud/Google)", "Documento de Identidad (C.I.)"]
-  },
-  banca: {
-    title: "Banca Comunal",
-    subtitle: "Crecimiento Grupal",
-    description: "Créditos grupales diseñados para emprendedores que buscan crecer juntos. Sin garantía individual, respaldados por la solidaridad.",
-    image: "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?q=80&w=1920&auto=format&fit=crop",
-    features: ["Tasas de interés reducidas", "Capacitación financiera gratuita", "Premios por puntualidad", "Ciclos de renovación rápida"],
-    requirements: ["Grupo mínimo de 5 personas", "Fotocopia de C.I. de cada integrante", "Factura de luz o agua del domicilio", "Tener un negocio propio o actividad económica"]
   },
   garantia: {
     title: "Crédito con Garantía",
@@ -71,15 +62,6 @@ const SERVICE_DATA: Record<string, any> = {
     image: "https://images.unsplash.com/photo-1626265774643-f1943311a86b?q=80&w=1920&auto=format&fit=crop",
     features: ["Combinación de garantías aceptada", "Aprobación en 24 horas", "Intereses sobre saldos insolutos", "Sin penalización por prepago"],
     requirements: ["Documento de Identidad (C.I.) vigente", "Avalúo de la garantía (realizado por nosotros)", "Comprobante de ingresos (opcional, mejora tasa)"]
-  },
-  micro: {
-    title: "Microcrédito Solidario",
-    subtitle: "Apoyo Emprendedor",
-    description: "Pequeños créditos para grandes sueños. Diseñados para impulsar tu negocio desde el primer día.",
-    image: "https://scontent.flpb2-2.fna.fbcdn.net/v/t1.6435-9/75237511_2307915295981403_5981626641338597376_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=L1WGOSrHEcgQ7kNvwGeSmXK&_nc_oc=Adm6LZgvTnHeyP090T-798Fn4MSVbEIWpwdZcbnTOr1Nt3h8QfQWul4iLN2WBgmV__M_0rChuJdO8NdPK7ddzLML&_nc_zt=23&_nc_ht=scontent.flpb2-2.fna&_nc_gid=-jzJjz9Md0Cge3DWzGVV1Q&oh=00_Afp5wySwOVnde4FYAiLM0WDzxmIttbMqhTbNF8fcoCb4bw&oe=69995F09",
-    features: ["Mínimos requisitos", "Aprobación inmediata", "Sin garantía prendaria", "Plazos semanales o quincenales"],
-    colorClass: "text-cyan-400 bg-cyan-400/10",
-    requirements: ["Cédula de Identidad Vigente", "Aviso de Cobranza de Luz o Agua", "Croquis del Domicilio y Negocio", "Garante Personal (si aplica)"]
   },
   seguros: {
     title: "Seguros Integrales",
@@ -95,7 +77,7 @@ const App: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentView, setCurrentView] = useState('home');
   const [showInfoModal, setShowInfoModal] = useState(false);
-  const [activeTab, setActiveTab] = useState<'loan' | 'pawn'>('loan');
+  const [showWelcomeModal, setShowWelcomeModal] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const heroImages = [
@@ -117,7 +99,6 @@ const App: React.FC = () => {
   };
 
   const scrollToCalculator = () => {
-    setActiveTab('loan');
     setTimeout(() => {
         const element = document.getElementById('calculator-section');
         if (element) {
@@ -276,7 +257,7 @@ const App: React.FC = () => {
                                 </p>
                                 <ul className="space-y-3">
                                     {[
-                                        "Contratos regulados por la SBS", 
+                                        "Contratos regulados", 
                                         "Bóvedas de seguridad bancaria", 
                                         "Tasas de interés preferenciales"
                                     ].map((item, i) => (
@@ -292,44 +273,11 @@ const App: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Dynamic Calculator Section */}
+                     {/* Dynamic Calculator Section */}
                     <div id="calculator-section" className="scroll-mt-24">
-                        <div className="flex items-center justify-center mb-6">
-                            <div className="bg-surface-light p-1.5 rounded-xl inline-flex gap-1 shadow-blue-glow border border-primary/10">
-                                <button 
-                                    onClick={() => setActiveTab('loan')}
-                                    className={`px-6 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
-                                        activeTab === 'loan' 
-                                        ? 'bg-primary text-black shadow-md' 
-                                        : 'text-text-muted hover:text-primary hover:bg-primary/5'
-                                    }`}
-                                >
-                                    <DollarSign className="w-4 h-4" />
-                                    Simular Préstamo
-                                </button>
-                                <button 
-                                    onClick={() => setActiveTab('pawn')}
-                                    className={`px-6 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
-                                        activeTab === 'pawn' 
-                                        ? 'bg-primary text-black shadow-md' 
-                                        : `text-text-muted hover:text-primary hover:bg-primary/5 ${activeTab === 'loan' ? 'animate-heartbeat text-primary' : ''}`
-                                    }`}
-                                >
-                                    <CalculatorIcon className="w-4 h-4" />
-                                    Cotizar Empeño
-                                </button>
-                            </div>
+                        <div className="animate-fade-in-up">
+                            <Calculator />
                         </div>
-
-                        {activeTab === 'loan' ? (
-                            <div className="animate-fade-in-up">
-                                <LoanSimulator />
-                            </div>
-                        ) : (
-                            <div className="animate-fade-in-up">
-                                <Calculator />
-                            </div>
-                        )}
                     </div>
 
                     {/* Pawn Categories Grid */}
@@ -341,9 +289,9 @@ const App: React.FC = () => {
                       <div className="grid grid-cols-2 gap-4">
                           {[
                             { id:'joyeria', title: "Alta Joyería", subtitle: "Oro, Diamantes, Rolex", img: "https://pxcdn.eldeber.com.bo/eldeber/530159/092025/1758916811157.webp?cw=1200&ch=675&extw=jpeg", icon: <Gem /> },
-                            { id:'autos', title: "Vehículos", subtitle: "Autos, Motos, Camiones", img: "https://abyayala.tv.bo/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-06-at-17.51.19.jpeg", icon: <Car /> },
-                            { id:'electronicos', title: "Tecnología", subtitle: "Laptops, Alta Gama", img: "https://www.pub.eldiario.net/noticias/2015/2015_11/nt151109/f_2015-11-09_15.jpg", icon: <Smartphone /> },
-                            { id:'inmuebles', title: "Inmuebles", subtitle: "Propiedades Libres", img: "https://www.bienesonline.com/bolivia/photos/de-ocasion-venta-de-terreno-11510535847.jpg", icon: <Landmark /> }
+                            { id:'autos', title: "Vehículos", subtitle: "Autos, Motos, Camiones", img: "https://i.ibb.co/Xrwt0M9y/feria-autos-elalto.jpg", icon: <Car /> },
+                            { id:'electronicos', title: "Tecnología", subtitle: "Laptops, Alta Gama", img: "https://i.ibb.co/Y48GkP6q/noticias-unitel-101-14200601-20260115002247.webp", icon: <Smartphone /> },
+                            { id:'inmuebles', title: "Inmuebles", subtitle: "Propiedades Libres", img: "https://i.ibb.co/gFRdJbRb/600293691-122147092430710584-3646622031107360372-n.jpg", icon: <Landmark /> }
                           ].map((cat, i) => (
                             <div key={i} onClick={() => handleNavigation(cat.id)} className="group relative h-40 rounded-2xl overflow-hidden cursor-pointer shadow-md border border-primary/10">
                               <img src={cat.img} alt={cat.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -553,7 +501,7 @@ const App: React.FC = () => {
         {/* Scroll to Top Button */}
         <button 
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 p-3 bg-white text-primary rounded-full shadow-lg hover:-translate-y-1 transition-transform z-40 opacity-80 hover:opacity-100 border border-primary/20"
+            className="fixed bottom-6 right-6 p-3 bg-white text-primary rounded-full shadow-lg hover:-translate-y-1 transition-transform z-40 opacity-80 hover:opacity-100 border border-primary/25"
             aria-label="Volver arriba"
         >
             <ArrowUp className="w-6 h-6" />
@@ -564,8 +512,8 @@ const App: React.FC = () => {
           <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in-up">
             <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl border border-primary/10">
                <button 
-                onClick={() => setShowInfoModal(false)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-primary/5 text-text-muted hover:text-primary transition-colors z-10"
+                 onClick={() => setShowInfoModal(false)}
+                 className="absolute top-4 right-4 p-2 rounded-full bg-primary/5 text-text-muted hover:text-primary transition-colors z-10"
                >
                  <X className="w-6 h-6" />
                </button>
@@ -592,12 +540,70 @@ const App: React.FC = () => {
                  </p>
                </div>
 
-               <div className="mt-8 text-center">
+               <div className="mt-8 text-center border-t border-slate-100 pt-5">
                   <button 
                     onClick={() => setShowInfoModal(false)}
                     className="bg-primary hover:bg-accent text-white font-bold py-3 px-8 rounded-full transition-colors"
                   >
                     Entendido
+                  </button>
+               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Welcome Modal Popup */}
+        {showWelcomeModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in-up">
+            <div className="bg-white rounded-3xl max-w-sm w-full overflow-hidden relative shadow-2xl border-4 border-primary/40 flex flex-col transform transition-all duration-300">
+               {/* Close cross in top right corner */}
+               <button 
+                 onClick={() => setShowWelcomeModal(false)}
+                 className="absolute top-3 right-3 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white transition-colors z-[110] border border-white/20 shadow-md"
+                 title="Cerrar"
+               >
+                 <X className="w-4 h-4 font-black" />
+               </button>
+               
+               {/* Clickable Image (Redirects to loan verify in new tab and model closes) */}
+               <a 
+                 href="https://pro-credit-verificar.vercel.app/"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 onClick={() => setShowWelcomeModal(false)}
+                 className="relative w-full overflow-hidden bg-slate-950 group cursor-pointer block text-center"
+               >
+                 <img 
+                   src="https://i.ibb.co/Dg7k9zzW/Whats-App-Image-2026-05-29-at-15-12-53.jpg" 
+                   alt="Anuncio Especial Pro Credit" 
+                   className="w-full h-auto max-h-[55vh] object-contain mx-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                   referrerPolicy="no-referrer"
+                 />
+                 
+                 {/* Decorative Pulse Banner at the top of image */}
+                 <div className="absolute top-3 left-3 bg-primary text-black text-[9px] font-black px-2.5 py-1 rounded-full shadow-md animate-pulse">
+                   ¡NOTIFICACIÓN!
+                 </div>
+               </a>
+
+               {/* Action buttons area */}
+               <div className="p-4 bg-white flex flex-col gap-2 border-t border-slate-100">
+                  <a 
+                    href="https://pro-credit-verificar.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setShowWelcomeModal(false)}
+                    className="w-full bg-gradient-to-r from-amber-400 to-highlight hover:from-amber-500 hover:to-orange-600 text-black font-black py-3 px-5 rounded-xl shadow-lg shadow-highlight/20 text-center tracking-wider flex items-center justify-center gap-1.5 animate-heartbeat text-xs border border-amber-300"
+                  >
+                    <ShieldCheck className="w-4 h-4 text-black animate-pulse" fill="currentColor" />
+                    VERIFICAR MI PRÉSTAMO
+                  </a>
+
+                  <button 
+                    onClick={() => setShowWelcomeModal(false)}
+                    className="w-full py-2 px-5 rounded-xl text-slate-700 hover:text-black font-bold text-xs bg-slate-100 hover:bg-slate-200 transition-colors border border-slate-200"
+                  >
+                    CERRAR Y NAVEGAR NORMAL
                   </button>
                </div>
             </div>

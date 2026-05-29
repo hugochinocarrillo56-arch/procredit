@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { INTEREST_RATE, INSURANCE_RATE, STORAGE_RATE, WHATSAPP_PHONE, WHATSAPP_PHONE_SECONDARY, EMAIL_CONTACT } from '../constants';
+import React, { useState } from 'react';
+import { WHATSAPP_PHONE, WHATSAPP_PHONE_SECONDARY, EMAIL_CONTACT } from '../constants';
 import { ChevronRight, Plus, Minus, Send, FileText, MapPin, Mail, Calendar } from 'lucide-react';
 
 interface CalculatorProps {
@@ -12,35 +12,12 @@ export const Calculator: React.FC<CalculatorProps> = ({ enableLocation = false }
   const [months, setMonths] = useState<number>(1); // Default 1 mes
   const [itemDescription, setItemDescription] = useState<string>("");
   const [locationInput, setLocationInput] = useState<string>("");
-  const [monthlyInterest, setMonthlyInterest] = useState<number>(0);
-  const [totalRedemption, setTotalRedemption] = useState<number>(0);
   
   // Botones de selección rápida
   const monthOptions = [1, 2, 3, 6, 12];
 
   // Derived number value for calculations
   const amount = Number(amountInput) || 0;
-
-  useEffect(() => {
-    // Cálculo de EMPEÑO (Interés Simple)
-    // Tasa total = Interés (3%) + Seguro (3.5%) + Depósito (3.5%) = 10%
-    const totalRate = INTEREST_RATE + INSURANCE_RATE + STORAGE_RATE;
-    
-    if (amount > 0) {
-        // El costo mensual es solo el interés + seguro
-        const monthlyCost = amount * totalRate;
-        
-        // El total a pagar para recuperar la prenda (Desempeño) es:
-        // Capital Original + (Costo Mensual * Número de Meses)
-        const totalToRedeem = amount + (monthlyCost * months);
-
-        setMonthlyInterest(monthlyCost);
-        setTotalRedemption(totalToRedeem);
-    } else {
-        setMonthlyInterest(0);
-        setTotalRedemption(0);
-    }
-  }, [amount, months]);
 
   const handleDecreaseAmount = () => {
     setAmountInput(prev => {
@@ -80,19 +57,17 @@ export const Calculator: React.FC<CalculatorProps> = ({ enableLocation = false }
 
   const sendToWhatsApp = (phone: string = WHATSAPP_PHONE) => {
     const desc = itemDescription ? itemDescription : "N/A";
-    const locInfo = enableLocation && locationInput ? `📍 *Ubicación:* ${locationInput}` : "";
+    const locInfo = enableLocation && locationInput ? `📍 *Ubicación:* ${locationInput}\n` : "";
 
-    // Mensaje base simplificado
+    // Mensaje base simplificado sin intereses ni cotización de cobros
     const message = `👋 Hola ProCredit. 
     
 🏦 *Cotización de Empeño*
 
-📦 *Prenda:* ${desc}
+📦 *Prenda del empeño:* ${desc}
 ${locInfo}
-
-💰 *Préstamo:* Bs. ${amountInput}
-📅 *Tiempo:* ${months} mes(es)
-💵 *Total a devolver:* Bs. ${totalRedemption.toFixed(0)}`;
+💰 *Monto Solicitado:* Bs. ${amountInput}
+📅 *Plazo Estimado:* ${months} mes(es)`;
     
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
@@ -103,7 +78,7 @@ ${locInfo}
     const desc = itemDescription ? itemDescription : "N/A";
     const locInfo = enableLocation && locationInput ? `\nUbicación: ${locationInput}` : "";
     
-    // Construir el cuerpo del correo
+    // Construir el cuerpo del correo sin cálculos de interés
     const body = `Hola ProCredit,
 
 Solicito una cotización para el siguiente artículo:
@@ -117,7 +92,6 @@ DATOS DEL EMPEÑO
 ------------------
 Monto Solicitado: Bs. ${amountInput}
 Plazo estimado: ${months} meses
-Total estimado a devolver: Bs. ${totalRedemption.toFixed(0)}
 
 Quedo atento a su respuesta.`;
 
@@ -131,8 +105,8 @@ Quedo atento a su respuesta.`;
             <h3 className="text-xl md:text-2xl font-bold text-text-main mb-1">
             COTIZA TU <span className="text-primary opacity-90">EMPEÑO</span>
             </h3>
-            <p className="text-text-muted max-w-2xl mx-auto text-xs">
-            Calculadora de interés simple.
+            <p className="text-slate-600 max-w-2xl mx-auto text-xs font-bold">
+            Envía los detalles de tu prenda y el monto deseado para recibir una cotización directa.
             </p>
         </div>
 
@@ -250,40 +224,6 @@ Quedo atento a su respuesta.`;
                     </div>
                 </div>
             </div>
-            </div>
-
-            {/* Results Card Compact */}
-            <div className="bg-secondary/50 rounded-xl p-4 shadow-inner border-2 border-primary/20 relative overflow-hidden mt-2">
-                
-                {/* Interest Calculation Row */}
-                <div className="flex justify-between items-center mb-2 border-b border-primary/10 pb-2">
-                    <div className="flex flex-col">
-                        <span className="text-xs font-bold text-text-muted uppercase">Costo mensual</span>
-                        <span className="text-[9px] text-text-muted">
-                            {(INTEREST_RATE * 100).toFixed(1)}% Int + {(INSURANCE_RATE * 100).toFixed(1)}% Seg + {(STORAGE_RATE * 100).toFixed(1)}% Dep
-                        </span>
-                    </div>
-                    <span className="text-lg font-bold text-text-main">
-                        Bs. {monthlyInterest.toFixed(0)}
-                    </span>
-                </div>
-
-                {/* Total Redemption Row */}
-                <div className="flex justify-between items-end mt-2">
-                    <div className="flex flex-col">
-                         <span className="text-xs font-bold text-primary uppercase">Total Desempeño</span>
-                         <span className="text-[9px] text-text-muted">Capital + ({months} meses de interés)</span>
-                    </div>
-                    <span className="text-2xl font-extrabold text-text-main">Bs. {totalRedemption.toFixed(0)}</span>
-                </div>
-                
-                {/* Example / Disclaimer */}
-                <div className="mt-3 pt-2 border-t border-dashed border-primary/20 text-center">
-                    <p className="text-[10px] text-text-muted">
-                        Si recuperas tu prenda en <strong>{months} mes{months !== 1 ? 'es' : ''}</strong>, pagas 
-                        Bs. {amount} (Capital) + Bs. {(monthlyInterest * months).toFixed(0)} (Interés acumulado).
-                    </p>
-                </div>
             </div>
 
             {/* Action Buttons Section */}

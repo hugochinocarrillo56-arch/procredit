@@ -27,9 +27,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ currentView, onNavigate, t
       { id: 'home', icon: <Home className="w-4 h-4" />, label: 'Inicio' },
     ],
     services: [
-      { id: 'banca', icon: <Wallet className="w-4 h-4" />, label: 'Banca Comunal' },
       { id: 'garantia', icon: <CreditCard className="w-4 h-4" />, label: 'Crédito con Garantía' },
-      { id: 'micro', icon: <PiggyBank className="w-4 h-4" />, label: 'Microcrédito Solidario' },
     ],
     pawn: [
       { id: 'joyeria', icon: <Gem className="w-4 h-4" />, label: 'Alta Joyería' },
@@ -83,19 +81,19 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ currentView, onNavigate, t
           <button 
             onMouseEnter={() => setActiveDropdown('services')}
             className={`px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-1 transition-all ${
-              ['banca', 'garantia', 'micro'].includes(currentView) ? 'text-primary bg-primary/10' : 'text-text-muted hover:text-primary hover:bg-primary/5'
+              ['garantia'].includes(currentView) ? 'text-primary bg-primary/10' : 'text-text-muted hover:text-primary hover:bg-primary/5'
             }`}
           >
             Servicios <ChevronDown className="w-4 h-4" />
           </button>
-          <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <div className="bg-surface-light border border-primary/10 rounded-xl shadow-xl p-2 w-64">
+          <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="bg-white border-2 border-primary/20 rounded-2xl shadow-2xl p-2 w-68">
               {navItems.services.map(item => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all ${
-                    currentView === item.id ? 'bg-primary/10 text-primary font-bold' : 'text-text-muted hover:bg-primary/5 hover:text-primary'
+                    currentView === item.id ? 'bg-primary/10 text-primary font-bold' : 'text-slate-700 hover:bg-primary/5 hover:text-primary font-medium'
                   }`}
                 >
                   {item.icon} {item.label}
@@ -115,14 +113,14 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ currentView, onNavigate, t
           >
             Empeños <ChevronDown className="w-4 h-4" />
           </button>
-          <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <div className="bg-surface-light border border-primary/10 rounded-xl shadow-xl p-2 w-64">
+          <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="bg-white border-2 border-primary/20 rounded-2xl shadow-2xl p-2 w-68">
               {navItems.pawn.map(item => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all ${
-                    currentView === item.id ? 'bg-primary/10 text-primary font-bold' : 'text-text-muted hover:bg-primary/5 hover:text-primary'
+                    currentView === item.id ? 'bg-primary/10 text-primary font-bold' : 'text-slate-700 hover:bg-primary/5 hover:text-primary font-medium'
                   }`}
                 >
                   {item.icon} {item.label}

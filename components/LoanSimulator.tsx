@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { INTEREST_RATE, INSURANCE_RATE, STORAGE_RATE, WHATSAPP_PHONE, WHATSAPP_PHONE_SECONDARY } from '../constants';
 import { Minus, Plus, Send, Calendar, DollarSign, Percent } from 'lucide-react';
+import { 
+  ResponsiveContainer, 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  Legend 
+} from 'recharts';
 
 export const LoanSimulator: React.FC = () => {
   const [amountInput, setAmountInput] = useState<string>("1000");
@@ -10,6 +20,18 @@ export const LoanSimulator: React.FC = () => {
 
   // Convert input string to number safely
   const amount = parseInt(amountInput.replace(/[^0-9]/g, '') || '0', 10);
+
+  // Generar progresion de costos para la grafica (Capital vs Cargo total de mes a mes)
+  const chartData = Array.from({ length: months }, (_, idx) => {
+    const currentMonth = idx + 1;
+    const totalRate = INTEREST_RATE + INSURANCE_RATE + STORAGE_RATE;
+    const accumulatedCosts = amount * totalRate * currentMonth;
+    return {
+      name: `Mes ${currentMonth}`,
+      capital: amount,
+      interesAcumulado: Math.round(accumulatedCosts)
+    };
+  });
 
   useEffect(() => {
     // Tasa total mensual: 3% interés + 3.5% seguro + 3.5% depósito = 10% (0.10)
@@ -179,6 +201,56 @@ Quisiera saber los requisitos para este préstamo.`;
                     * Cálculo de cuota fija (Interés Simple) con tasa total del 10% mensual.
                 </p>
             </div>
+        </div>
+
+        {/* Gráfica de barras - Recharts */}
+        <div className="bg-white rounded-2xl p-5 border border-primary/15 shadow-md mt-4">
+          <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-4 text-center flex items-center justify-center gap-1.5">
+             📈 Progresión de Capital vs. Costos Acumulados
+          </h4>
+          <div className="h-56 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={chartData}
+                margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+                <XAxis 
+                  dataKey="name" 
+                  tick={{ fill: '#334155', fontSize: 10, fontWeight: '700' }}
+                  axisLine={{ stroke: '#E2E8F0' }}
+                  tickLine={false}
+                />
+                <YAxis 
+                  tick={{ fill: '#334155', fontSize: 10, fontWeight: '700' }}
+                  axisLine={{ stroke: '#E2E8F0' }}
+                  tickLine={false}
+                  tickFormatter={(val) => `Bs. ${val}`}
+                />
+                <Tooltip 
+                  formatter={(value: any, name: any) => {
+                    if (name === "capital") return [`Bs. ${value.toLocaleString()}`, "Capital"];
+                    if (name === "interesAcumulado") return [`Bs. ${value.toLocaleString()}`, "Interés Acumulado"];
+                    return [value, name];
+                  }}
+                  contentStyle={{ backgroundColor: '#FFFFFF', borderRadius: '12px', border: '1px solid #CBD5E1', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
+                  labelStyle={{ fontWeight: 'bold', color: '#0F172A', fontSize: '11px' }}
+                />
+                <Legend 
+                  verticalAlign="top" 
+                  height={32} 
+                  iconType="circle"
+                  iconSize={8}
+                  wrapperStyle={{ fontSize: '11px', fontWeight: 'bold' }}
+                />
+                <Bar name="Capital" dataKey="capital" fill="#1E40AF" radius={[6, 6, 0, 0]} />
+                <Bar name="Interés Acumulado" dataKey="interesAcumulado" fill="#FF6B00" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="text-[10px] text-center text-slate-500 font-bold mt-3 leading-relaxed">
+            * Compara tu Capital de Bs. {amount.toLocaleString()} frente al incremento acumulativo de intereses y comisiones (10% mensual total) según el plazo escogido.
+          </p>
         </div>
       </div>
     </div>

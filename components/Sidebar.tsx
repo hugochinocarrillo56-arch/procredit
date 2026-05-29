@@ -23,9 +23,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
   const navItems = [
     { id: 'home', icon: <Home className="w-5 h-5" />, label: 'Inicio' },
     { label: 'SERVICIOS FINANCIEROS', isHeader: true },
-    { id: 'banca', icon: <Wallet className="w-5 h-5" />, label: 'Banca Comunal' },
     { id: 'garantia', icon: <CreditCard className="w-5 h-5" />, label: 'Crédito con Garantía' },
-    { id: 'micro', icon: <PiggyBank className="w-5 h-5" />, label: 'Microcrédito Solidario' },
     { label: 'TIPOS DE EMPEÑO', isHeader: true },
     { id: 'joyeria', icon: <Gem className="w-5 h-5" />, label: 'Alta Joyería' },
     { id: 'autos', icon: <Car className="w-5 h-5" />, label: 'Autos (Rodando)' },
