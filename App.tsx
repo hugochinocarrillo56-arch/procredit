@@ -599,9 +599,20 @@ const App: React.FC = () => {
                     VERIFICAR MI PRÉSTAMO
                   </a>
 
+                  <a 
+                    href="https://drive.google.com/file/d/1MyKQyAyI9czhpL369G1ssjP0r-Oo53m8/view?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setShowWelcomeModal(false)}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3 px-5 rounded-xl shadow-lg text-center flex items-center justify-center gap-1.5 text-xs transition-all hover:scale-[1.01] border border-blue-500 mt-1"
+                  >
+                    <Smartphone className="w-4 h-4 text-white animate-bounce" />
+                    DESCARGAR E INSTALAR APP
+                  </a>
+
                   <button 
                     onClick={() => setShowWelcomeModal(false)}
-                    className="w-full py-2 px-5 rounded-xl text-slate-700 hover:text-black font-bold text-xs bg-slate-100 hover:bg-slate-200 transition-colors border border-slate-200"
+                    className="w-full py-2 px-5 rounded-xl text-slate-600 hover:text-black font-bold text-xs bg-slate-100 hover:bg-slate-200 transition-colors border border-slate-200"
                   >
                     CERRAR Y NAVEGAR NORMAL
                   </button>
