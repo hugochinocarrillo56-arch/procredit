@@ -22,6 +22,8 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, currentView, onNavigate }) => {
   const navItems = [
     { id: 'home', icon: <Home className="w-5 h-5" />, label: 'Inicio' },
+    { label: 'OPORTUNIDADES', isHeader: true },
+    { href: 'https://subastas-pro-credit.vercel.app/', icon: <span className="text-emerald-600 font-extrabold text-lg">🔨</span>, label: 'Remates y Subastas' },
     { label: 'SERVICIOS FINANCIEROS', isHeader: true },
     { id: 'garantia', icon: <CreditCard className="w-5 h-5" />, label: 'Crédito con Garantía' },
     { label: 'TIPOS DE EMPEÑO', isHeader: true },
@@ -78,16 +80,39 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
            <button onClick={toggleSidebar} className="md:hidden ml-auto text-slate-500 hover:text-primary">
              <X className="w-6 h-6" />
            </button>
-        </div>
+         </div>
 
         {/* Navigation Items */}
         <nav className="flex-1 overflow-y-auto py-6 px-4 space-y-1 sidebar-scroll bg-white">
           {navItems.map((item, index) => {
             if (item.isHeader) {
               return (
-                <div key={index} className="px-4 py-3 mt-4 mb-2">
+                <div key={index} className="px-4 py-3 mt-4 mb-1">
                   <p className="text-xs font-bold text-primary uppercase tracking-wider">{item.label}</p>
                 </div>
+              );
+            }
+
+            if (item.href) {
+              return (
+                <a
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center px-4 py-3.5 rounded-xl transition-all duration-200 group text-left bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200/60 shadow-sm font-extrabold"
+                  onClick={() => {
+                    if (window.innerWidth < 768) {
+                      toggleSidebar();
+                    }
+                  }}
+                >
+                  <span className="mr-3">
+                    {item.icon}
+                  </span>
+                  <span className="text-sm">{item.label}</span>
+                  <span className="ml-auto bg-amber-400 text-black text-[8px] px-1.5 py-0.5 rounded font-black">NUEVO</span>
+                </a>
               );
             }
 

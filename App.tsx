@@ -81,8 +81,9 @@ const App: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const heroImages = [
-    "https://i.ibb.co/60TrSSQn/484348315-122123947544616809-8652967539908385468-n.jpg",
-    "https://i.ibb.co/KxCFxYZV/484387942-122123947844616809-485915212088624553-n-1.jpg"
+    { url: "https://i.ibb.co/60TrSSQn/484348315-122123947544616809-8652967539908385468-n.jpg", link: null },
+    { url: "https://i.ibb.co/KxCFxYZV/484387942-122123947844616809-485915212088624553-n-1.jpg", link: null },
+    { url: "https://i.ibb.co/pjTsP7y6/484621097-1043915254434075-3753849569599482617-n-2.jpg", link: "https://subastas-pro-credit.vercel.app/" }
   ];
 
   useEffect(() => {
@@ -120,17 +121,36 @@ const App: React.FC = () => {
         <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[500px] overflow-hidden bg-slate-100">
           {heroImages.map((img, index) => (
             <div 
-              key={img}
+              key={img.url}
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
                 index === currentImageIndex ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              {/* Main complete image */}
-              <img 
-                src={img} 
-                alt={`Hero Image ${index + 1}`} 
-                className="absolute inset-0 w-full h-full object-contain md:object-cover z-10"
-              />
+              {img.link ? (
+                <a 
+                  href={img.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 w-full h-full z-10 cursor-pointer group block"
+                >
+                  <img 
+                    src={img.url} 
+                    alt={`Hero Image ${index + 1}`} 
+                    className="absolute inset-0 w-full h-full object-contain md:object-cover border-0"
+                  />
+                  {/* Floating CTA Badge for clickable slide */}
+                  <div className="absolute bottom-6 right-6 z-20 bg-gradient-to-r from-amber-400 to-highlight hover:from-amber-500 hover:to-orange-600 text-black font-extrabold text-xs px-5 py-3 rounded-xl shadow-2xl flex items-center gap-1.5 border border-amber-300 transition-all hover:scale-105 animate-pulse">
+                    <span>🔨 VER REMATES / SUBASTAS</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </a>
+              ) : (
+                <img 
+                  src={img.url} 
+                  alt={`Hero Image ${index + 1}`} 
+                  className="absolute inset-0 w-full h-full object-contain md:object-cover z-10"
+                />
+              )}
             </div>
           ))}
         </div>
@@ -304,6 +324,33 @@ const App: React.FC = () => {
                               </div>
                             </div>
                           ))}
+                      </div>
+                    </div>
+
+                    {/* Section of Remates de Bienes Adjudicados */}
+                    <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-900 rounded-3xl p-6 md:p-8 border-2 border-emerald-500/30 text-white relative overflow-hidden shadow-xl shadow-emerald-950/40 group">
+                      <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -z-10 group-hover:bg-amber-500/20 transition-all duration-500"></div>
+                      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div className="space-y-3 shrink-1 text-left">
+                          <span className="bg-amber-500 text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider animate-pulse inline-block">
+                            🔥 OPORTUNIDAD DE REMATE 🔥
+                          </span>
+                          <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight">
+                            REMATES Y <span className="text-amber-400">SUBASTAS</span>
+                          </h3>
+                          <p className="text-xs md:text-sm text-slate-300 leading-relaxed max-w-xl font-medium">
+                            ¿Buscas vehículos, inmuebles o artículos electrónicos adjudicados a precios de liquidación? Accede a nuestro portal oficial de subastas con total seguridad y transparencia.
+                          </p>
+                        </div>
+                        <a 
+                          href="https://subastas-pro-credit.vercel.app/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full md:w-auto bg-gradient-to-r from-amber-400 to-highlight hover:from-amber-500 hover:to-orange-600 text-black font-extrabold py-3.5 px-7 rounded-2xl shadow-xl shadow-highlight/20 text-center tracking-wider shrink-0 flex items-center justify-center gap-2 hover:scale-[1.03] active:scale-95 transition-all text-xs border border-amber-300"
+                        >
+                          <span>🔨 IR A REMATES</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
                       </div>
                     </div>
 
