@@ -23,7 +23,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
   const navItems = [
     { id: 'home', icon: <Home className="w-5 h-5" />, label: 'Inicio' },
     { label: 'OPORTUNIDADES', isHeader: true },
-    { href: 'https://subastas-pro-credit.vercel.app/', icon: <span className="text-emerald-600 font-extrabold text-lg">🔨</span>, label: 'Remates y Subastas' },
+    { href: 'https://subasta-pro-phje.vercel.app/', icon: <span className="text-emerald-600 font-extrabold text-lg">🔨</span>, label: 'Remates y Subastas' },
     { label: 'SERVICIOS FINANCIEROS', isHeader: true },
     { id: 'garantia', icon: <CreditCard className="w-5 h-5" />, label: 'Crédito con Garantía' },
     { label: 'TIPOS DE EMPEÑO', isHeader: true },
