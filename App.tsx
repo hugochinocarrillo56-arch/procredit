@@ -83,7 +83,7 @@ const App: React.FC = () => {
   const heroImages = [
     { url: "https://i.ibb.co/60TrSSQn/484348315-122123947544616809-8652967539908385468-n.jpg", link: null },
     { url: "https://i.ibb.co/KxCFxYZV/484387942-122123947844616809-485915212088624553-n-1.jpg", link: null },
-    { url: "https://i.ibb.co/pjTsP7y6/484621097-1043915254434075-3753849569599482617-n-2.jpg", link: "https://subastas-pro-credit.vercel.app/" }
+    { url: "https://i.ibb.co/pjTsP7y6/484621097-1043915254434075-3753849569599482617-n-2.jpg", link: "https://subasta-pro-phje.vercel.app/" }
   ];
 
   useEffect(() => {
@@ -343,7 +343,7 @@ const App: React.FC = () => {
                           </p>
                         </div>
                         <a 
-                          href="https://subastas-pro-credit.vercel.app/"
+                          href="https://subasta-pro-phje.vercel.app/"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="w-full md:w-auto bg-gradient-to-r from-amber-400 to-highlight hover:from-amber-500 hover:to-orange-600 text-black font-extrabold py-3.5 px-7 rounded-2xl shadow-xl shadow-highlight/20 text-center tracking-wider shrink-0 flex items-center justify-center gap-2 hover:scale-[1.03] active:scale-95 transition-all text-xs border border-amber-300"
