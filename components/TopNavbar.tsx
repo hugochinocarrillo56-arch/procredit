@@ -143,7 +143,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ currentView, onNavigate, t
         ))}
 
         <a 
-          href="https://subastas-pro-credit.vercel.app/"
+          href="https://subasta-pro-phje.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           className="px-4 py-2 rounded-lg text-sm font-extrabold text-white bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-600/40 transition-all flex items-center gap-1.5 border border-emerald-500 hover:border-emerald-600 animate-pulse-subtle"
