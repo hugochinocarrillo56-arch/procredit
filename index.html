@@ -3,15 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>ProCredit - Préstamos con Respaldo Bancario</title>
-    <meta name="description" content="Casa de empeño con garantía prendaria y respaldo bancario. Tasas competitivas y seguridad total.">
-    <!-- Meta Theme Color para móviles (Android/iOS) -->
+    <meta name="description" content="Casa de empeño con garantía prendaria y respaldo bancario. Tasas competitivas y seguridad total en Bolivia.">
+    <meta name="keywords" content="procredit, prestamos bolivia, casa de empeño la paz, garantia prendaria, creditos rapidos">
+    
+    <meta name="geo.region" content="BO" />
+    <meta name="geo.placename" content="Bolivia" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://procredit.com.bo/" />
+
     <meta name="theme-color" content="#F8FAFC">
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=300;400;500;600;700;800&display=swap" rel="stylesheet" />
     
-    <!-- Tailwind Configuration -->
     <script>
       window.tailwind = {
         darkMode: 'class',
@@ -90,25 +95,22 @@
       }
     </style>
 
-    <!-- Import Map: Fixed React Versions to Stable -->
     <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react/": "https://esm.sh/react@18.3.1/",
-    "react-dom": "https://esm.sh/react-dom@18.3.1",
-    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-    "lucide-react": "https://esm.sh/lucide-react@0.292.0",
-    "react-dom/": "https://esm.sh/react-dom@18.3.1/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.3.1",
+        "react/": "https://esm.sh/react@18.3.1/",
+        "react-dom": "https://esm.sh/react-dom@18.3.1",
+        "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+        "lucide-react": "https://esm.sh/lucide-react@0.292.0",
+        "react-dom/": "https://esm.sh/react-dom@18.3.1/"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="/index.css">
+  </head>
   <body class="bg-background-light text-text-main antialiased selection:bg-primary selection:text-white">
     <div id="root"></div>
-    <!-- Script de entrada vital para Vercel/Vite -->
-    <script type="module" src="./index.tsx"></script>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
