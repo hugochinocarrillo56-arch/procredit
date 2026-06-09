@@ -18,7 +18,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: '2',
     category: 'Requisitos',
     question: '¿Qué documentos necesito?',
-    answer: 'Solo necesitas tu documento de identidad oficial (DNI, INE, Pasaporte) y la prenda que deseas empeñar. Para vehículos, se requiere la factura original y tarjeta de circulación.'
+    answer: 'Tu Cédula de Identidad (C.I.) vigente. La prenda u objeto que vas a dejar en garantía. Con solo esas dos cosas ya se puede realizar la valoración y firmar el contrato de empeño.'
   },
   {
     id: '3',

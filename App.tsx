@@ -156,7 +156,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Hero Content - Now below the images for full visibility */}
-        <div className="bg-background-light pt-6 pb-12 md:py-10 px-6 md:px-16 max-w-7xl mx-auto">
+        <div className="bg-background-light pt-6 pb-12 md:py-10 px-6 md:px-16 max-w-7xl mx-auto relative z-20">
           <div className="animate-fade-in-up">
               <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-4 md:mb-6">
                 <span className="bg-white p-1.5 md:p-2 rounded-lg border-2 border-primary flex items-center gap-1.5 md:gap-2 shadow-md">
@@ -183,28 +183,23 @@ const App: React.FC = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
-                <button 
-                  onClick={scrollToCalculator}
-                  className="bg-primary hover:bg-accent text-black font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base"
-                >
-                  SIMULAR CRÉDITO
-                  <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
                 <a 
                   href="https://pro-credit-verificar.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-highlight hover:bg-orange-600 text-black font-extrabold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg shadow-highlight/40 border-2 border-highlight hover:border-orange-600 transform hover:scale-105 transition-all flex items-center justify-center group text-sm md:text-base animate-pulse-subtle"
+                  className="bg-gradient-to-r from-amber-400 to-highlight hover:from-amber-500 hover:to-orange-600 text-black font-black py-3 px-6 md:py-4 md:px-10 rounded-2xl shadow-xl shadow-highlight/40 border-2 border-amber-300 hover:border-orange-500 transform hover:scale-[1.02] transition-all flex items-center justify-center group text-sm md:text-base animate-pulse-subtle"
                 >
-                  <ShieldCheck className="mr-2 w-4 h-4 md:w-5 md:h-5" />
+                  <ShieldCheck className="mr-2 w-4 h-4 md:w-5 md:h-5 text-black animate-pulse" fill="currentColor" />
                   VERIFICAR MI PRÉSTAMO
                 </a>
-                <button 
-                  onClick={() => setShowInfoModal(true)}
-                  className="bg-white hover:bg-secondary text-primary font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all border border-primary/20 flex items-center justify-center shadow-lg text-sm md:text-base"
+                <a 
+                  href="https://www.tiktok.com/@hugo.chino75/video/7547876950086389048?is_from_webapp=1&sender_device=pc&web_id=7570304632188208651"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white hover:bg-secondary text-primary font-bold py-3 px-6 md:py-4 md:px-8 rounded-2xl transition-all border border-primary/20 flex items-center justify-center shadow-lg text-sm md:text-base hover:scale-[1.02] transform"
                 >
-                  <PlayCircle className="mr-2 w-4 h-4 md:w-5 md:h-5" /> Cómo Funciona
-                </button>
+                  <PlayCircle className="mr-2 w-4 h-4 md:w-5 md:h-5 text-primary" /> Cómo Funciona
+                </a>
               </div>
           </div>
         </div>
