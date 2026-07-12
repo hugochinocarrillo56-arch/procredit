@@ -63,18 +63,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
           onClick={() => handleNavClick('home')}
         >
            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/50 shrink-0">
+              <div className="w-12 h-12 rounded-xl overflow-hidden border-2 border-primary/30 shrink-0 bg-white shadow-inner flex items-center justify-center p-1">
                   <img 
-                    src="https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg" 
+                    src="/icono%20pro%20credit.png" 
                     alt="Pro Credit Logo" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg";
+                    }}
                   />
               </div>
               <div>
-                  <h1 className="font-extrabold text-xl tracking-tight leading-none text-slate-900">
-                      <span className="text-slate-900">PRO</span> <span className="text-primary">CREDIT</span>
+                  <h1 className="font-black text-xl tracking-tighter leading-none text-text-main flex items-center">
+                      <span className="text-text-main">PRO</span><span className="text-primary ml-0.5">CREDIT</span>
                   </h1>
-                  <p className="text-[10px] uppercase tracking-widest text-slate-700 font-bold mt-1">Crecemos Juntos</p>
+                  <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mt-1">El Alto • La Paz</p>
               </div>
            </div>
            <button onClick={toggleSidebar} className="md:hidden ml-auto text-slate-500 hover:text-primary">

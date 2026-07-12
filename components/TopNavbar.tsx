@@ -48,18 +48,23 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ currentView, onNavigate, t
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-surface-light/95 backdrop-blur-md border-b-2 border-primary/20 h-20 hidden md:flex items-center px-8 shadow-md">
       <div className="flex items-center gap-3 cursor-pointer mr-12" onClick={() => handleNavClick('home')}>
-        <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/50 shrink-0">
+        <div className="w-12 h-12 rounded-xl overflow-hidden border-2 border-primary/30 shrink-0 bg-white shadow-inner flex items-center justify-center p-1">
           <img 
-            src="https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg" 
-            alt="Pro Credit Logo" 
-            className="w-full h-full object-cover"
+            src="/icono%20pro%20credit.png" 
+            alt="ProCredit Logo" 
+            className="w-full h-full object-contain"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg";
+            }}
           />
         </div>
         <div>
-          <h1 className="font-extrabold text-lg tracking-tight leading-none text-text-main">
-            <span className="text-text-main">PRO</span> <span className="text-primary">CREDIT</span>
+          <h1 className="font-black text-xl tracking-tighter leading-none text-text-main flex items-center">
+            <span className="text-text-main">PRO</span>
+            <span className="text-primary ml-0.5">CREDIT</span>
+            <span className="ml-1 text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded uppercase font-black">S.R.L.</span>
           </h1>
-          <p className="text-[8px] uppercase tracking-widest text-slate-600 font-bold">Crecemos Juntos</p>
+          <p className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold mt-1">El Alto • La Paz</p>
         </div>
       </div>
 

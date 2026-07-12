@@ -204,6 +204,114 @@ const App: React.FC = () => {
           </div>
         </div>
 
+        {/* Interactive Quick Actions Section */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <button 
+              onClick={scrollToCalculator}
+              className="bg-white hover:bg-primary/5 p-8 rounded-3xl border-2 border-primary/10 hover:border-primary shadow-lg transition-all group flex flex-col items-center text-center gap-4"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <CalculatorIcon className="w-8 h-8" />
+              </div>
+              <div>
+                <h3 className="font-black text-lg text-text-main">Calcula tu crédito</h3>
+                <p className="text-sm text-text-muted mt-1">Simula tu préstamo en segundos</p>
+              </div>
+            </button>
+
+            <button 
+              onClick={() => handleNavigation('autos')}
+              className="bg-white hover:bg-primary/5 p-8 rounded-3xl border-2 border-primary/10 hover:border-primary shadow-lg transition-all group flex flex-col items-center text-center gap-4"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <Car className="w-8 h-8" />
+              </div>
+              <div>
+                <h3 className="font-black text-lg text-text-main">Requisitos vehículos</h3>
+                <p className="text-sm text-text-muted mt-1">Conoce qué necesitas para tu auto</p>
+              </div>
+            </button>
+
+            <button 
+              onClick={() => handleNavigation('joyeria')}
+              className="bg-white hover:bg-primary/5 p-8 rounded-3xl border-2 border-primary/10 hover:border-primary shadow-lg transition-all group flex flex-col items-center text-center gap-4"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <Gem className="w-8 h-8" />
+              </div>
+              <div>
+                <h3 className="font-black text-lg text-text-main">Garantía prendaria</h3>
+                <p className="text-sm text-text-muted mt-1">Joyas, electrónica y más</p>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Verifica tu Préstamo Section */}
+        <section className="bg-slate-900 py-20 px-6 md:px-12 relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-10">
+            <div className="absolute top-10 left-10 w-64 h-64 bg-primary rounded-full blur-[100px]"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
+          </div>
+
+          <div className="max-w-5xl mx-auto relative z-10">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[40px] p-8 md:p-12 shadow-2xl">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="space-y-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary text-xs font-black uppercase tracking-widest border border-primary/20">
+                    <ShieldCheck className="w-4 h-4" />
+                    Seguridad Garantizada
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
+                    Verifica tu <br />
+                    <span className="text-primary">Préstamo</span>
+                  </h2>
+                  <p className="text-slate-300 text-lg leading-relaxed font-medium">
+                    Consulta el estado de tu trámite o verifica la validez de tu contrato ProCredit de forma inmediata y 100% segura.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a 
+                      href="https://pro-credit-verificar.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-primary hover:bg-accent text-white font-black py-4 px-10 rounded-2xl shadow-xl shadow-primary/20 transition-all flex items-center justify-center gap-3 group text-lg"
+                    >
+                      <span>ACCEDER AL PORTAL</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-3xl p-8 shadow-2xl">
+                  <h4 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    <Smartphone className="text-primary w-6 h-6" />
+                    Consulta Rápida
+                  </h4>
+                  <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Número de Contrato / C.I.</label>
+                      <input 
+                        type="text" 
+                        placeholder="Ej: 2024-0001" 
+                        className="w-full px-4 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      />
+                    </div>
+                    <button className="w-full bg-slate-900 text-white font-black py-4 rounded-xl hover:bg-slate-800 transition-all shadow-lg flex items-center justify-center gap-2">
+                      <ShieldCheck className="w-5 h-5" />
+                      VERIFICAR AHORA
+                    </button>
+                    <p className="text-[10px] text-slate-400 text-center font-medium">
+                      Tus datos están protegidos bajo estándares de seguridad bancaria.
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Main Content Container */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12 md:px-12 relative -mt-6 md:-mt-24 z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -476,14 +584,19 @@ const App: React.FC = () => {
              <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                  <div className="space-y-6">
                      <div className="flex items-center gap-2">
-                         <div className="w-12 h-12 rounded-full overflow-hidden border border-primary/20 shrink-0 bg-white p-0.5">
+                         <div className="w-12 h-12 rounded-xl overflow-hidden border border-primary/20 shrink-0 bg-white p-1">
                             <img 
-                                src="https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg" 
-                                alt="Pro Credit Logo" 
-                                className="w-full h-full object-cover rounded-full"
+                                src="/icono%20pro%20credit.png" 
+                                alt="ProCredit Logo" 
+                                className="w-full h-full object-contain"
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = "https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg";
+                                }}
                             />
                          </div>
-                         <span className="font-bold text-2xl tracking-tight text-text-main">PRO CREDIT</span>
+                         <span className="font-black text-2xl tracking-tighter text-text-main flex items-center">
+                            PRO<span className="text-primary">CREDIT</span>
+                         </span>
                      </div>
                      <div className="text-text-muted leading-relaxed max-w-xs">
                          <p>Av. Cardos Santos 2074.</p>

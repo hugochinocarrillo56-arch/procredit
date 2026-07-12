@@ -3,72 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>Créditos y Préstamos en El Alto y La Paz | ProCredit</title>
-    <meta name="description" content="Obtén créditos y préstamos rápidos en El Alto y La Paz con garantía prendaria. Empeños seguros de vehículos, joyas y electrónica con respaldo bancario.">
-    <meta name="keywords" content="creditos el alto, prestamos el alto, creditos la paz, prestamos la paz, casas de empeño el alto, garantia prendaria, creditos rapidos bolivia, procredit">
-    
-    <meta name="geo.region" content="BO-L" />
-    <meta name="geo.placename" content="El Alto, La Paz, Bolivia" />
-    <meta name="geo.position" content="-16.5000;-68.1500" />
-    <meta name="ICBM" content="-16.5000;-68.1500" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://www.procredit.com.bo/" />
-
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    <title>ProCredit - Préstamos con Respaldo Bancario</title>
+    <meta name="description" content="Casa de empeño con garantía prendaria y respaldo bancario. Tasas competitivas y seguridad total.">
+    <!-- Meta Theme Color para móviles (Android/iOS) -->
     <meta name="theme-color" content="#F8FAFC">
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "ProCredit",
-      "alternateName": "ProCredit Créditos y Préstamos",
-      "url": "https://www.procredit.com.bo",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.procredit.com.bo/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FinancialService",
-      "name": "ProCredit - Créditos y Préstamos El Alto y La Paz",
-      "description": "Servicios financieros de créditos y préstamos rápidos con garantía prendaria en la ciudad de El Alto y La Paz, Bolivia.",
-      "url": "https://www.procredit.com.bo",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "BO",
-        "addressRegion": "La Paz",
-        "addressLocality": "El Alto"
-      },
-      "priceRange": "$$"
-    }
-    </script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    
+    <!-- Tailwind Configuration -->
     <script>
       window.tailwind = {
         darkMode: 'class',
         theme: {
           extend: {
             colors: {
-              primary: "#1E40AF",   // Blue 800
+              // Paleta Blanca y Azul Profesional (Prendamas Style)
+              primary: "#1E40AF",   // Blue 800 (Más serio y legible)
               secondary: "#F1F5F9", // Slate 100
               accent: "#3B82F6",    // Blue 500
-              highlight: "#FF6B00", // Naranja vibrante
+              highlight: "#FF6B00", // Naranja vibrante para resaltar botones importantes
               
-              "surface-light": "rgba(240, 249, 255, 0.92)",
-              "background-light": "transparent",
+              // Superficies
+              "surface-light": "rgba(240, 249, 255, 0.92)",   // Celeste muy claro con transparencia
+              "background-light": "transparent", // Dejar ver el fondo de index.html
               
-              "text-main": "#1E293B",      // Slate 800
-              "text-muted": "#334155",     // Slate 700
+              "text-main": "#1E293B",      // Slate 800 (Texto muy legible)
+              "text-muted": "#334155",     // Slate 700 (Más oscuro para legibilidad extrema)
               "text-dark": "#0F172A",      // Slate 900
               
               "surface-dark": "#F1F5F9",
@@ -96,6 +57,7 @@
               },
               pulseSubtle: {
                 '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                '50%': { opacity: '0.85', transform: 'scale(1.02)' },
               }
             }
           },
@@ -105,13 +67,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
+      /* FONDO AZULADO ATMOSFÉRICO */
       html, body {
-        background-color: #F0F9FF !important;
+        background-color: #F0F9FF !important; /* Un tono base más azulado claro */
+        
         color: #1E293B;
         margin: 0;
         padding: 0;
         min-height: 100vh;
       }
+
+      /* Scrollbar Azul Profesional */
       .sidebar-scroll::-webkit-scrollbar {
         width: 6px;
       }
@@ -124,22 +90,25 @@
       }
     </style>
 
+    <!-- Import Map: Fixed React Versions to Stable -->
     <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@18.3.1",
-        "react/": "https://esm.sh/react@18.3.1/",
-        "react-dom": "https://esm.sh/react-dom@18.3.1",
-        "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-        "lucide-react": "https://esm.sh/lucide-react@0.292.0",
-        "react-dom/": "https://esm.sh/react-dom@18.3.1/"
-      }
-    }
-    </script>
-    <link rel="stylesheet" href="/index.css">
-  </head>
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.292.0",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
   <body class="bg-background-light text-text-main antialiased selection:bg-primary selection:text-white">
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+    <!-- Script de entrada vital para Vercel/Vite -->
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
 </html>
