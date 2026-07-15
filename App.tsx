@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 import { Sidebar } from './components/Sidebar';
 import { TopNavbar } from './components/TopNavbar';
 import WhatsAppFloating from './components/WhatsAppFloating';
@@ -80,6 +81,20 @@ const App: React.FC = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (currentImageIndex === 0 && videoRef.current) {
+      setVideoError(false);
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Autoplay prevented or video not ready:", error);
+        });
+      }
+    }
+  }, [currentImageIndex]);
 
   const heroImages = [
     { type: 'video', url: "/video-corporativo.mp4.mp4", link: null },
@@ -122,22 +137,62 @@ const App: React.FC = () => {
         {/* Hero Section - Image Slider Only */}
         <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[500px] overflow-hidden bg-slate-100">
           {heroImages.map((img, index) => (
-            <div 
+            <motion.div 
               key={img.url}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-              }`}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ 
+                opacity: index === currentImageIndex ? 1 : 0,
+                scale: index === currentImageIndex ? 1 : 1.1 
+              }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="absolute inset-0 w-full h-full"
             >
               {img.type === 'video' ? (
                 <div className="absolute inset-0 w-full h-full z-10 bg-black flex items-center justify-center">
+                  {/* Background blur for video */}
+                  <div 
+                    className="absolute inset-0 w-full h-full opacity-30 blur-2xl scale-110"
+                    style={{ 
+                      backgroundImage: `url(https://i.ibb.co/60TrSSQn/484348315-122123947544616809-8652967539908385468-n.jpg)`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  />
                    <video 
-                    src={img.url} 
+                    ref={videoRef}
+                    key={`hero-video-${index}-${currentImageIndex}`}
                     autoPlay 
                     muted 
                     loop 
                     playsInline
-                    className="w-full h-full object-contain"
-                  />
+                    preload="auto"
+                    crossOrigin="anonymous"
+                    className="relative z-10 w-full h-full object-contain"
+                    poster="https://i.ibb.co/60TrSSQn/484348315-122123947544616809-8652967539908385468-n.jpg"
+                    onError={(e) => {
+                      setVideoError(true);
+                      const videoElement = e.target as HTMLVideoElement;
+                      videoElement.style.display = 'none';
+                    }}
+                  >
+                    <source src={img.url} type="video/mp4" />
+                    <source src="https://media.githubusercontent.com/media/hugochinocarrillo56-arch/Procredit/principal/p%C3%BAblico/video-corporativo.mp4.mp4" type="video/mp4" />
+                    <source src="https://raw.githubusercontent.com/hugochinocarrillo56-arch/Procredit/principal/p%C3%BAblico/video-corporativo.mp4.mp4" type="video/mp4" />
+                    <source src="https://github.com/hugochinocarrillo56-arch/Procredit/raw/principal/p%C3%BAblico/video-corporativo.mp4.mp4" type="video/mp4" />
+                    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+                  </video>
+
+                  {videoError && (
+                    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80 text-white p-6 text-center">
+                      <div className="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mb-4 animate-pulse">
+                        <span className="text-3xl font-bold">!</span>
+                      </div>
+                      <h3 className="text-xl font-bold mb-2">Archivo de Video No Encontrado</h3>
+                      <p className="text-sm text-gray-300 max-w-md">
+                        Para ver el video, sube el archivo <code className="bg-white/10 px-2 py-1 rounded">video-corporativo.mp4.mp4</code> a la carpeta <span className="text-amber-400 font-bold">public</span> en el panel de archivos a la izquierda.
+                      </p>
+                    </div>
+                  )}
                   {img.link && (
                     <a 
                       href={img.link} 
@@ -157,12 +212,19 @@ const App: React.FC = () => {
                   href={img.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="absolute inset-0 w-full h-full z-10 cursor-pointer group block bg-white"
+                  className="absolute inset-0 w-full h-full z-10 cursor-pointer group block bg-slate-900 overflow-hidden"
                 >
+                  {/* Background blurred image to fill space */}
+                  <img 
+                    src={img.url} 
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-50"
+                  />
+                  {/* Main centered image */}
                   <img 
                     src={img.url} 
                     alt={`Hero Media ${index + 1}`} 
-                    className="absolute inset-0 w-full h-full object-contain"
+                    className="relative z-10 w-full h-full object-contain"
                   />
                   <div className="absolute bottom-6 right-6 z-20 bg-gradient-to-r from-amber-400 to-highlight hover:from-amber-500 hover:to-orange-600 text-black font-extrabold text-xs px-5 py-3 rounded-xl shadow-2xl flex items-center gap-1.5 border border-amber-300 transition-all hover:scale-105 animate-pulse">
                     <span>🔨 VER REMATES / SUBASTAS</span>
@@ -170,16 +232,41 @@ const App: React.FC = () => {
                   </div>
                 </a>
               ) : (
-                <div className="absolute inset-0 w-full h-full bg-white flex items-center justify-center">
+                <div className="absolute inset-0 w-full h-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                  {/* Background blurred image to fill space */}
+                  <img 
+                    src={img.url} 
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-50"
+                  />
+                  {/* Main centered image */}
                   <img 
                     src={img.url} 
                     alt={`Hero Media ${index + 1}`} 
-                    className="w-full h-full object-contain"
+                    className="relative z-10 w-full h-full object-contain"
                   />
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
+          
+          {/* Modern Bottom Navigation */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-4 py-2 bg-black/30 backdrop-blur-md rounded-full border border-white/20">
+            {heroImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className="group relative flex items-center justify-center p-1"
+                aria-label={`Slide ${index + 1}`}
+              >
+                <div className={`h-1.5 rounded-full transition-all duration-500 ${
+                  index === currentImageIndex 
+                    ? 'w-8 bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.6)]' 
+                    : 'w-2 bg-white/40 hover:bg-white/70'
+                }`} />
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Hero Content - Now below the images for full visibility */}

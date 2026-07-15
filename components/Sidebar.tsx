@@ -65,11 +65,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
            <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl overflow-hidden border-2 border-primary/30 shrink-0 bg-white shadow-inner flex items-center justify-center p-1">
                   <img 
-                    src="/logo%20procredit.png" 
+                    src="/logo procredit.png" 
                     alt="Pro Credit Logo" 
                     className="w-full h-full object-contain"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg";
+                      const target = e.target as HTMLImageElement;
+                      const currentSrc = target.src;
+                      const githubUrl = "https://raw.githubusercontent.com/hugochinocarrillo56-arch/Procredit/principal/p%C3%BAblico/logo%20procredit.png".replace(/ /g, "%20");
+                      const fallbackUrl = "https://i.ibb.co/jP3Jhmj6/photo-2025-10-02-12-15-41.jpg";
+                      
+                      if (currentSrc !== githubUrl && !currentSrc.includes('i.ibb.co')) {
+                        target.src = githubUrl;
+                      } else if (currentSrc === githubUrl) {
+                        target.src = fallbackUrl;
+                      }
                     }}
                   />
               </div>
