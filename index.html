@@ -45,6 +45,7 @@
               'fade-in-up': 'fadeInUp 0.8s ease-out',
               'heartbeat': 'heartbeat 2s infinite ease-in-out',
               'pulse-subtle': 'pulseSubtle 2s infinite ease-in-out',
+              'whatsapp-pulse': 'whatsappPulse 2s infinite ease-in-out',
             },
             keyframes: {
               fadeInUp: {
@@ -58,6 +59,11 @@
               pulseSubtle: {
                 '0%, 100%': { opacity: '1', transform: 'scale(1)' },
                 '50%': { opacity: '0.85', transform: 'scale(1.02)' },
+              },
+              whatsappPulse: {
+                '0%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(37, 211, 102, 0.7)' },
+                '70%': { transform: 'scale(1.05)', boxShadow: '0 0 0 15px rgba(37, 211, 102, 0)' },
+                '100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(37, 211, 102, 0)' },
               }
             }
           },
