@@ -327,8 +327,8 @@ const App: React.FC = () => {
                         <div className="flex flex-col md:flex-row gap-8 items-center">
                             <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden shadow-lg h-64 group">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                                    alt="Joyas y Valores" 
+                                    src="https://i.ibb.co/4wy0JrBn/photo.jpg" 
+                                    alt="Solvencia Financiera" 
                                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                                 />
                                 <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white font-bold px-4 py-2 rounded-lg text-sm shadow-md flex items-center gap-2 border border-white/10">

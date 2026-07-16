@@ -50,7 +50,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ currentView, onNavigate, t
       <div className="flex items-center gap-3 cursor-pointer mr-12" onClick={() => handleNavClick('home')}>
         <div className="w-12 h-12 rounded-xl overflow-hidden border-2 border-primary/30 shrink-0 bg-white shadow-inner flex items-center justify-center p-1">
           <img 
-            src="/logo procredit.png" 
+            src="/logo%20procredit.png" 
             alt="ProCredit Logo" 
             className="w-full h-full object-contain"
             onError={(e) => {

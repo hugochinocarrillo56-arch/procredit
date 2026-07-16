@@ -65,7 +65,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, current
            <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl overflow-hidden border-2 border-primary/30 shrink-0 bg-white shadow-inner flex items-center justify-center p-1">
                   <img 
-                    src="/logo procredit.png" 
+                    src="/logo%20procredit.png" 
                     alt="Pro Credit Logo" 
                     className="w-full h-full object-contain"
                     onError={(e) => {
