@@ -154,7 +154,16 @@ const App: React.FC = () => {
                 className="w-full h-full"
               >
                 {img.type === 'video' ? (
-                  <div className="relative w-full h-full bg-black flex items-center justify-center">
+                  <div className="relative w-full h-full bg-black flex items-center justify-center overflow-hidden">
+                    {/* Background blur for video on mobile */}
+                    <div 
+                      className="absolute inset-0 w-full h-full opacity-30 blur-2xl scale-110 md:hidden"
+                      style={{ 
+                        backgroundImage: `url(https://i.ibb.co/60TrSSQn/484348315-122123947544616809-8652967539908385468-n.jpg)`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
                     <video 
                       ref={videoRef}
                       key={`hero-video-${index}`}
@@ -164,7 +173,7 @@ const App: React.FC = () => {
                       playsInline
                       preload="auto"
                       crossOrigin="anonymous"
-                      className="w-full h-full object-cover"
+                      className="relative z-10 w-full h-full object-contain md:object-cover"
                       poster="https://i.ibb.co/60TrSSQn/484348315-122123947544616809-8652967539908385468-n.jpg"
                       onError={() => setVideoError(true)}
                     >
@@ -182,14 +191,20 @@ const App: React.FC = () => {
                     )}
                   </div>
                 ) : (
-                  <div className="relative w-full h-full bg-slate-900">
+                  <div className="relative w-full h-full bg-slate-900 overflow-hidden">
+                    {/* Background blurred image to fill space on mobile */}
+                    <img 
+                      src={img.url} 
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-40 md:hidden"
+                    />
                     <img 
                       src={img.url} 
                       alt={`Hero Slide ${index + 1}`} 
-                      className="w-full h-full object-cover"
+                      className="relative z-10 w-full h-full object-contain md:object-cover"
                     />
                     {img.link && (
-                      <div className="absolute inset-0 z-10 bg-black/10 group-hover:bg-black/20 transition-colors" />
+                      <div className="absolute inset-0 z-20 bg-black/10 group-hover:bg-black/20 transition-colors" />
                     )}
                   </div>
                 )}
