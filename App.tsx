@@ -173,7 +173,7 @@ const App: React.FC = () => {
                       playsInline
                       preload="auto"
                       crossOrigin="anonymous"
-                      className="relative z-10 w-full h-full object-contain md:object-cover"
+                      className="w-full h-full object-cover"
                       poster="https://i.ibb.co/60TrSSQn/484348315-122123947544616809-8652967539908385468-n.jpg"
                       onError={() => setVideoError(true)}
                     >
